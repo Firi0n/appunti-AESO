@@ -15,7 +15,7 @@ module test;
             b = 0;
             ripin = 0;
 
-            $dumpfile("test_main.vcd");
+            $dumpfile("test_FA_main.vcd");
             $dumpvars;
 
             for(i=0; i<8; i=i+1)

@@ -1,0 +1,45 @@
+$date
+	Wed Oct 23 01:03:53 2024
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module test $end
+$var wire 1 ! c $end
+$var reg 1 " a $end
+$var reg 1 # b $end
+$var integer 32 $ i [31:0] $end
+$scope module x $end
+$var wire 1 " a $end
+$var wire 1 # b $end
+$var wire 1 ! c $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 $
+0#
+0"
+0!
+$end
+#3
+b1 $
+#5
+1!
+1#
+#6
+b10 $
+#8
+1"
+0#
+#9
+b11 $
+#11
+0!
+1#
+#12
+b100 $
