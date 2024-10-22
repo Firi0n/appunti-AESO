@@ -45,7 +45,13 @@
   - [Temporizzazione nella logica sequenziale](#temporizzazione-nella-logica-sequenziale)
   - [Sincronizzatori](#sincronizzatori)
   - [Parallelismo](#parallelismo)
-- [](#)
+- [Blocchi costruttivi digitali](#blocchi-costruttivi-digitali)
+  - [Circuiti aritmetici](#circuiti-aritmetici)
+    - [Full adder](#full-adder)
+      - [Tabella di verità](#tabella-di-verità)
+      - [Mappa di Karnaugh ed equazione per $S$](#mappa-di-karnaugh-ed-equazione-per-s)
+      - [Mappa di Karnaugh ed equazione per $C\_{out}$](#mappa-di-karnaugh-ed-equazione-per-c_out)
+      - [Schema elettrico](#schema-elettrico)
 
 ---
 
@@ -523,4 +529,54 @@ La **capacità produttiva** di un sistema senza parallelismo è $1/L$, dove $L$ 
 
 Il parallelismo temporale migliora la capacità produttiva dividendo la logica in stadi più semplici. L'inserimento di registri tra blocchi di logica consente un clock più veloce, aumentando il throughput ma con un leggero aumento della latenza. Il parallelismo è limitato dalle dipendenze tra operazioni, che possono impedire l'esecuzione simultanea di più compiti.
 
-#
+# Blocchi costruttivi digitali
+
+I blocchi combinatori e sequenziali descritti di seguito sono progettati per **1 bit**. Grazie al principio di **modularità**, è possibile combinare $N$ blocchi da 1 bit per creare circuiti che operano su $N$ bit. Questo approccio consente di estendere facilmente le funzionalità senza dover riprogettare l'intero circuito.
+
+## Circuiti aritmetici
+
+I circuiti aritmetici sono i blocchi costruttivi centrali dei calcolatori.
+
+### Full adder
+
+Per fare un sommatore che sia modulare abbiamo bisogno dei due bit in ingresso da sommare ($A$ e $B$), ma anche di un terzo bit che rappresenta il riporto in ingresso ($c_{in}$).
+Mentre in uscita avremo il risultato ($S$) ed il riporto in uscita ($R_{out}$)
+
+#### Tabella di verità
+
+| $A$ | $B$ | $C_{in}$ | $S$ | $C_{out}$ |
+| --- | --- | -------- | --- | --------- |
+| 0   | 0   | 0        | 0   | 0         |
+| 0   | 0   | 1        | 1   | 0         |
+| 0   | 1   | 0        | 1   | 0         |
+| 0   | 1   | 1        | 0   | 1         |
+| 1   | 0   | 0        | 1   | 0         |
+| 1   | 0   | 1        | 0   | 1         |
+| 1   | 1   | 0        | 0   | 1         |
+| 1   | 1   | 1        | 1   | 1         |
+
+#### Mappa di Karnaugh ed equazione per $S$
+
+| $C_{in} \backslash AB$ | 00  | 01  | 11  | 10  |
+| ---------------------- | --- | --- | --- | --- |
+| 0                      | 0   | 1   | 0   | 1   |
+| 1                      | 1   | 0   | 1   | 0   |
+
+$$
+S=(A\oplus B\oplus C_{in})+A\cdot B\cdot C_{in}
+$$
+
+#### Mappa di Karnaugh ed equazione per $C_{out}$
+
+| $C_{in} \backslash AB$ | 00  | 01  | 11  | 10  |
+| ---------------------- | --- | --- | --- | --- |
+| 0                      | 0   | 0   | 1   | 0   |
+| 1                      | 0   | 1   | 1   | 1   |
+
+$$
+C_{out}=A\cdot B+B\cdot C_{in}+A\cdot C_{in}
+$$
+
+#### Schema elettrico
+
+![](/src/full-adder.drawio.svg)
