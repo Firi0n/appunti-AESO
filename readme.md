@@ -48,11 +48,8 @@
   - [Parallelismo](#parallelismo)
 - [Blocchi costruttivi digitali](#blocchi-costruttivi-digitali)
   - [Circuiti aritmetici](#circuiti-aritmetici)
+    - [Half adder](#half-adder)
     - [Full adder](#full-adder)
-      - [Tabella di verità](#tabella-di-verità)
-      - [Mappa di Karnaugh ed equazione per $S$](#mappa-di-karnaugh-ed-equazione-per-s)
-      - [Mappa di Karnaugh ed equazione per $C\_{out}$](#mappa-di-karnaugh-ed-equazione-per-c_out)
-      - [Schema elettrico](#schema-elettrico)
     - [Sommatore a propagazione di riporto a onda](#sommatore-a-propagazione-di-riporto-a-onda)
     - [Sommatore ad anticipazione di riporto](#sommatore-ad-anticipazione-di-riporto)
     - [Sommatore a prefissi](#sommatore-a-prefissi)
@@ -563,47 +560,33 @@ I blocchi combinatori e sequenziali descritti di seguito sono progettati per **1
 
 I circuiti aritmetici sono i blocchi costruttivi centrali dei calcolatori.
 
+### Half adder
+
+L'half adder è un circuito che prende due bit ($A$ e $B$) in ingresso e restituisce la ($S$) ed il **riporto** o **carry** ($C$)
+
+| $A$ | $B$ | $S$ | $C$ |
+| --- | --- | --- | --- |
+| 0   | 0   | 0   | 0   |
+| 0   | 1   | 1   | 0   |
+| 1   | 0   | 1   | 0   |
+| 1   | 1   | 0   | 1   |
+
+$$S=A\oplus B$$
+$$C=A\cdot B$$
+
+![](/src/half_adder.drawio.svg)
+
 ### Full adder
 
-Per fare un sommatore che sia modulare abbiamo bisogno dei due bit in ingresso da sommare ($A$ e $B$), ma anche di un terzo bit che rappresenta il riporto in ingresso ($c_{in}$).
-Mentre in uscita avremo il risultato ($S$) ed il riporto in uscita ($R_{out}$)
+Per fare un sommatore che sia modulare dobbiamo aggiungere il riporto in ingresso ($c_{in}$). Ciò si può fare usando due half-adder.
 
-#### Tabella di verità
+Il primo half adder prende in ingresso $A$ e $B$ restituendo $S_0$ e $C_0$.
 
-| $A$ | $B$ | $C_{in}$ | $S$ | $C_{out}$ |
-| --- | --- | -------- | --- | --------- |
-| 0   | 0   | 0        | 0   | 0         |
-| 0   | 0   | 1        | 1   | 0         |
-| 0   | 1   | 0        | 1   | 0         |
-| 0   | 1   | 1        | 0   | 1         |
-| 1   | 0   | 0        | 1   | 0         |
-| 1   | 0   | 1        | 0   | 1         |
-| 1   | 1   | 0        | 0   | 1         |
-| 1   | 1   | 1        | 1   | 1         |
+Il secondo prende in ingresso $S_0$ $C_{in}$ restituendo $S_1$ (il risultato) e $C_1$.
 
-#### Mappa di Karnaugh ed equazione per $S$
+Il riporto viene calcolato come:
 
-| $C_{in} \backslash AB$ | 00  | 01  | 11  | 10  |
-| ---------------------- | --- | --- | --- | --- |
-| 0                      | 0   | 1   | 0   | 1   |
-| 1                      | 1   | 0   | 1   | 0   |
-
-$$
-S=(A\oplus B\oplus C_{in})+A\cdot B\cdot C_{in}
-$$
-
-#### Mappa di Karnaugh ed equazione per $C_{out}$
-
-| $C_{in} \backslash AB$ | 00  | 01  | 11  | 10  |
-| ---------------------- | --- | --- | --- | --- |
-| 0                      | 0   | 0   | 1   | 0   |
-| 1                      | 0   | 1   | 1   | 1   |
-
-$$
-C_{out}=A\cdot B+B\cdot C_{in}+A\cdot C_{in}
-$$
-
-#### Schema elettrico
+$$C_{out}=S_0+S_1$$
 
 ![](/src/full-adder.drawio.svg)
 
