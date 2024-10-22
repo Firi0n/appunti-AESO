@@ -53,6 +53,8 @@
       - [Mappa di Karnaugh ed equazione per $S$](#mappa-di-karnaugh-ed-equazione-per-s)
       - [Mappa di Karnaugh ed equazione per $C\_{out}$](#mappa-di-karnaugh-ed-equazione-per-c_out)
       - [Schema elettrico](#schema-elettrico)
+    - [Sommatore a propagazione di riporto a onda](#sommatore-a-propagazione-di-riporto-a-onda)
+    - [Sommatore ad anticipazione di riporto](#sommatore-ad-anticipazione-di-riporto)
 
 ---
 
@@ -323,12 +325,12 @@ Si possono costruire anche multiplexer più grandi a partire da quello a due ing
 
 Un decoder ha N ingressi e $2^N$ uscite e attiva una delle sue uscite a seconda della combinazione di valori in ingresso.
 
-| A   | B   | Y_0 | Y_1 | Y_2 | Y_3 |
-| --- | --- | --- | --- | --- | --- |
-| 0   | 0   | 1   | 0   | 0   | 0   |
-| 0   | 1   | 0   | 1   | 0   | 0   |
-| 1   | 0   | 0   | 0   | 1   | 0   |
-| 1   | 1   | 0   | 0   | 0   | 1   |
+| A   | B   | $Y_0$ | $Y_1$ | $Y_2$ | $Y_3$ |
+| --- | --- | ----- | ----- | ----- | ----- |
+| 0   | 0   | 1     | 0     | 0     | 0     |
+| 0   | 1   | 0     | 1     | 0     | 0     |
+| 1   | 0   | 0     | 0     | 1     | 0     |
+| 1   | 1   | 0     | 0     | 0     | 1     |
 
 ![](/src/decoder.drawio.svg)
 
@@ -589,3 +591,16 @@ $$
 #### Schema elettrico
 
 ![](/src/full-adder.drawio.svg)
+
+Unendo $N$ full adder a 1 bit, otteniamo un sommatore completo a $N$ bit. Esistono più tipi di sommatore che possono essere realizzati unendo i full adder in modi diversi.
+
+### Sommatore a propagazione di riporto a onda
+
+Il metodo più semplice per costruire un **sommatore a propagazione di riporto a onda** a $N$ bit è collegare in cascata $N$ full adder completi.
+In questo modo, $R_{out}$ di uno stadio costituisce $R_{in}$ per lo stadio successivo.
+Il principale svantaggio legato a questo sommatore è il progressivo rallentamento all’aumentare di $N$, poiché ogni stadio deve aspettare che termini lo stadio precedente per poter iniziare.
+
+Il ritardo di propagazione nel sommatore, $t_{propag}$, aumenta all’aumentare del numero di bit coinvolti.
+$$t_{propag} = N\cdot t_{FA}$$
+
+### Sommatore ad anticipazione di riporto
