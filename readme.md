@@ -16,6 +16,7 @@
 - [Porte logiche](#porte-logiche)
   - [Porte a un ingresso](#porte-a-un-ingresso)
   - [Porte a due o più ingressi](#porte-a-due-o-più-ingressi)
+    - [Porta XOR](#porta-xor)
 - [Transistor CMOS](#transistor-cmos)
 - [Reti logiche combinatorie](#reti-logiche-combinatorie)
   - [Espressioni booleane](#espressioni-booleane)
@@ -169,6 +170,14 @@ $$n_b=\sum_{i\in I} c_i\cdot 10^i$$
 | 1   | 1   | 1          | 1         | 0           |
 
 ![](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fas1.ftcdn.net%2Fv2%2Fjpg%2F05%2F02%2F63%2F52%2F1000_F_502635240_S7hotQTlARZJiY3s7S9bkqlQSsUI5R33.jpg&f=1&nofb=1&ipt=392ab8da7b6b678d21fe31115eed59b4b0105b2d0538591416fb638cde166196&ipo=images)
+
+### Porta XOR
+
+La porta **XOR** può essere costruita con le **AND** e le **OR** nel seguente modo:
+
+$$A\oplus B = \overline{A}\cdot B+A\cdot\overline{B}$$
+
+![](/src/xor.drawio.svg)
 
 # Transistor CMOS
 
