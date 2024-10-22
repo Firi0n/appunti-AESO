@@ -576,6 +576,16 @@ $$C=A\cdot B$$
 
 ![](/src/half_adder.drawio.svg)
 
+```verilog
+module HA(output rip, output c, input a, input b);
+    assign
+        rip = a && b;
+
+    assign
+        c = a ^ b;
+endmodule
+```
+
 ### Full adder
 
 Per fare un sommatore che sia modulare dobbiamo aggiungere il riporto in ingresso ($c_{in}$). Ciò si può fare usando due half-adder.
@@ -589,6 +599,16 @@ Il riporto viene calcolato come:
 $$C_{out}=S_0+S_1$$
 
 ![](/src/full-adder.drawio.svg)
+
+```verilog
+module FA(output cout, output s, input a, input b, input cin);
+    wire s0, c0, c1;
+    HA ha1(c0,s0,a,b);
+    HA ha2(c1,s,s0,cin);
+    assign
+      cout = c0 || c1;
+endmodule
+```
 
 Unendo $N$ full adder a 1 bit, otteniamo un sommatore completo a $N$ bit. Esistono più tipi di sommatore che possono essere realizzati unendo i full adder in modi diversi.
 
