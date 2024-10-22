@@ -193,6 +193,15 @@ $$A\oplus B = \overline{A}\cdot B+A\cdot\overline{B}$$
 
 ![](/src/xor.drawio.svg)
 
+```verilog
+module XOR(output c, input a, input b);
+    assign
+        c = (!a && b) || (a && !b);
+endmodule
+```
+
+In verilog la xor si può fare direttamente con il simbolo ^.
+
 # Transistor CMOS
 
 ...
