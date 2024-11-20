@@ -952,5 +952,18 @@ end:
 ## Memoria
 
 ```armasm
-LDR
+LDR R3, [R0, R1, LSL #2]
+@ Salva in R3 il contenuto del registro (r0 + (r1*4))
+LDR R0, [R1, R2]!
+@ Il ! serve ad indicare che r1 viene modificato
+LDR R0, [R1], R2
+@ Uguale alla forma di sopra solo che l'incremento viene eseguito dopo
+LDRB @Carica un byte (si usa uguale alla LDR)
+LDRSB @ Signed byte
+STR R9, [R0, #8]
+@ salva R9 nell' indirizzo di memoria contenuto in r0
+PUSH {...} @ carica nello stack LIFO
+POP {...} @ scarica dallo stack
 ```
+
+Aggiungere il restante prima dell'orale
