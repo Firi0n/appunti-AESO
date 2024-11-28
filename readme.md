@@ -78,8 +78,9 @@
     - [Mnemonici più utili per CMP](#mnemonici-più-utili-per-cmp)
   - [Salti](#salti)
   - [Costrutti](#costrutti)
-- [cicli](#cicli)
-  - [Memoria](#memoria-1)
+    - [cicli](#cicli)
+    - [Memoria](#memoria-1)
+- [Istruzioni macchina](#istruzioni-macchina)
 
 ---
 
@@ -899,23 +900,23 @@ Di seguito sono riportati tutti i flag:
 
 ### Mnemonici di condizione
 
-| **Cond** | **Mnemonico** | **Nome**                                                                           | **CondEse**                       |
-| -------- | ------------- | ---------------------------------------------------------------------------------- | --------------------------------- |
-| 0000     | EQ            | Uguale (_Equal_)                                                                   | Z                                 |
-| 0001     | NE            | Diverso (_Not Equal_)                                                              | \( \overline{Z} \)                |
-| 0010     | CS/HS         | Attiva riporto/maggiore o uguale senza segno (_Carry Set/unsigned Higher or Same_) | C                                 |
-| 0011     | CC/LO         | Disattiva riporto/minore senza segno (_Carry Clear/unsigned Lower_)                | \( \overline{C} \)                |
-| 0100     | MI            | Meno/negativo (_Minus/negative_)                                                   | N                                 |
-| 0101     | PL            | Più/positivo o nullo (_Plus/positive or zero_)                                     | \( \overline{N} \)                |
-| 0110     | VS            | Traboccamento/attiva traboccamento (_overflow/overflow Set_)                       | V                                 |
-| 0111     | VC            | No traboccamento/disattiva traboccamento (_overflow/overflow Clear_)               | \( \overline{V} \)                |
-| 1000     | HI            | Maggiore senza segno (_unsigned Higher_)                                           | \( Z \overline{C} \)              |
-| 1001     | LS            | Minore o uguale senza segno (_unsigned Lower or Same_)                             | \( Z \ OR \ \overline{C} \)       |
-| 1010     | GE            | Maggiore o uguale con segno (_signed Greater than or Equal_)                       | \( \overline{N} \oplus V \)       |
-| 1011     | LT            | Minore con segno (_signed Less Than_)                                              | \( N \oplus V \)                  |
-| 1100     | GT            | Maggiore con segno (_signed Greater Than_)                                         | \( \overline{Z} \ (N \oplus V) \) |
-| 1101     | LE            | Minore o uguale con segno (_signed Less than or Equal_)                            | \( Z \ OR \ (N \oplus V) \)       |
-| 1110     | AL (o niente) | Sempre/incondizionato (_ALways/unconditional_)                                     | Ignorato                          |
+| **Cond** | **Mnemonico** | **Nome**                                                                           | **CondEse**                   |
+| -------- | ------------- | ---------------------------------------------------------------------------------- | ----------------------------- |
+| 0000     | EQ            | Uguale (_Equal_)                                                                   | Z                             |
+| 0001     | NE            | Diverso (_Not Equal_)                                                              | $\overline{Z}$                |
+| 0010     | CS/HS         | Attiva riporto/maggiore o uguale senza segno (_Carry Set/unsigned Higher or Same_) | C                             |
+| 0011     | CC/LO         | Disattiva riporto/minore senza segno (_Carry Clear/unsigned Lower_)                | $\overline{C}$                |
+| 0100     | MI            | Meno/negativo (_Minus/negative_)                                                   | N                             |
+| 0101     | PL            | Più/positivo o nullo (_Plus/positive or zero_)                                     | $\overline{N}$                |
+| 0110     | VS            | Traboccamento/attiva traboccamento (_overflow/overflow Set_)                       | V                             |
+| 0111     | VC            | No traboccamento/disattiva traboccamento (_overflow/overflow Clear_)               | $\overline{V}$                |
+| 1000     | HI            | Maggiore senza segno (_unsigned Higher_)                                           | $Z \overline{C}$              |
+| 1001     | LS            | Minore o uguale senza segno (_unsigned Lower or Same_)                             | $Z \ OR \ \overline{C}$       |
+| 1010     | GE            | Maggiore o uguale con segno (_signed Greater than or Equal_)                       | $\overline{N} \oplus V$       |
+| 1011     | LT            | Minore con segno (_signed Less Than_)                                              | $N \oplus V$                  |
+| 1100     | GT            | Maggiore con segno (_signed Greater Than_)                                         | $\overline{Z} \ (N \oplus V)$ |
+| 1101     | LE            | Minore o uguale con segno (_signed Less than or Equal_)                            | $Z \ OR \ (N \oplus V)$       |
+| 1110     | AL (o niente) | Sempre/incondizionato (_ALways/unconditional_)                                     | Ignorato                      |
 
 ### Mnemonici più utili per CMP
 
@@ -934,7 +935,7 @@ B (Branch) si usa per saltare ad una determinata etichetta del codice, mentre BL
 
 ## Costrutti
 
-# cicli
+### cicli
 
 ```armasm
 func:
@@ -949,7 +950,7 @@ end:
   mov pc, lr
 ```
 
-## Memoria
+### Memoria
 
 ```armasm
 LDR R3, [R0, R1, LSL #2]
@@ -966,4 +967,29 @@ PUSH {...} @ carica nello stack LIFO
 POP {...} @ scarica dallo stack
 ```
 
-Aggiungere il restante prima dell'orale
+# Istruzioni macchina
+
+```mermaid
+graph TD
+  Title[Composizione<br>Istruzioni ARM] --> TotalBit[32 bit]
+  TotalBit --> Cond --> CondBit[31-28]
+  TotalBit --> Op --> OpBit[27-26]
+  TotalBit --> Funct --> FunctBit[25-20]
+  TotalBit --> Rd --> RdBit[19-16]
+  TotalBit --> Rn --> RnBit[15-12]
+  TotalBit --> Oper[Operando/<br>Immediato] --> OperBit[11-0]
+```
+
+```mermaid
+graph TD
+  Title[Composizione<br>Istruzioni salto ARM] --> TotalBit[32 bit]
+  TotalBit --> Cond --> CondBit[31-28]
+  TotalBit --> 10 --> OpBit[27-26]
+  TotalBit --> 1L --> L0{L==0} -->|Vero| B
+  L0 -->|Falso| BL
+  1L --> FunctBit[25-24]
+  TotalBit --> Immediate[Immediato con<br>segno] --> Imm0{Immediato > 0}
+  Imm0-->|Vero| SA[Salto in avanti]
+  Imm0-->|Falso| SI[Salto indietro]
+  Immediate --> ImmBit[23-0]
+```
