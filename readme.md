@@ -980,6 +980,8 @@ graph TD
   TotalBit --> Oper[Operando/<br>Immediato] --> OperBit[11-0]
 ```
 
+---
+
 ```mermaid
 graph TD
   Title[Composizione<br>Istruzioni salto ARM] --> TotalBit[32 bit]
