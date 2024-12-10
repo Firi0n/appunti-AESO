@@ -1154,7 +1154,7 @@ gantt
     5 : 10,1s
 ```
 
-$$T_p = max\left\{T_e, T_c, {T\over n}, T_a\right\}$$
+$$T_p = max\bigg\{T_e, T_c, {T\over n}, T_a\bigg\}$$
 
 ## Parallelismo temporale
 
