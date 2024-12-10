@@ -81,6 +81,14 @@
     - [cicli](#cicli)
     - [Memoria](#memoria-1)
 - [Istruzioni macchina](#istruzioni-macchina)
+- [Parallelismo](#parallelismo-1)
+  - [Parallelismo standard](#parallelismo-standard)
+    - [Tempo di completamento con grado di parallelismo n](#tempo-di-completamento-con-grado-di-parallelismo-n)
+    - [Scalabilità con grado di parallelismo n](#scalabilità-con-grado-di-parallelismo-n)
+      - [Caso ottimo:](#caso-ottimo)
+    - [Efficienza relativa con grado di parallelismo n](#efficienza-relativa-con-grado-di-parallelismo-n)
+  - [Parallelismo spaziale](#parallelismo-spaziale)
+  - [Parallelismo temporale](#parallelismo-temporale)
 
 ---
 
@@ -857,7 +865,13 @@ Nel primo si iniziano a salvare i dati in memoria dal bit **più significativo**
 
 ## Istruzioni
 
-Nella seguente tabella indico con # dove può andare anche un immediato (costante).
+Il formato di una tipica istruzione è:
+
+```armasm
+CMD Rd, Rn, Rm/Imm
+@ exemple
+SUM R0, R1, #5
+```
 
 | Codice assembly ARM | Significato           |
 | ------------------- | --------------------- |
@@ -971,27 +985,210 @@ POP {...} @ scarica dallo stack
 
 ```mermaid
 graph TD
-  Title[Composizione<br>Istruzioni ARM] --> TotalBit[32 bit]
-  TotalBit --> Cond --> CondBit[31-28]
-  TotalBit --> Op --> OpBit[27-26]
-  TotalBit --> Funct --> FunctBit[25-20]
-  TotalBit --> Rd --> RdBit[19-16]
-  TotalBit --> Rn --> RnBit[15-12]
-  TotalBit --> Oper[Operando/<br>Immediato] --> OperBit[11-0]
+  Title[Composizione istruzioni<br>operative ARM<br>32 bit]
+  Title --> Cond[CondBit<br>31-28]
+  Cond --> N[N<br>31]
+  Cond --> Z[Z<br>30]
+  Cond --> C[C<br>29]
+  Cond --> V[V<br>28]
+  Title --> Op[Op<br>27-26] --> 00
+  Title --> Funct[Funct<br>25-20]
+  Funct --> CMD[CMB<br>24-21] --> CMDdes[Tipo<br>istruzione<br>operativa]
+  Funct --> S[S<br>20] --> Sdes[Se scriviamo<br>nei flag]
+  Title --> Rn[Rn<br>19-16]
+  Title --> Rd[Rd<br>15-12]
+  Title --> src[src2<br>11-0]
+  src --> I -->I0[0]
+  Funct --> I[I<br>25]
+  I0 --> rot[rot<br>11-8]
+  I0 --> imm[imm<br>7-0]
+  I --> I1[1]
+  I1 --> bt[...<br>11-7] --> x[x<br>4]
+  I1 --> SM[SM<br>6-5]
+  I1 --> x --> |0|SHMTS[SHMTS<br>11-7]
+  x --> |1|RS[RS<br>11-8]
+  I1 --> Rm[Rm<br>3-0]
 ```
 
 ---
 
 ```mermaid
 graph TD
-  Title[Composizione<br>Istruzioni salto ARM] --> TotalBit[32 bit]
-  TotalBit --> Cond --> CondBit[31-28]
-  TotalBit --> 10 --> OpBit[27-26]
-  TotalBit --> 1L --> L0{L==0} -->|Vero| B
+  Title[Composizione istruzioni<br>memoria ARM<br>32 bit]
+  Title --> Cond[CondBit<br>31-28]
+  Cond --> N[N<br>31]
+  Cond --> Z[Z<br>30]
+  Cond --> C[C<br>29]
+  Cond --> V[V<br>28]
+  Title --> Op[Op<br>27-26] --> 01
+  Title --> Funct[Funct<br>25-20]
+  Funct --> P[P<br>24] --> Comb
+  Funct --> U[U<br>23] -->|0|Somma
+  U -->|1|Sottrazione
+  Funct --> B[B<br>22] -->|0|Word
+  B -->|1|Byte
+  Funct --> W[W<br>21] --> Comb
+  Funct --> L[L<br>20] -->|0|Store
+  L -->|1|Load
+  Comb -->|00|Post-index
+  Comb -->|10|Spiazzamento
+  Comb -->|11|Pre-index
+  Title --> Rn[Rn<br>19-16]
+  Title --> Rd[Rd<br>15-12]
+  Title --> src[src2<br>11-0]
+  src --> I -->|0|imm[imm<br>11-0]
+  Funct --> I[I<br>25]
+  I --> I1[1]
+  I1 --> Shamts[Shamts<br>11-7]
+  I1 --> SM[SM<br>6-5]
+  I1 --> Rm[Rm<br>3-0]
+```
+
+---
+
+```mermaid
+graph TD
+  Title[Composizione<br>Istruzioni salto ARM<br>32 bit]
+  Title --> Cond[Cond<br>31-28]
+  Title --> 10[10<br>27-26]
+  Title --> 1L[1L<br>25-24] --> L0{L==0} -->|Vero| B
   L0 -->|Falso| BL
-  1L --> FunctBit[25-24]
-  TotalBit --> Immediate[Immediato con<br>segno] --> Imm0{Immediato > 0}
+  Title --> Immediate[Immediato<br>con segno<br>23-0] --> Imm0{Immediato > 0}
   Imm0-->|Vero| SA[Salto in avanti]
   Imm0-->|Falso| SI[Salto indietro]
-  Immediate --> ImmBit[23-0]
+```
+
+# Parallelismo
+
+## Parallelismo standard
+
+```mermaid
+graph LR
+  Split[Split<br>m elements] --> W1[Worker 1]
+  Split --> 3p[...]
+  Split --> Wn[Worker n]
+  W1 --> Merge
+  3p --> Merge
+  Wn --> Merge
+```
+
+Numero elementi per worker: $m\over{n}$
+
+$T_{split}^n$ = Tempo impiegato per dividere gli elemeti (dipende da n)
+
+$T_{w}$ = Tempo unitario del singolo worker
+
+$T_{merge}^n$ = Tempo impiegato per unire l'operato dei worker (dipende da n)
+
+### Tempo di completamento con grado di parallelismo n
+
+$$T_c^n = T_{split}^n + T_{w}\cdot {m\over{n}} + T_{merge}^n$$
+
+### Scalabilità con grado di parallelismo n
+
+Scalabilità = Aumento velocità rispetto al caso sequenziale
+
+$$S^n = {T_c^1\over{T_c^n}}={m\cdot T\over T_{split} + T\cdot {m\over{n}} + T_{merge}}$$
+
+#### Caso ottimo:
+
+$$T_{split} = 0\land T_{merge} = 0 \Rightarrow {m\cdot T\over T\cdot {m\over{n}}} = n$$
+
+### Efficienza relativa con grado di parallelismo n
+
+Indica la distanza tra le prestazioni ottenute e quelle ideali.
+
+$$\epsilon^n={T_c^1\over n}\cdot{1\over{T_c^n}} = {S^n\over n}$$
+
+## Parallelismo spaziale
+
+$T_a$ = Tempo di interarrivo (Tempo medio che passa dall'arrivo di un elemento ad un altro)
+
+$T = T_w^1$
+
+$T_p$ = Tempo di interpartenza
+
+$$T_a = 0\Rightarrow T_p = T$$
+
+$$T_a > 0 \land T_a < T\Rightarrow T_p = T$$
+
+$$T_a > 0 \land T_a \ge T\Rightarrow T_p = T_a$$
+
+```mermaid
+graph LR
+  Split[Emettitore] --> W1[Worker 1]
+  Split --> 3p[...]
+  Split --> Wn[Worker n]
+  W1 --> Collettore
+  3p --> Collettore
+  Wn --> Collettore
+```
+
+$$T_e = 1, T_w = 4, T_c=1$$
+
+```mermaid
+gantt
+    dateFormat  s
+    axisFormat  ''
+
+    section E
+    1 : 1,1s
+    2 : 2,1s
+    3 : 3,1s
+    4 : 4,1s
+    5 : 5,1s
+    section W1
+    1: 2,4s
+    5:6,4s
+    section W2
+    2: 3,4s
+    section W3
+    3: 4,4s
+    section W4
+    4: 4,4s
+    section C
+    1 : 6,1s
+    2 : 7,1s
+    3 : 8,1s
+    4 : 9,1s
+    5 : 10,1s
+```
+
+$$T_p = max\left\{T_e, T_c, {T\over n}, T_a\right\}$$
+
+## Parallelismo temporale
+
+```mermaid
+gantt
+    title Pipeline del Processore ARM
+    dateFormat  s
+    axisFormat  ''
+
+    section Istruzione 1
+    Fetch I1            : 1, 1s
+    Decode I1           : 2, 1s
+    Execute I1          : 3, 1s
+    Memory I1           : 4, 1s
+    Writeback I1        : 5, 1s
+
+    section Istruzione 2
+    Fetch I2            : 2, 1s
+    Decode I2           : 3, 1s
+    Execute I2          : 4, 1s
+    Memory I2           : 5, 1s
+    Writeback I2        : 6, 1s
+
+    section Istruzione 3
+    Fetch I3            : 3, 1s
+    Decode I3           : 4, 1s
+    Execute I3          : 5, 1s
+    Memory I3           : 6, 1s
+    Writeback I3        : 7, 1s
+
+    section Istruzione 4
+    Fetch I4            : 4, 1s
+    Decode I4           : 5, 1s
+    Execute I4          : 6, 1s
+    Memory I4           : 7, 1s
+    Writeback I4        : 8, 1s
 ```
