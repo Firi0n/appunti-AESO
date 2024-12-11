@@ -1110,11 +1110,9 @@ $T = T_w^1$
 
 $T_p$ = Tempo di interpartenza
 
-$$T_a = 0\Rightarrow T_p = T$$
+$$T_a > 0 \land T_a \leq T\Rightarrow T_p = T$$
 
-$$T_a > 0 \land T_a < T\Rightarrow T_p = T$$
-
-$$T_a > 0 \land T_a \ge T\Rightarrow T_p = T_a$$
+$$T_a > 0 \land T_a > T\Rightarrow T_p = T_a$$
 
 ```mermaid
 graph LR
@@ -1147,7 +1145,7 @@ gantt
     section W3
     3: 4,4s
     section W4
-    4: 4,4s
+    4: 5,4s
     section C
     1 : 6,1s
     2 : 7,1s
