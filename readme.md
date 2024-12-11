@@ -1052,7 +1052,7 @@ graph TD
 graph TD
   Title[Composizione<br>Istruzioni salto ARM<br>32 bit]
   Title --> Cond[Cond<br>31-28]
-  Title --> 10[10<br>27-26]
+  Title --> Op[Op<br>27-26] --> 10
   Title --> 1L[1L<br>25-24] --> L0{L==0} -->|Vero| B
   L0 -->|Falso| BL
   Title --> Immediate[Immediato<br>con segno<br>23-0] --> Imm0{Immediato > 0}
