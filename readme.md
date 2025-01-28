@@ -1,2 +1,3 @@
-[Architetture](/architetture.md)
-[Sistemi operativi](/sistemi_operativi.md)
+<center>[Architetture](/architetture.md)</center>
+
+<center>[Sistemi operativi](/sistemi_operativi.md)</center>
