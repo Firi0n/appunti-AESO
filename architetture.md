@@ -1,6 +1,3 @@
-# Indice
-
-- [Indice](#indice)
 - [Astrazione, disciplina e le tre y](#astrazione-disciplina-e-le-tre-y)
   - [Astrazione digitale](#astrazione-digitale)
 - [I sistemi numerici](#i-sistemi-numerici)
