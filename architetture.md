@@ -100,7 +100,15 @@
     - [Stati](#stati)
     - [Analisi prestazionale](#analisi-prestazionale-1)
   - [Pipeline](#pipeline)
-  - [Processori superscalari](#processori-superscalari)
+    - [Datapath](#datapath-1)
+    - [Control unit](#control-unit-2)
+    - [Dipendenze](#dipendenze)
+  - [Microarchitetture avanzate](#microarchitetture-avanzate)
+    - [Previsione dei salti](#previsione-dei-salti)
+    - [Processori super-scalari](#processori-super-scalari)
+    - [Processore out-of-order](#processore-out-of-order)
+    - [Multithreading](#multithreading)
+    - [Multiprocessori](#multiprocessori)
 
 ---
 
@@ -1383,14 +1391,134 @@ Il tempo di esecuzione di un’istruzione dipende dal tempo di ciclo e dal numer
 Il processore multi ciclo usa numeri variabili di cicli per le diverse istruzioni, però questo processore svolge meno attività in ogni ciclo, quindi ha senz’altro un tempo di ciclo inferiore.
 
 | Istruzioni           | Cicli |
-| -------------------- | ----- |
-| Salto                | 1     |
-| elaborazione dati    | 4     |
-| scrittura in memoria | 4     |
-| lettura da memoria   | 5     |
+| -------------------- | :---: |
+| Salto                |   1   |
+| elaborazione dati    |   4   |
+| scrittura in memoria |   4   |
+| lettura da memoria   |   5   |
 
 Il CPI dipende quindi dalla probabilità relativa di utilizzo di ciascuna tipologia di istruzioni nel programma.
 
 ## Pipeline
 
-## Processori superscalari
+Un processore pipeline si ottiene suddividendo il processore a ciclo singolo in cinque stadi di pipeline.
+
+In questo modo, cinque istruzioni alla volta possono essere in esecuzione, una per ogni stadio.
+
+Dal momento che ogni stadio ha circa un quinto della logica totale, la frequenza di clock dovrebbe risultare circa cinque
+volte superiore.
+
+Quindi la latenza di ogni istruzione rimane quasi inalterata, ma la capacità di lavoro (throughput) svolto dal processore è idealmente cinque volte superiore.
+
+Letture e scritture in memoria e nel banco di registri sono le attività che introducono i maggiori ritardi nel processore.
+
+Si è deciso qui di adottare una pipeline a cinque stadi proprio perché in questo modo ogni stadio coinvolge una sola di queste attività lente.
+
+| Stadi      | Parte principale coinvolta |
+| ---------- | -------------------------- |
+| Fetch      | Instruction Memory (IM)    |
+| Decode     | Register file (RF)         |
+| Execute    | ALU                        |
+| Memory     | Data Memory (DM)           |
+| Write back | Register file (RF)         |
+
+![schema pipeline](/src/pipeline_scheme.png)
+
+### Datapath
+
+Il percorso dati del processore pipeline è ottenuto dividendo il percorso dati del processore a ciclo singolo in cinque stadi, separati da registri di pipeline.
+
+### Control unit
+
+Il processore pipeline usa gli stessi segnali di controllo del processore a ciclo singolo.
+
+Tali segnali devono essere propagati nella pipeline insieme ai dati per rimanere sincronizzati con l'istruzione cui si riferiscono.
+
+### Dipendenze
+
+In una struttura pipeline, più istruzioni sono eseguite in modo concorrente.
+
+Si verifica dipendenza (hazard) quando un'istruzione dipende dai risultati di un'istruzione che la precede e che non è ancora conclusa.
+
+Una soluzione è quella di inserire istruzioni non dipendenti tra le due dipendenti per dare il tempo alla prima di completarsi.
+
+Se non ci sono istruzioni non dipendenti, si può inserire uno stadio di **nop** (no operation) per dare il tempo alla prima di completarsi.
+
+Ma ciò degrada le prestazioni ed è a cura del programmatore o del compilatore e si vuoole evitare di dipendere da essi.
+
+Le dipendenze sono classificate in:
+
+- **Dipendenze di dati**: un'istruzione dipende dai risultati di un'istruzione precedente.
+- **Dipendenze di controllo**: il PC dipende da un'istruzione precedente.
+
+Alcune dipendenze di dato possono essere risolte mediante forwarding, cioè inviando i dati direttamente dagli stadi di memory e write back a quello di execute.
+
+Questo richiede l’aggiunta di multiplexer davanti all’ALU per selezionare l’operando dal banco di registri oppure dagli stadi Memory o Writeback.
+
+L'istruzione LDR tuttavia non può essere risolta con il forwarding, poiché il dato non è disponibile fino allo stadio di memory.
+
+In questo caso si inserisce uno stallo nella pipeline. Questo stadio è chiamato bolla (bubble) e si comporta come un'istruzione nop.
+
+lo stallo di uno stadio viene effettuato disabilitando i registri di pipeline in modo che lo stato corrente non sia modificato.
+
+Quando uno stadio viene portato in stallo, devono subire la stessa sorte anche tutti gli stadi precedenti, in modo che nessuna istruzione venga persa.
+
+Il registro di pipeline subito dopo lo stato portato in stallo deve essere svuotato per evitare che informazioni fasulle si propaghino nella pipeline.
+
+L’istruzione B presenta una dipendenza di controllo, per risolverla si può usare il branch prediction.
+
+Esso consiste nel prevedere se l’istruzione sarà eseguita o meno e caricare in anticipo le istruzioni corrispondenti. Se la previsione è sbagliata, si deve svuotare la pipeline.
+
+Per fare tutto ciò si usa un'unità di gestione delle dipendenze.
+
+![pipeline processor](/src/pipeline.png)
+
+## Microarchitetture avanzate
+
+### Previsione dei salti
+
+La maggior parte dei processori pipeline adotta un predittore di salto per cercare di prevedere se il salto andrà eseguito o meno.
+
+I cicli sono di solito eseguiti molte volte, quindi i salti all’indietro molto spesso sono da fare.
+Una forma molto semplice di previsione dei salti è quindi quella che verifica la direzione del salto e assume che i salti all’indietro debbano essere fatti.
+Viene chiamata previsione statica dei salti.
+
+I salti in avanti sono più difficili da prevedere senza conoscere meglio la struttura del programma in esecuzione,
+quindi molti processori usano una previsione dinamica dei salti che si basa sulla storia del programma per cercare di indovinare se il salto vada o meno eseguito.
+
+I predittori dinamici memorizzano una tabella che contiene le ultime centinaia (se non migliaia) di istruzioni di salto eseguite dal processore.
+La tabella,
+denominata buffer delle destinazioni di salto (branch target buffer),
+include la destinazione di ciascun salto e la storia del salto,
+ovvero se sia stato o meno eseguito in passato.
+
+### Processori super-scalari
+
+Un processore super-scalare è un processore che può eseguire più di un’istruzione per ciclo.
+
+### Processore out-of-order
+
+Un processore out-of-order è un processore che può eseguire le istruzioni in un ordine diverso da quello in cui sono state scritte nel programma.
+
+Ciò permette di evitare gli stalli dovuti alle dipendenze di dati.
+
+### Multithreading
+
+Un programma in esecuzione su un calcolatore è denominato processo. I calcolatori possono eseguire molti processi in parallelo ed ogni processo può avere uno o più thread, che possono essere eseguiti in parallelo.
+
+In un processore convenzionale, c'è solo l'illusione che le istruzioni vengano eseguite in parallelo, in realtà vengono eseguite sequenzialmente. Se ne occupa il sistema operativo, mettendo in pausa un thread salvandone lo stato architetturale e riprendendolo in un secondo momento. Questa procedura è chiamata context switching.
+
+Un processore multithread contiene più di una copia del proprio stato architetturale, in modo che più di un thread possa essere attivo in ogni istante.
+
+### Multiprocessori
+
+Intorno al 2005, gli architetti di calcolatori hanno introdotto un importante cambiamento di strategia inserendo più copie del processore nello stesso chip: ciascuna di queste copie prende il nome di core.
+
+Un sistema multiprocessore consiste dunque di più processori e di una struttura di comunicazione tra i processori stessi.
+Le tre tipologie più comuni di multiprocessori sono i multiprocessori simmetrici (detti anche omogenei), i multiprocessori eterogenei e i cluster.
+
+I multiprocessori simmetrici sono costituiti da più core identici, che condividono la stessa memoria principale. Essi possono essere usati per eseguire un singolo processo in parallelo su più core, oppure per eseguire più processi in parallelo su più core.
+
+I multiprocessori eterogenei sono costituiti da core diversi. Essi hanno dei vantaggi in termini di efficienza energetica, in quanto i core più piccoli consumano meno energia. Essi però aggiungono complessità al sistema, in quanto è necessario gestire la distribuzione dei processi sui core.
+
+I cluster sono costituiti da più core, ciascuno con la propria memoria. Un esempio di cluster è rappresentato dai data center, in cui i core sono distribuiti su più server.
