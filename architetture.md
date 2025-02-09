@@ -87,10 +87,20 @@
   - [Parallelismo spaziale](#parallelismo-spaziale)
   - [Parallelismo temporale](#parallelismo-temporale)
 - [Microarchitettura](#microarchitettura)
+  - [Datapath](#datapath)
+    - [Program counter](#program-counter)
+    - [Memoria istruzioni](#memoria-istruzioni)
+    - [Banco dei registri di lavoro](#banco-dei-registri-di-lavoro)
+    - [Memoria dati](#memoria-dati)
   - [Single-cycle](#single-cycle)
+    - [Control unit](#control-unit)
+    - [Analisi prestazionale](#analisi-prestazionale)
   - [Multi-cycle](#multi-cycle)
+    - [Control unit](#control-unit-1)
+    - [Stati](#stati)
+    - [Analisi prestazionale](#analisi-prestazionale-1)
   - [Pipeline](#pipeline)
-  - [Super scalare](#super-scalare)
+  - [Processori superscalari](#processori-superscalari)
 
 ---
 
@@ -1242,10 +1252,145 @@ $$T_s = max\left\lbrace T_s\text{(stadio 1)}, ... ,T_s\text{(stadio n)}\right\rb
 
 # Microarchitettura
 
+L'architettura del calcolatore è definita da un set di istruzioni e da uno stato architetturale.
+
+Lo stato architetturale del processore ARM è definito dal contenuto di 16 registri a 32 bit e di un registro di stato.
+
+A partire dallo stato architetturale corrente, il processore esegue una particolare istruzione su un particolare insieme di dati per produrre un nuovo stato architetturale.
+
+Consideriamo un sottoinsieme del set di istruzioni di ARM:
+
+- le istruzioni di elaborazione dati **ADD**, **SUB**, **AND** e **ORR**;
+- le istruzioni di accesso alla memoria **LDR** e **STR**;
+- l’istruzione di salto **B**.
+
+È opportuno dividere le microarchitetture in due parti tra loro interagenti:
+Il **datapath**, che si occupa dell'esecuzione vera e propria, e la **control unit**, che si occupa di impostare le componenti del datapath per eseguire una determinata istruzione.
+
+## Datapath
+
+Le parti fondamentali del datapath sono:
+
+### Program counter
+
+![program counter](src/program_counter.png)
+
+Esso viene realizzarlo come registro autonomo a 32 bit.
+
+Ingressi:
+
+- PC' = indirizzo prossima istruzione da eseguire.
+
+Uscite:
+
+- PC = indirizzo istruzione corrente.
+
+### Memoria istruzioni
+
+![memoria istruzioni](src/memoria_istruzioni.png)
+
+Ingressi:
+
+- A = Indirizzo istruzione (Uscita PC).
+
+Uscite:
+
+- RD = Istruzione da eseguire.
+
+### Banco dei registri di lavoro
+
+![Banco dei registri di lavoro](src/registri.png)
+
+Il banco di registri di 15 elementi da 32 bit contiene i registri R0-R14, ed ha un ingresso aggiuntivo per ricevere R15 dal PC.
+
+Ingressi:
+
+- A1 = A2 = Porte indirizzi lettura;
+- A3 = Porta indirizzo scrittura;
+- WD3 = Porta dati scrittura;
+- WE3 = Segnale abilitazione scrittura;
+- R15 = Contenuto PC.
+
+Uscite:
+
+- RD1 = Uscita dei dati letti da A1;
+- RD2 = Uscita dei dati letti da A2.
+
+### Memoria dati
+
+![Memoria dati](src/memoria_dati.png)
+
+Ingressi:
+
+- A = Porta indirizzo lettura/scrittura;
+- WD = Porta dati scrittura;
+- WE = Segnale stato scrittura/lettura;
+
+Uscite:
+
+- RD = (WE = 0) $\Rightarrow$ Uscita A
+
+La memoria istruzioni, il banco di registri e la memoria dati sono tutti letti in modo combinatorio, mentre, le scritture avvengono solo in corrispondenza dei fronti di salita del clock.
+
+Quindi il microprocessore è un circuito sequenziale sincrono.
+
+Unendo questi componenti in maniera differente è possibile ottenere microarchitetture diverse.
+
+Le seguenti microarchitetture differiscono per il modo in cui i vari elementi di stato sono connessi tra loro e per la quantità di stato non architetturale inserito.
+
 ## Single-cycle
+
+Si parte con il progetto di una microarchitettura che esegue le istruzioni in un singolo ciclo.
+
+![Syngle-cycle](src/single_cycle.png)
+
+### Control unit
+
+![Syngle-cycle control unit](src/single_cycle_cu.png)
+
+### Analisi prestazionale
+
+In questa architettura il clock è dato dalla somma dei tempi dell'operazione critica su LDR.
+
+Visto che ALU, memoria e registri sono più lente rispetto alle altre componenti otteniamo la formula semplificata:
+
+$$T_{c1}=t_{pcq\_PC}+2t_{mem}+t_{dec}+t_{RFread}+t_{ALU}+2t_{mux}+t_{RFsetup}$$
 
 ## Multi-cycle
 
+Il processore a ciclo singolo ha due elementi di debolezza:
+
+- Duplicazione di circuiti (memorie e sommatori);
+- Ciclo di clock lungo;
+
+Il processore multi ciclo si propone di eliminare queste tre debolezze dividendo l’istruzione in una sequenza di passi più brevi tramite l'ausilio di elementi di stato non architetturali:
+in ciascun passo, il processore legge o scrive in memoria o nel banco di registri, oppure usa l’ALU.
+
+![Multi-cycle](src/multi_cycle.png)
+
+### Control unit
+
+![Multi-cycle control unit](src/multi_cycle_cu.png)
+
+### Stati
+
+![Stati multi-cycle](/src/state_multi_cycle.png)
+
+### Analisi prestazionale
+
+Il tempo di esecuzione di un’istruzione dipende dal tempo di ciclo e dal numero di cicli necessari all’istruzione stessa.
+
+Il processore multi ciclo usa numeri variabili di cicli per le diverse istruzioni, però questo processore svolge meno attività in ogni ciclo, quindi ha senz’altro un tempo di ciclo inferiore.
+
+| Istruzioni           | Cicli |
+| -------------------- | ----- |
+| Salto                | 1     |
+| elaborazione dati    | 4     |
+| scrittura in memoria | 4     |
+| lettura da memoria   | 5     |
+
+Il CPI dipende quindi dalla probabilità relativa di utilizzo di ciascuna tipologia di istruzioni nel programma.
+
 ## Pipeline
 
-## Super scalare
+## Processori superscalari
