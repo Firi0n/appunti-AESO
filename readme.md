@@ -1,3 +1,3 @@
 # [Architetture](/architetture.md)
 
-# [Sistemi operativi](/sistemi_operativi.md)
+# [Gerarchie di memoria](/gerarchie_di_memoria.md)
