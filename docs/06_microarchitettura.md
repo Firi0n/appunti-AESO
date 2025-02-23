@@ -1,36 +1,6 @@
-- [Microarchitettura](#microarchitettura)
-  - [Istruzioni macchina](#istruzioni-macchina)
-  - [Stato architetturale](#stato-architetturale)
-  - [Datapath](#datapath)
-    - [Program counter](#program-counter)
-    - [Memoria istruzioni](#memoria-istruzioni)
-    - [Banco dei registri di lavoro](#banco-dei-registri-di-lavoro)
-    - [Memoria dati](#memoria-dati)
-  - [Single-cycle](#single-cycle)
-    - [Control unit](#control-unit)
-    - [Analisi prestazionale](#analisi-prestazionale)
-  - [Multi-cycle](#multi-cycle)
-    - [Control unit](#control-unit-1)
-    - [Stati](#stati)
-    - [Analisi prestazionale](#analisi-prestazionale-1)
-  - [Pipeline](#pipeline)
-    - [Datapath](#datapath-1)
-    - [Control unit](#control-unit-2)
-    - [Dipendenze](#dipendenze)
-  - [Microarchitetture avanzate](#microarchitetture-avanzate)
-    - [Previsione dei salti](#previsione-dei-salti)
-    - [Processori super-scalari](#processori-super-scalari)
-    - [Processore out-of-order](#processore-out-of-order)
-    - [Multithreading](#multithreading)
-    - [Multiprocessori](#multiprocessori)
-
----
-
-# Microarchitettura
-
 L'architettura del calcolatore è definita da un set di istruzioni e da uno stato architetturale.
 
-## Istruzioni macchina
+# Istruzioni macchina
 
 ```mermaid
 graph TD
@@ -107,7 +77,7 @@ graph TD
   Imm0-->|Falso| SI[Salto indietro]
 ```
 
-## Stato architetturale
+# Stato architetturale
 
 Lo stato architetturale del processore ARM è definito dal contenuto di 16 registri a 32 bit e di un registro di stato.
 
@@ -122,11 +92,11 @@ Consideriamo un sottoinsieme del set di istruzioni di ARM:
 È opportuno dividere le microarchitetture in due parti tra loro interagenti:
 Il **datapath**, che si occupa dell'esecuzione vera e propria, e la **control unit**, che si occupa di impostare le componenti del datapath per eseguire una determinata istruzione.
 
-## Datapath
+# Datapath
 
 Le parti fondamentali del datapath sono:
 
-### Program counter
+## Program counter
 
 ![program counter](./img/program_counter.png)
 
@@ -140,7 +110,7 @@ Uscite:
 
 - PC = indirizzo istruzione corrente.
 
-### Memoria istruzioni
+## Memoria istruzioni
 
 ![memoria istruzioni](./img/memoria_istruzioni.png)
 
@@ -152,7 +122,7 @@ Uscite:
 
 - RD = Istruzione da eseguire.
 
-### Banco dei registri di lavoro
+## Banco dei registri di lavoro
 
 ![Banco dei registri di lavoro](./img/registri.png)
 
@@ -171,7 +141,7 @@ Uscite:
 - RD1 = Uscita dei dati letti da A1;
 - RD2 = Uscita dei dati letti da A2.
 
-### Memoria dati
+## Memoria dati
 
 ![Memoria dati](./img/memoria_dati.png)
 
@@ -193,17 +163,17 @@ Unendo questi componenti in maniera differente è possibile ottenere microarchit
 
 Le seguenti microarchitetture differiscono per il modo in cui i vari elementi di stato sono connessi tra loro e per la quantità di stato non architetturale inserito.
 
-## Single-cycle
+# Single-cycle
 
 Si parte con il progetto di una microarchitettura che esegue le istruzioni in un singolo ciclo.
 
 ![Syngle-cycle](./img/single_cycle.png)
 
-### Control unit
+## Control unit
 
 ![Syngle-cycle control unit](./img/single_cycle_cu.png)
 
-### Analisi prestazionale
+## Analisi prestazionale
 
 In questa architettura il clock è dato dalla somma dei tempi dell'operazione critica su LDR.
 
@@ -211,7 +181,7 @@ Visto che ALU, memoria e registri sono più lente rispetto alle altre componenti
 
 $$T_{c1}=t_{pcq\_PC}+2t_{mem}+t_{dec}+t_{RFread}+t_{ALU}+2t_{mux}+t_{RFsetup}$$
 
-## Multi-cycle
+# Multi-cycle
 
 Il processore a ciclo singolo ha due elementi di debolezza:
 
@@ -223,15 +193,15 @@ in ciascun passo, il processore legge o scrive in memoria o nel banco di registr
 
 ![Multi-cycle](./img/multi_cycle.png)
 
-### Control unit
+## Control unit
 
 ![Multi-cycle control unit](./img/multi_cycle_cu.png)
 
-### Stati
+## Stati
 
 ![Stati multi-cycle](./img/state_multi_cycle.png)
 
-### Analisi prestazionale
+## Analisi prestazionale
 
 Il tempo di esecuzione di un’istruzione dipende dal tempo di ciclo e dal numero di cicli necessari all’istruzione stessa.
 
@@ -246,7 +216,7 @@ Il processore multi ciclo usa numeri variabili di cicli per le diverse istruzion
 
 Il CPI dipende quindi dalla probabilità relativa di utilizzo di ciascuna tipologia di istruzioni nel programma.
 
-## Pipeline
+# Pipeline
 
 Un processore pipeline si ottiene suddividendo il processore a ciclo singolo in cinque stadi di pipeline.
 
@@ -271,17 +241,17 @@ Si è deciso qui di adottare una pipeline a cinque stadi proprio perché in ques
 
 ![schema pipeline](./img/pipeline_scheme.png)
 
-### Datapath
+## Datapath
 
 Il percorso dati del processore pipeline è ottenuto dividendo il percorso dati del processore a ciclo singolo in cinque stadi, separati da registri di pipeline.
 
-### Control unit
+## Control unit
 
 Il processore pipeline usa gli stessi segnali di controllo del processore a ciclo singolo.
 
 Tali segnali devono essere propagati nella pipeline insieme ai dati per rimanere sincronizzati con l'istruzione cui si riferiscono.
 
-### Dipendenze
+## Dipendenze
 
 In una struttura pipeline, più istruzioni sono eseguite in modo concorrente.
 
@@ -320,9 +290,9 @@ Per fare tutto ciò si usa un'unità di gestione delle dipendenze.
 
 ![pipeline processor](./img/pipeline.png)
 
-## Microarchitetture avanzate
+# Microarchitetture avanzate
 
-### Previsione dei salti
+## Previsione dei salti
 
 La maggior parte dei processori pipeline adotta un predittore di salto per cercare di prevedere se il salto andrà eseguito o meno.
 
@@ -339,17 +309,17 @@ denominata buffer delle destinazioni di salto (branch target buffer),
 include la destinazione di ciascun salto e la storia del salto,
 ovvero se sia stato o meno eseguito in passato.
 
-### Processori super-scalari
+## Processori super-scalari
 
 Un processore super-scalare è un processore che può eseguire più di un’istruzione per ciclo.
 
-### Processore out-of-order
+## Processore out-of-order
 
 Un processore out-of-order è un processore che può eseguire le istruzioni in un ordine diverso da quello in cui sono state scritte nel programma.
 
 Ciò permette di evitare gli stalli dovuti alle dipendenze di dati.
 
-### Multithreading
+## Multithreading
 
 Un programma in esecuzione su un calcolatore è denominato processo. I calcolatori possono eseguire molti processi in parallelo ed ogni processo può avere uno o più thread, che possono essere eseguiti in parallelo.
 
@@ -357,7 +327,7 @@ In un processore convenzionale, c'è solo l'illusione che le istruzioni vengano 
 
 Un processore multithread contiene più di una copia del proprio stato architetturale, in modo che più di un thread possa essere attivo in ogni istante.
 
-### Multiprocessori
+## Multiprocessori
 
 Intorno al 2005, gli architetti di calcolatori hanno introdotto un importante cambiamento di strategia inserendo più copie del processore nello stesso chip: ciascuna di queste copie prende il nome di core.
 

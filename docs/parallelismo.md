@@ -1,17 +1,4 @@
-- [Parallelismo](#parallelismo)
-  - [Parallelismo standard](#parallelismo-standard)
-    - [Tempo di completamento con grado di parallelismo n](#tempo-di-completamento-con-grado-di-parallelismo-n)
-    - [Scalabilità con grado di parallelismo n](#scalabilità-con-grado-di-parallelismo-n)
-      - [Caso ottimo:](#caso-ottimo)
-    - [Efficienza relativa con grado di parallelismo n](#efficienza-relativa-con-grado-di-parallelismo-n)
-  - [Parallelismo spaziale](#parallelismo-spaziale)
-  - [Parallelismo temporale](#parallelismo-temporale)
-
----
-
-# Parallelismo
-
-## Parallelismo standard
+# Parallelismo standard
 
 ```mermaid
 graph LR
@@ -31,27 +18,27 @@ $T_{w}$ = Tempo unitario del singolo worker
 
 $T_{merge}^n$ = Tempo impiegato per unire l'operato dei worker (dipende da n)
 
-### Tempo di completamento con grado di parallelismo n
+## Tempo di completamento con grado di parallelismo n
 
 $$T_c^n = T_{split}^n + T_{w}\cdot {m\over{n}} + T_{merge}^n$$
 
-### Scalabilità con grado di parallelismo n
+## Scalabilità con grado di parallelismo n
 
 Scalabilità = Aumento velocità rispetto al caso sequenziale
 
 $$S^n = {T_c^1\over{T_c^n}}={m\cdot T\over T_{split} + T\cdot {m\over{n}} + T_{merge}}$$
 
-#### Caso ottimo:
+### Caso ottimo:
 
 $$T_{split} = 0\land T_{merge} = 0 \Rightarrow {m\cdot T\over T\cdot {m\over{n}}} = n$$
 
-### Efficienza relativa con grado di parallelismo n
+## Efficienza relativa con grado di parallelismo n
 
 Indica la distanza tra le prestazioni ottenute e quelle ideali.
 
 $$\epsilon^n={T_c^1\over n}\cdot{1\over{T_c^n}} = {S^n\over n}$$
 
-## Parallelismo spaziale
+# Parallelismo spaziale
 
 $T_a$ = Tempo di interarrivo (Tempo medio che passa dall'arrivo di un elemento ad un altro)
 
@@ -105,7 +92,7 @@ gantt
 
 $$T_p = max\left\lbrace T_e, T_c, {T\over n}, T_a\right\rbrace$$
 
-## Parallelismo temporale
+# Parallelismo temporale
 
 Mettiamo caso che un solo lavoratore esegua 3 compiti
 

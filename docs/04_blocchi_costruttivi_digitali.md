@@ -1,36 +1,10 @@
-- [Blocchi costruttivi digitali](#blocchi-costruttivi-digitali)
-  - [Circuiti aritmetici](#circuiti-aritmetici)
-    - [Half adder](#half-adder)
-    - [Full adder](#full-adder)
-    - [Sommatore a propagazione di riporto a onda](#sommatore-a-propagazione-di-riporto-a-onda)
-    - [Sommatore ad anticipazione di riporto](#sommatore-ad-anticipazione-di-riporto)
-    - [Sommatore a prefissi](#sommatore-a-prefissi)
-    - [Sottrazione](#sottrazione)
-    - [Comparatore](#comparatore)
-      - [Comparatore di uguaglianza](#comparatore-di-uguaglianza)
-      - [Comparatore di valore](#comparatore-di-valore)
-    - [ALU](#alu)
-    - [Translatori e rotatori](#translatori-e-rotatori)
-  - [Componenti di memoria](#componenti-di-memoria)
-    - [Celle di bit](#celle-di-bit)
-    - [Porte di memoria](#porte-di-memoria)
-    - [Tipi di memoria](#tipi-di-memoria)
-    - [DRAM](#dram)
-    - [SRAM](#sram)
-    - [Banchi di registri](#banchi-di-registri)
-    - [ROM](#rom)
-
----
-
-# Blocchi costruttivi digitali
-
 I blocchi combinatori e sequenziali descritti di seguito sono progettati per **1 bit**. Grazie al principio di **modularità**, è possibile combinare $N$ blocchi da 1 bit per creare circuiti che operano su $N$ bit. Questo approccio consente di estendere facilmente le funzionalità senza dover riprogettare l'intero circuito.
 
-## Circuiti aritmetici
+# Circuiti aritmetici
 
 I circuiti aritmetici sono i blocchi costruttivi centrali dei calcolatori.
 
-### Half adder
+## Half adder
 
 L'half adder è un circuito che prende due bit ($A$ e $B$) in ingresso e restituisce la ($S$) ed il **riporto** o **carry** ($C$)
 
@@ -56,7 +30,7 @@ module HA(output rip, output c, input a, input b);
 endmodule
 ```
 
-### Full adder
+## Full adder
 
 Per fare un sommatore che sia modulare dobbiamo aggiungere il riporto in ingresso ($c_{in}$). Ciò si può fare usando due half-adder.
 
@@ -82,7 +56,7 @@ endmodule
 
 Unendo $N$ full adder a 1 bit, otteniamo un sommatore completo a $N$ bit. Esistono più tipi di sommatore che possono essere realizzati unendo i full adder in modi diversi.
 
-### Sommatore a propagazione di riporto a onda
+## Sommatore a propagazione di riporto a onda
 
 Il metodo più semplice per costruire un **sommatore a propagazione di riporto a onda** a $N$ bit è collegare in cascata $N$ full adder completi.
 In questo modo, $R_{out}$ di uno stadio costituisce $R_{in}$ per lo stadio successivo.
@@ -91,7 +65,7 @@ Il principale svantaggio legato a questo sommatore è il progressivo rallentamen
 Il ritardo di propagazione nel sommatore, $t_{propag}$, aumenta all’aumentare del numero di bit coinvolti.
 $$t_{propag} = N\cdot t_{FA}$$
 
-### Sommatore ad anticipazione di riporto
+## Sommatore ad anticipazione di riporto
 
 Un sommatore ad anticipazione di riporto risolve il problema della velocità dividendo il sommatore stesso in blocchi e aggiungendo un circuito per determinare velocemente il riporto di uscita da ciascun blocco appena è noto il riporto di ingresso.
 
@@ -108,7 +82,7 @@ Quindi, un sommatore a $N$ bit diviso in blocchi da $k$ bit ha un ritardo pari a
 
 $$t_{CLA} = t_{pg} + t_{pg\_blocco} + \left(\frac{N}{k} - 1\right) t_{AND\_OR} + kt_{FA}$$
 
-### Sommatore a prefissi
+## Sommatore a prefissi
 
 Il sommatore a prefissi estende la logica di generazione e di propagazione del sommatore ad anticipazione di riporto per eseguire l’addizione ancora più rapidamente.
 
@@ -127,27 +101,27 @@ G_{i,j} = G_{i,k} + P_{i,k} G_{k-1,j} \\
 P_{i,j} = P_{i,k} + P_{i,k} P_{k-1,j}
 $$
 
-### Sottrazione
+## Sottrazione
 
 è uguale all'addizione basta fare il complemento a 2 del secondo numero.
 
-### Comparatore
+## Comparatore
 
 Un comparatore determina se due numeri binari sono uguali o se uno dei due è maggiore o minore dell’altro.
 
-#### Comparatore di uguaglianza
+### Comparatore di uguaglianza
 
 Ha un solo bit di uscita che indica se i numeri a N-bit passati sono uguali.
 
 ![](./img/comparatore.drawio.svg)
 
-#### Comparatore di valore
+### Comparatore di valore
 
 Un comparatore di valore produce invece una o più uscite che indicano i valori relativi di $A$ e di $B$.
 
 La comparazione con segno viene fatta tramite la **sottrazione**. Questo tipo di comparazione non funziona bene con l'**overflow**.
 
-### ALU
+## ALU
 
 Un’**unità logica/aritmetica (ALU, Arithmetic/Logical Unit)** unisce all’interno di una singola unità una serie di operazioni logiche e matematiche.
 
@@ -166,7 +140,7 @@ Alcune ALU producono uscite ulteriori, chiamate **flag** (bandiere), che danno i
 
 ![](./img/ALU.png)
 
-### Translatori e rotatori
+## Translatori e rotatori
 
 - **Traslatore logico**: trasla un numero verso sinistra (LSL, Logical Shift Left) o verso destra (LSR, Logical Shift Right) e riempie gli spazi lasciati vuoti con 0.
 - **Traslatore aritmetico**: esegue la stessa funzione di un traslatore logico, ma quando trasla un numero verso destra (ARS, Arithmetic Shift Right), riempie i bit più significativi con una copia del precedente bit più significativo (msb, most significant bit). Utile per i numeri con segno.
@@ -176,7 +150,7 @@ Un traslatore a $N$ bit può essere costruito con un numero $N$ di multiplexer $
 
 ![](./img/traslatori_rotatori.png)
 
-## Componenti di memoria
+# Componenti di memoria
 
 Ci sono tre tipi di memoria principale:
 
@@ -188,7 +162,7 @@ Un componente è formato da: un numero $N$ di bit di indirizzo e un numero $M$ d
 
 La **lunghezza** di un componente di memoria indica il numero di **righe** che possiede, mentre la sua **larghezza** fa riferimento al numero di **colonne** e quindi alla dimensione di parola. La **dimensione totale** del componente è uguale al prodotto **lunghezza × larghezza**.
 
-### Celle di bit
+## Celle di bit
 
 I componenti di memoria vengono realizzati come matrici di celle di bit, ognuna delle quali può contenere un bit di dato.
 
@@ -196,11 +170,11 @@ Quando una linea di parola è attiva, consente la lettura o la scrittura dei bit
 
 Per leggere un bit, la linea di bit viene lasciata fluttuante ($Z$) e poi attivata la linea di parola, che imposta la linea di bit a 0 o 1 in base al valore memorizzato. Per scrivere, la linea di bit viene forzata al valore desiderato e la linea di parola viene attivata per memorizzarlo, sovrascrivendo il contenuto precedente.
 
-### Porte di memoria
+## Porte di memoria
 
 Tutte le memorie possiedono una o più porte. Ognuna di queste fornisce un accesso in lettura e/o in scrittura a un indirizzo di memoria. Le memorie **multi-porta** possono accedere a più indirizzi nello stesso momento.
 
-### Tipi di memoria
+## Tipi di memoria
 
 Le memorie sono classificate in base a come immagazzinano i bit nelle celle di memoria. Si distinguono principalmente in:
 
@@ -214,23 +188,23 @@ I due principali tipi di RAM sono la **RAM dinamica (DRAM)** e la **RAM statica 
 
 Esistono diversi tipi di **memorie ROM**, che si distinguono per il modo in cui vengono scritte e cancellate.
 
-### DRAM
+## DRAM
 
 La **RAM dinamica (DRAM)** memorizza un bit tramite la presenza o assenza di carica in un condensatore. Un transistore nMOS agisce come un interruttore che collega il condensatore alla linea di bit quando la linea di parola è attiva. Se il condensatore è caricato a **VDD**, il bit memorizzato è **1**; se è scaricato a **GND**, il bit è **0**. La lettura del bit trasferisce il valore dal condensatore alla linea di bit, distruggendo il dato, che deve essere riscritto. Poiché la carica del condensatore si dissipa nel tempo, è necessario rinfrescare periodicamente la DRAM.
 
 ![](./img/DRAM.png)
 
-### SRAM
+## SRAM
 
 La **RAM statica (SRAM)** si chiama così perché i bit immagazzinati non necessitano di ricarica periodica. Una cella di bit della SRAM utilizza dei negatori collegati a croce per mantenere il valore del dato. Ogni cella ha due uscite, **linea_di_bit** e **linea_di_bit complementare**. Quando la linea di parola è attiva, i transistori nMOS trasferiscono i dati tra la cella e le linee di bit. A differenza della DRAM, se il valore del bit viene deteriorato dal rumore, i negatori collegati a croce ripristinano il valore corretto.
 
 ![](./img/SRAM.png)
 
-### Banchi di registri
+## Banchi di registri
 
 I sistemi digitali utilizzano spesso un gruppo di registri, chiamato **banco di registri** (register file), per memorizzare variabili temporanee. Questo banco di registri è solitamente realizzato come una piccola **SRAM multi-porta**, poiché è più compatta rispetto a una matrice di flip-flop. Un banco di registri può avere più porte di lettura e scrittura, permettendo di leggere contemporaneamente da più registri e di scriverne su un altro nello stesso momento.
 
-### ROM
+## ROM
 
 La **memoria a sola lettura (ROM)** memorizza un bit attraverso la presenza o assenza di un transistor. Quando la linea di parola viene attivata, il transistor forza la linea di bit a un valore basso (0) se è presente, altrimenti la linea rimane alta (1). Essendo una memoria combinatoria, la ROM non perde il contenuto quando l'alimentazione viene interrotta. Esistono diversi tipi di ROM:
 

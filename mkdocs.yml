@@ -3,13 +3,40 @@ theme:
   name: material
   features:
     - navigation.instant
-    - navigation.tabs
     - navigation.sections
-    - toc.integrate
+    - toc.integrate # Abilita il TOC (indice automatico)
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+# Estensioni Markdown
 markdown_extensions:
-  - toc
+  - toc:
+      baselevel: 2
+      permalink: "#" # Aggiunge link accanto ai titoli per navigazione più veloce
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true # Supporto per formule LaTeX
+
+# Supporto per LaTeX (MathJax)
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js
+
+# Navigazione del sito
 nav:
-  - Capitoli:
-      - Introduzione: 01_introduzione.md
+  - Introduzione: 01_introduzione.md
+  - Reti logiche combinatorie: 02_reti_logiche_combinatorie.md
+  - Reti logiche sequenziali: 03_reti_logiche_sequenziali.md
+  - Blocchi costruttivi digitali: 04_blocchi_costruttivi_digitali.md
+  - Assembler: 05_assembler.md
+  - Microarchitettura: 06_microarchitettura.md
+  - Gerarchie di memoria: 07_gerarchie_di_memoria.md

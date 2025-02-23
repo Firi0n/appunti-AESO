@@ -1,24 +1,3 @@
-- [Reti logiche combinatorie](#reti-logiche-combinatorie)
-  - [Espressioni booleane](#espressioni-booleane)
-    - [Teminologia](#teminologia)
-    - [Precedenza operatori](#precedenza-operatori)
-    - [Somma di prodotti](#somma-di-prodotti)
-    - [Prodotto di somme](#prodotto-di-somme)
-    - [Postulati](#postulati)
-  - [Linee guida schema](#linee-guida-schema)
-  - [Le mappe di karnaugh](#le-mappe-di-karnaugh)
-    - [Funzionamento](#funzionamento)
-    - [Indifferenze](#indifferenze)
-  - [Blocchi costitutivi combinatori](#blocchi-costitutivi-combinatori)
-    - [Multiplexer](#multiplexer)
-    - [Decoder](#decoder)
-  - [Temporizzazione](#temporizzazione)
-    - [Alee](#alee)
-
----
-
-# Reti logiche combinatorie
-
 Una rete può essere vista come un insieme di **ingressi** e **uscite**, messe in relazione da una **specifica funzionale** e con una **specifica di temporizzazione**, che descrive il **ritardo** tra il cambio degli **ingressi** e la risposta delle **uscite**.
 
 Esse sono formate da **nodi** ed **elementi**, gli **elementi** sono a loro volta delle **reti**, mentre, i **nodi** sono **contatti elettrici** che si suddividono in: **Ingressi**, **uscite** e **nodi interni**.
@@ -38,11 +17,11 @@ Una rete è combinatoria se consiste di elementi circui­tali interconnessi che 
 
 La **specifica funzionale** di una rete combinatoria è solitamente espressa come una **tabella di verità** o come **un’espressione booleana**.
 
-## Espressioni booleane
+# Espressioni booleane
 
 Le espressioni booleane si basano su vaiabili che possono assumere solo i valori **vero (1)** o **falso (0)**.
 
-### Teminologia
+## Teminologia
 
 - complemento = NOT;
 - letterale = variabile;
@@ -51,21 +30,21 @@ Le espressioni booleane si basano su vaiabili che possono assumere solo i valori
 - somma logica = OR;
 - maxtermine = somma di tutti gli ingressi di una funzione.
 
-### Precedenza operatori
+## Precedenza operatori
 
 - NOT;
 - AND;
 - OR.
 
-### Somma di prodotti
+## Somma di prodotti
 
 Ogni **riga** di una **tabella di verità** corrisponde ad un **mintermine**. **Sommando** tutti i **mintermini** il cui risultato è **vero** (o falso per poi negare l'espressione) si ottiene **l'espressione booleana** corrispondente alla tabella di verità. Essa è chiamata **forma canonica somma di prodotti**.
 
-### Prodotto di somme
+## Prodotto di somme
 
 La **forma canonica prodotto di somme** consiste nel trattare ogni **riga** come un **maxtermine** e poi fare il **prodotto** di tutti i **maxtermini falsi**.
 
-### Postulati
+## Postulati
 
 | Postulato                                                                                             | Forma duale                                                                                           | Nome            |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------- |
@@ -90,7 +69,7 @@ Un implicante è detto **implicante primo** se non può essere combinato con nes
 
 In un’espressione minima, gli implicanti devono essere tutti implicanti primi, altrimenti è possibile combi­narli ulteriormente per diminuire il numero di letterali.
 
-## Linee guida schema
+# Linee guida schema
 
 - Gli ingressi vengono indicati a sinistra (o in alto) dello schema.
 - Le uscite vengono indicate a destra (o in basso) dello schema.
@@ -105,12 +84,12 @@ Non sempre conviene usare la logica a due livelli perchè potrebbe aumentare di 
 
 Quando si lavora con porte negate per facilitare la schematizzazione si spingono le bolle (NOT).
 
-## Le mappe di karnaugh
+# Le mappe di karnaugh
 
 Le **mappe di Karnaugh (K-map)** sono un metodo grafico di semplificazione di espressioni booleane, inventato nel **1953** da **Maurice Karnaugh**, ingegnere delle telecomunicazioni presso i **Bell Labs**.
 Esse funzionano su problemi con al **massimo 4 variabili**.
 
-### Funzionamento
+## Funzionamento
 
 La riga in alto nella mappa di Karnaugh mostra
 le quattro possibili combinazioni di valori delle prime due variabili, mentre la prima colonna delle altre due.
@@ -130,13 +109,13 @@ Successivamente bisogna cerchiare gli 1 con le seguenti regole:
 
 Il risultato si ottiene guardando i cerchi e facendo la somma di prodotti non più sulla singola combinazione ma sui cerchi, eliminando le variabili che cambiano all'interno dello stesso cerchio.
 
-### Indifferenze
+## Indifferenze
 
 è possibile raggruppare più righe della tabella di verità mettendo un trattino al posto delle variabili il cui valore è indifferente per il risultato.
 
-## Blocchi costitutivi combinatori
+# Blocchi costitutivi combinatori
 
-### Multiplexer
+## Multiplexer
 
 Il Multiplexer è un circuito che presi due ingressi, tramite un terzo ingresso, sceglie quali dei due ingressi mandare in uscita.
 
@@ -153,7 +132,7 @@ $\overline{S}\cdot D_0+S\cdot D_1$
 
 Si possono costruire anche multiplexer più grandi a partire da quello a due ingressi visto precedentemente.
 
-### Decoder
+## Decoder
 
 Un decoder ha N ingressi e $2^N$ uscite e attiva una delle sue uscite a seconda della combinazione di valori in ingresso.
 
@@ -166,7 +145,7 @@ Un decoder ha N ingressi e $2^N$ uscite e attiva una delle sue uscite a seconda 
 
 ![](./img/decoder.drawio.svg)
 
-## Temporizzazione
+# Temporizzazione
 
 Uno dei problemi più importanti legato alle reti è la **temporizzazione (timing)**: in altre parole, come fare in modo che la rete funzioni velocemente.
 
@@ -177,7 +156,7 @@ La logica combinatoria è caratterizzata da.
 
 ![](./img/tempo.png)
 
-### Alee
+## Alee
 
 Le alee sono delle transizioni temporanee indesiderate che possono verificarsi nelle uscite del circuito in risposta a una singola variazione di ingresso. Si verificano quando il segnale di uscita cambia più volte prima di stabilizzarsi al valore corretto. Questi fenomeni sono causati da ritardi di propagazione differenti lungo i vari percorsi logici interni al circuito.
 

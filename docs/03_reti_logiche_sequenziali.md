@@ -1,29 +1,12 @@
-- [Reti logiche sequenziali](#reti-logiche-sequenziali)
-  - [Latch e flip-flop](#latch-e-flip-flop)
-    - [Latch SR](#latch-sr)
-    - [Latch D](#latch-d)
-    - [Flip-flop D](#flip-flop-d)
-    - [Registro](#registro)
-    - [Flip-flop con abilitazione](#flip-flop-con-abilitazione)
-  - [Reti sequenziali sincrone](#reti-sequenziali-sincrone)
-  - [Macchine a stati finiti](#macchine-a-stati-finiti)
-  - [Temporizzazione nella logica sequenziale](#temporizzazione-nella-logica-sequenziale)
-  - [Sincronizzatori](#sincronizzatori)
-  - [Parallelismo](#parallelismo)
-
----
-
-# Reti logiche sequenziali
-
 La logica sequenziale può ricordare esplicitamente alcuni ingressi precedenti, riassumendoli in **stati**.
 
 Lo **stato** di una rete digitale sequenziale è un insieme di bit, detto **variabili di stato**, che contiene tutte le informazioni sul passato necessarie a spiegare il comportamento futuro della rete.
 
-## Latch e flip-flop
+# Latch e flip-flop
 
 Il blocco costitutivo fondamentale di memoria è un elemento bistabile, cioè un elemento con due stati stabili.
 
-### Latch SR
+## Latch SR
 
 Il latch ha due ingressi, $S$ e $R$, e due uscite, $Q$ e $\overline{Q}$.
 
@@ -36,7 +19,7 @@ Il latch ha due ingressi, $S$ e $R$, e due uscite, $Q$ e $\overline{Q}$.
 
 ![](./img/latch_sr.drawio.svg)
 
-### Latch D
+## Latch D
 
 Il **latch SR** è scomodo in quanto si comporta in maniera imprevedibile quando entrambi gli ingressi, **S** e **R**, sono attivati simultaneamente, inoltre, questi ingressi controllano sia il **modo** in cui lo stato cambia che il **momento** in cui avviene il cambiamento. La progettazione delle reti diventa più semplice se questi due aspetti, il "**modo**" e il "**momento**", vengono trattati separatamente. Il **latch D** è una soluzione a questi problemi.
 
@@ -50,7 +33,7 @@ Questo latch ha due ingressi: un ingresso **dati**, **D**, che controlla il pros
 
 ![](./img/latch_d.drawio.svg)
 
-### Flip-flop D
+## Flip-flop D
 
 Il **latch D** soffre del problema della **trasparenza**, poiché l'uscita segue l'ingresso quando il clock è a 1, rendendo **instabile** il sistema se l'ingresso cambia durante questo stato. Al contrario, il **flip-flop D** risolve questo problema aggiornando l'uscita solo al fronte di salita del clock (quando passa da 0 a 1), evitando che l'uscita cambi continuamente e garantendo un comportamento **stabile** e **sincrono**.
 
@@ -58,17 +41,17 @@ Tuttavia, il f**lip-flop D** è tipicamente realizzato con una **coppia di latch
 
 ![](./img/flip-flop_d.drawio.svg)
 
-### Registro
+## Registro
 
 Un registro a **N** bit è un banco di **N flip-flop** che condividono un ingresso **CLK comune**, in modo che tutti i bit vengano aggiornati allo stesso tempo. I registri costituiscono i blocchi costitutivi chiave per la maggior parte delle **reti sequenziali**.
 
-### Flip-flop con abilitazione
+## Flip-flop con abilitazione
 
 Un **flip-flop** con abilitazione aggiunge un altro ingresso, chiamato **EN** o **ENABLE**, per determinare se **memorizzare** o no il dato sul **fronte del clock**.
 
 ![](./img/flip-flop_en.drawio.svg)
 
-## Reti sequenziali sincrone
+# Reti sequenziali sincrone
 
 Le **reti sequenziali** contengono **percorsi ciclici** in cui le uscite sono collegate retroattivamente agli ingressi. Queste reti possono avere **condizioni di corsa** e comportamenti instabili, rendendo l'analisi complessa. Per evitarli, si introducono **registri**, trasformando la rete in una combinazione di logica combinatoria e registri. I registri contengono lo stato del sistema, che cambia solo al fronte di clock.
 
@@ -86,7 +69,7 @@ Regole di composizione:
 - Tutti i registri ricevono lo stesso segnale di clock.
 - Ogni percorso ciclico contiene almeno un registro.
 
-## Macchine a stati finiti
+# Macchine a stati finiti
 
 Le **reti sequenziali sincrone** possono essere rappresentate come **macchine a stati finiti** (FSM, finite state machine). Una rete con $k$ registri può trovarsi in uno dei $2^k$ stati diversi. Una FSM ha:
 
@@ -118,7 +101,7 @@ Per rappresentare una macchina a stati finiti si usano i seguenti simboli:
 
 Nel diagramma degli stati per le macchine di Moore i valori delle uscite vengono indicati nei cerchi, mentre, nelle macchine di Mealy le uscite sono indicate negli archi.
 
-## Temporizzazione nella logica sequenziale
+# Temporizzazione nella logica sequenziale
 
 Il **tempo di apertura** di un elemento sequenziale è definito dal tempo di **setup** e dal tempo di **hold**, rispettivamente prima e dopo il fronte del clock. Nella disciplina dinamica, il tempo è composto da unità discrete chiamate **cicli di clock**, e il segnale assume un valore finale stabilito al termine del ciclo. Si usa la notazione $A[n]$ per indicare il valore del segnale $A$ alla fine dell’n-esimo ciclo di clock.
 
@@ -168,7 +151,7 @@ $$
 
 I vincoli sul tempo di hold sono cruciali; se non vengono rispettati, è necessaria una riprogettazione della rete, poiché non possono essere risolti aumentando il periodo del clock.
 
-## Sincronizzatori
+# Sincronizzatori
 
 Per garantire dei livelli logici corretti, tutti gli ingressi asincroni dovrebbero essere fatti passare attraverso dei sincronizzatori.
 
@@ -192,7 +175,7 @@ $MTBF = \frac{1}{P(errore)/sec} = \frac{T_c}{NT_0} e^{-\frac{T_c - T_{setup}}{\t
 
 Il **MTBF** aumenta esponenzialmente con il tempo di attesa $T_c$. Nei sistemi veloci, possono servire più cicli di clock.
 
-## Parallelismo
+# Parallelismo
 
 La **velocità** di un sistema è data da **latenza** e **throughput**. La latenza è il tempo impiegato da un token (un gruppo di dati) per attraversare il sistema, mentre il throughput indica quanti token possono essere elaborati per unità di tempo.
 

@@ -1,23 +1,3 @@
-- [Astrazione, disciplina e le tre y](#astrazione-disciplina-e-le-tre-y)
-  - [Astrazione digitale](#astrazione-digitale)
-- [I sistemi numerici](#i-sistemi-numerici)
-  - [Il sistema decimale](#il-sistema-decimale)
-    - [Conversione da base b a decimale](#conversione-da-base-b-a-decimale)
-    - [Conversione da decimale a base b](#conversione-da-decimale-a-base-b)
-  - [Il sistema binario](#il-sistema-binario)
-    - [Conversione da binario a base b](#conversione-da-binario-a-base-b)
-    - [Conversione da una base b a binario](#conversione-da-una-base-b-a-binario)
-    - [Complemento a 2](#complemento-a-2)
-    - [Somma e sottrazione binaria](#somma-e-sottrazione-binaria)
-  - [Altre basi utili](#altre-basi-utili)
-- [Porte logiche](#porte-logiche)
-  - [Porte a un ingresso](#porte-a-un-ingresso)
-  - [Porte a due o più ingressi](#porte-a-due-o-più-ingressi)
-    - [Porta XOR](#porta-xor)
-- [Transistor CMOS](#transistor-cmos)
-
----
-
 # Astrazione, disciplina e le tre y
 
 L'**astrazione** consiste nel nascondere i dettagli non essenziali per mettere in evidenza gli elementi chiave di un sistema, che può essere analizzato a diversi livelli, ciascuno concentrato su aspetti specifici.
