@@ -1,0 +1,15 @@
+site_name: Appunti AESO
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+markdown_extensions:
+  - toc
+  - pymdownx.highlight
+  - pymdownx.superfences
+nav:
+  - Capitoli:
+      - Introduzione: src/01_introduzione.md

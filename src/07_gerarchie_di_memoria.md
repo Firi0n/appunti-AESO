@@ -1,4 +1,4 @@
-- [Gerarchia di memoria](#gerarchia-di-memoria)
+- [Introduzione](#introduzione)
 - [Terminologia e analisi delle prestazioni](#terminologia-e-analisi-delle-prestazioni)
   - [Hit e Miss](#hit-e-miss)
   - [Hit rate e Miss rate](#hit-rate-e-miss-rate)
@@ -92,7 +92,7 @@ graph LR
     ASD --> MCPU
 ```
 
-# Gerarchia di memoria
+# Introduzione
 
 Il sistema di memoria ideale dovrebbe essere **veloce, grande ed economico**, ma in pratica ogni tipo di memoria soddisfa solo due di questi requisiti.
 
@@ -117,7 +117,7 @@ La **memoria principale**, detta anche **memoria fisica**, contiene un sottoinsi
 
 Il processore per prima cosa cerca il dato in una memoria piccola ma veloce generalmente presente a bordo del suo stesso chip. Se non trova il dato, il processore guarda nella memoria principale. Se non lo trova neanche lì, lo preleva dalla memoria virtuale sul disco rigido, capiente ma lento.
 
-![alt text](./src/hierarchy_graph.png)
+![alt text](./img/hierarchy_graph.png)
 
 # Terminologia e analisi delle prestazioni
 
@@ -217,11 +217,11 @@ Poiché più indirizzi possono essere mappati nello stesso set, la cache deve me
 
 Esempio con lunghezza di parola di 8 bit e S=8
 
-![example direct cache](./src/example_direct_cache.png)
+![example direct cache](./img/example_direct_cache.png)
 
 Occasionalmente, i set della cache non contengono dati, perciò la cache usa un **bit di validità** per ogni set che indica se il set contiene dati significativi.
 
-![circuit direct cache](./src/circuit_direct_cache.png)
+![circuit direct cache](./img/circuit_direct_cache.png)
 
 Quando due indirizzi recenti si mappano nello stesso blocco di cache, si verifica un **conflitto**: il dato più recente sostituisce il precedente.
 
@@ -237,7 +237,7 @@ Una **cache parzialmente associativa a N vie** riduce i conflitti poichè ha **N
 
 Struttura circuitale di una cache parzialmente associativa a $N = 2$ vie di capacità $C = 8$ parole.
 
-![circuit partially associative cache](./src/circuit_partially_associative_cache.png)
+![circuit partially associative cache](./img/circuit_partially_associative_cache.png)
 
 Ogni **set** contiene **N vie** (gradi di associatività), dove:
 
@@ -258,7 +258,7 @@ Una **cache completamente associativa** ha un **unico set** con **B vie**, dove 
 - Un indirizzo di memoria può essere memorizzato in **qualsiasi blocco** della cache.
 - È un caso particolare di **cache parzialmente associativa** con **grado di associatività B**.
 
-![circuit total associative cache](./src/circuit_total_associative_cache.png)
+![circuit total associative cache](./img/circuit_total_associative_cache.png)
 
 - Ogni **set** contiene **un solo blocco**.
 - Con **2 set**, sono necessari **log₂2 = 1 bit** per selezionare il set.
@@ -322,7 +322,7 @@ Le prestazioni della cache possono essere valutate eseguendo benchmark e variand
   - **Aumentare il grado di associatività**, specialmente per cache piccole, riduce i miss di conflitto.
   - Associatività superiori a 4-8 vie danno solo minime riduzioni del tasso di miss.
 
-![Benchmark SPEC2000](./src/Benchmark_SPEC2000.png)
+![Benchmark SPEC2000](./img/Benchmark_SPEC2000.png)
 
 ### Impatto della Dimensione del Blocco
 
