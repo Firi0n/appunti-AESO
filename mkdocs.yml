@@ -1,8 +1,8 @@
 site_name: Appunti AESO
 theme:
   name: material
+  custom_dir: docs/overrides
   features:
-    - navigation.instant
     - navigation.sections
     - toc.integrate # Abilita il TOC (indice automatico)
   palette:
@@ -30,6 +30,9 @@ markdown_extensions:
 # Supporto per LaTeX (MathJax)
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js
+
+extra_css:
+  - overrides/main.css
 
 # Navigazione del sito
 nav:

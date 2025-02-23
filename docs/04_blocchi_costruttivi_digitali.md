@@ -16,6 +16,7 @@ L'half adder è un circuito che prende due bit ($A$ e $B$) in ingresso e restitu
 | 1   | 1   | 0   | 1   |
 
 $$S=A\oplus B$$
+
 $$C=A\cdot B$$
 
 ![](./img/half_adder.drawio.svg)
