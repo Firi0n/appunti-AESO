@@ -100,10 +100,6 @@ $$AMAT=\text{hit-time}+\text{miss-rate}*\text{miss-penalty}$$
 
 $$AMAT=t_{1}+MR_{1}(t_{2}+MR_{2}(t_{3}+...))$$
 
-## Legge di Amdahl
-
-Lo sforzo per migliorare le prestazioni di un sottosistema è utile solo se tale sottosistema influisce su una larga percentuale delle prestazioni globali.
-
 # cache
 
 La memoria **cache** conserva i dati usati più frequentemente. Il numero di parole che può contenere è la sua **capacità C**.

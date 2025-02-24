@@ -43,3 +43,4 @@ nav:
   - Assembler: 05_assembler.md
   - Microarchitettura: 06_microarchitettura.md
   - Gerarchie di memoria: 07_gerarchie_di_memoria.md
+  - Dispositivi di IO: 08_dispositivi_IO.md
