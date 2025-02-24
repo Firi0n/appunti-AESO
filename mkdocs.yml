@@ -23,6 +23,7 @@ markdown_extensions:
       baselevel: 2
       permalink: "#" # Aggiunge link accanto ai titoli per navigazione più veloce
   - pymdownx.highlight
+  - pymdownx.emoji
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true # Supporto per formule LaTeX
