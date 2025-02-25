@@ -298,7 +298,7 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 
    - È necessario ridurre il tasso di miss per evitare colli di bottiglia nella memoria principale.
 
-2. **Diminuzione del costo dei transistori**
+2. **Diminuzione del costo dei transistor**
    - Permette la realizzazione di cache sempre più grandi, migliorando le prestazioni complessive del sistema.
 
 # Memoria virtuale

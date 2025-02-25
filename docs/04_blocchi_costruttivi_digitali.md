@@ -197,7 +197,7 @@ La **RAM dinamica (DRAM)** memorizza un bit tramite la presenza o assenza di car
 
 ## SRAM
 
-La **RAM statica (SRAM)** si chiama così perché i bit immagazzinati non necessitano di ricarica periodica. Una cella di bit della SRAM utilizza dei negatori collegati a croce per mantenere il valore del dato. Ogni cella ha due uscite, **linea_di_bit** e **linea_di_bit complementare**. Quando la linea di parola è attiva, i transistori nMOS trasferiscono i dati tra la cella e le linee di bit. A differenza della DRAM, se il valore del bit viene deteriorato dal rumore, i negatori collegati a croce ripristinano il valore corretto.
+La **RAM statica (SRAM)** si chiama così perché i bit immagazzinati non necessitano di ricarica periodica. Una cella di bit della SRAM utilizza dei negatori collegati a croce per mantenere il valore del dato. Ogni cella ha due uscite, **linea_di_bit** e **linea_di_bit complementare**. Quando la linea di parola è attiva, i transistor nMOS trasferiscono i dati tra la cella e le linee di bit. A differenza della DRAM, se il valore del bit viene deteriorato dal rumore, i negatori collegati a croce ripristinano il valore corretto.
 
 ![](./img/SRAM.png)
 
