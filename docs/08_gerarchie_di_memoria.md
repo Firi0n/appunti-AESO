@@ -283,8 +283,8 @@ Le cache si classificano in due categorie principali:
 #### **Cache Write-Back**
 
 - Utilizza un **bit di modifica (dirty bit) M** per ogni blocco:
-  - **M = 1** → Il blocco è stato modificato almeno una volta.
-  - **M = 0** → Il blocco non è stato modificato.
+  - **M = 1** $\rightarrow$ Il blocco è stato modificato almeno una volta.
+  - **M = 0** $\rightarrow$ Il blocco non è stato modificato.
 - Il dato viene scritto nella memoria principale **solo quando il blocco viene espulso** dalla cache.
 - **Riduce il numero di accessi alla memoria principale**, migliorando le prestazioni.
 

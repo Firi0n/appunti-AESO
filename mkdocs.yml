@@ -43,5 +43,6 @@ nav:
   - Blocchi costruttivi digitali: 04_blocchi_costruttivi_digitali.md
   - Assembler: 05_assembler.md
   - Microarchitettura: 06_microarchitettura.md
-  - Gerarchie di memoria: 07_gerarchie_di_memoria.md
-  - Dispositivi di IO: 08_dispositivi_IO.md
+  - Parallelismo: 07_parallelismo.md
+  - Gerarchie di memoria: 08_gerarchie_di_memoria.md
+  - Dispositivi di IO: 09_dispositivi_IO.md
