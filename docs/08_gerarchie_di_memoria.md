@@ -85,7 +85,7 @@ $$\text{miss time}=\text{miss penalty}+\text{hit time}$$
 
 ## Il tempo medio di accesso a memoria
 
-Il tempo medio di accesso a memoria (AMAT, Average Memory Access Time) è il tempo medio di attesa da parte del processore per completare un’istruzione di lettura da o scrittura in memoria.
+Il tempo medio di accesso a memoria (AMAT, Average Memory Access Time) è il tempo medio di attesa da parte del processore per completare un’istruzione di lettura o scrittura in memoria.
 
 Il processore guarda prima nella cache.
 
@@ -143,7 +143,7 @@ Poiché più indirizzi possono essere mappati nello stesso set, la cache deve me
 
 ### Struttura dell’Indirizzo
 
-- **Spiazzamento**: ci sono $log_2l$ bit di spiazzamento(offset) dove $l =$ lunghezza di parola.
+- **Spiazzamento**: ci sono $(log_2l)-1$ bit di spiazzamento(offset) dove $l =$ lunghezza di parola.
 - **Bit di set**: i successivi $log_2S$ bit indicano il set in cui il dato è mappato.
 - **Tag**: i restanti bit identificano l’indirizzo effettivo del dato nel set.
 
@@ -232,7 +232,7 @@ Il **principio di località temporale** suggerisce di **sostituire il blocco men
 
 ## Cache multi-livello
 
-I moderni calcolatori adottano spesso almeno due livelli di cache per cercare di ridurre i tempi di ridurre l'[AMAT](#il-tempo-medio-di-accesso-a-memoria)
+I moderni calcolatori adottano spesso almeno due livelli di cache per cercare di ridurre i tempi dell'[AMAT](#il-tempo-medio-di-accesso-a-memoria)
 
 ## Classificazione dei Miss nella Cache
 
@@ -274,13 +274,13 @@ Le operazioni di scrittura in memoria seguono un processo simile a quelle di let
 
 Le cache si classificano in due categorie principali:
 
-#### **Cache Write-Through**
+#### Cache Write-Through
 
 - Il dato viene scritto **simultaneamente** sia nella cache che nella memoria principale.
 - **Non necessita di un bit di modifica (dirty bit).**
 - Richiede **più accessi** alla memoria principale, aumentando la latenza.
 
-#### **Cache Write-Back**
+#### Cache Write-Back
 
 - Utilizza un **bit di modifica (dirty bit) M** per ogni blocco:
   - **M = 1** $\rightarrow$ Il blocco è stato modificato almeno una volta.

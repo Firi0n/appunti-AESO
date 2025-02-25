@@ -24,7 +24,11 @@ markdown_extensions:
       permalink: "#" # Aggiunge link accanto ai titoli per navigazione più veloce
   - pymdownx.highlight
   - pymdownx.emoji
-  - pymdownx.superfences
+  - pymdownx.superfences: # Supporto mermaid
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.arithmatex:
       generic: true # Supporto per formule LaTeX
 

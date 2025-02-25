@@ -128,8 +128,11 @@ gantt
 ```
 
 $$T_p = 3T = T_w^1$$
+
 $$T_c^1 = 3T\cdot m$$
+
 $$T_a > 0 => T_p = max\left\lbrace T_a, T_w\right\rbrace$$
+
 $$T_c = m\cdot T_p$$
 
 Possiamo spezzettare il suo lavoro ed assegnarne una parte ad altri lavoratori
@@ -170,6 +173,7 @@ Questa non migliora anzi la $\Delta$ (rappresentante il tempo di passaggio dell'
 Tuttavia migliora il Throughput, ossia il numero di oggetti processabili per unità di tempo poiché quando il worker 1 ha finito la sua parte comincia subito col rifarlo con un nuovo oggetto, mentre il worker 2 continua con il primo.
 
 $$T_s^3=T$$
+
 $$T_c^3=m\cdot T+(n-1)\cdot T \approx m\cdot T$$
 
 Non è quasi mai vero che gli stadi anno la stessa durata quindi:
