@@ -347,8 +347,8 @@ Il metodo **Centralized Arbiter** utilizza un arbitro dedicato che gestisce l'ac
 
 ### Vantaggi e Svantaggi
 
-:white_check_mark: **Gestione efficiente delle richieste**  
-:x: **Single Point of Failure (SPOF)**: se l’arbiter si guasta, l’intero sistema si blocca.
+- :white_check_mark: **Gestione efficiente delle richieste**
+- :x: **Single Point of Failure (SPOF)**: se l’arbiter si guasta, l’intero sistema si blocca.
 
 ![Centralized arbiter](./img/centralized_arbiter.png)
 
