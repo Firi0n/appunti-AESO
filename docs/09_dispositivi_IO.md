@@ -1,4 +1,4 @@
-Oltre al processore e alla memoria, un sistema di computer ha il bisogno di interfacciarsi con l'ambiente esterno, questo viene fatto attraverso le operazioni di **I/O**, che passano per dei **moduli di I/O** attraberso il **BUS** arrivando ai dispositivi esterni detti **periferiche**.
+Oltre al processore e alla memoria, un sistema di computer ha il bisogno di interfacciarsi con l'ambiente esterno, questo viene fatto tramite le operazioni di **I/O**, che passano per dei **moduli di I/O**, attraverso il **BUS**, arrivando ai dispositivi esterni detti **periferiche**.
 
 ![IO scheme](./img/io_scheme.png)
 
@@ -160,6 +160,8 @@ Un modulo di I/O più primitivo, che richiede un controllo dettagliato, è gener
 I controller di I/O sono comunemente utilizzati nei microcomputer, mentre i canali di I/O sono impiegati nei mainframe.
 
 # Bus
+
+Per far comunicare il processore con i dispositivi di I/O c'è bisogno di un **bus**.
 
 Un **bus** è un insieme di **linee dati** trattate come un unico segnale logico, utilizzato per connettere più dispositivi all'interno di un sistema. Le periferiche collegate a un bus condiviso vengono chiamate **taps**.
 
