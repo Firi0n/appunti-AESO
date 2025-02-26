@@ -143,7 +143,7 @@ Poiché più indirizzi possono essere mappati nello stesso set, la cache deve me
 
 ### Struttura dell’Indirizzo
 
-- **Spiazzamento**: ci sono $(log_2l)-1$ bit di spiazzamento(offset) dove $l =$ lunghezza di parola.
+- **Spiazzamento**: ci sono $log_2b$ bit di spiazzamento(offset) con $b$ in byte.
 - **Bit di set**: i successivi $log_2S$ bit indicano il set in cui il dato è mappato.
 - **Tag**: i restanti bit identificano l’indirizzo effettivo del dato nel set.
 
