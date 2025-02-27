@@ -168,9 +168,11 @@ La latenza è il tempo da quando un input entra nel circuito a quando esce il co
 
 $$L=3T+\Delta$$
 
-Questa non migliora anzi la $\Delta$ (rappresentante il tempo di passaggio dell'oggetto da un worker all'altro) lo peggiora.
+Questa non migliora anzi la $\Delta$ (rappresentante il tempo di passaggio dell'oggetto da un worker all'altro) lo
+peggiora.
 
-Tuttavia migliora il Throughput, ossia il numero di oggetti processabili per unità di tempo poiché quando il worker 1 ha finito la sua parte comincia subito col rifarlo con un nuovo oggetto, mentre il worker 2 continua con il primo.
+Tuttavia migliora il Throughput, ossia il numero di oggetti processabili per unità di tempo poiché quando il worker 1 ha
+finito la sua parte comincia subito col rifarlo con un nuovo oggetto, mentre il worker 2 continua con il primo.
 
 $$T_s^3=T$$
 

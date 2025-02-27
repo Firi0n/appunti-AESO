@@ -1,12 +1,17 @@
 # Astrazione, disciplina e le tre y
 
-L'**astrazione** consiste nel nascondere i dettagli non essenziali per mettere in evidenza gli elementi chiave di un sistema, che può essere analizzato a diversi livelli, ciascuno concentrato su aspetti specifici.
+L'**astrazione** consiste nel nascondere i dettagli non essenziali per mettere in evidenza gli elementi chiave di un
+sistema, che può essere analizzato a diversi livelli, ciascuno concentrato su aspetti specifici.
 
-Per lavorare in modo più efficiente a livelli più alti di astrazione, si applica la **disciplina**, che limita intenzionalmente le scelte progettuali, rendendo il processo più produttivo.
+Per lavorare in modo più efficiente a livelli più alti di astrazione, si applica la **disciplina**, che limita
+intenzionalmente le scelte progettuali, rendendo il processo più produttivo.
 
-In questo contesto, la **microarchitettura** svolge un ruolo fondamentale, collegando la logica con l'architettura del calcolatore e traducendo il modello teorico in implementazioni hardware che eseguono le istruzioni in base al punto di vista del programmatore.
+In questo contesto, la **microarchitettura** svolge un ruolo fondamentale, collegando la logica con l'architettura del
+calcolatore e traducendo il modello teorico in implementazioni hardware che eseguono le istruzioni in base al punto di
+vista del programmatore.
 
-Quando si lavora a un determinato livello di astrazione, è utile conoscere i livelli immediatamente superiore e inferiore per comprendere meglio il contesto e l'interazione tra i diversi strati del sistema.
+Quando si lavora a un determinato livello di astrazione, è utile conoscere i livelli immediatamente superiore e
+inferiore per comprendere meglio il contesto e l'interazione tra i diversi strati del sistema.
 
 ![Computer-Architecture-Layers-Of-Abstraction](https://www.learncomputerscienceonline.com/wp-content/uploads/2022/04/Computer-Architecture-Layers-Of-Abstraction.jpg)
 
@@ -18,15 +23,19 @@ Oltre all'astrazione ci sono altre tre tecniche fondamentali (dette le tre y):
 
 ## Astrazione digitale
 
-Una prima astrazione che viene fatta è quella di passare dai sistemi **analogici**, che possono assumere **valori infiniti**, a quelli **digitali**, che possono rappresentare solo **valori discreti**.
+Una prima astrazione che viene fatta è quella di passare dai sistemi **analogici**, che possono assumere **valori
+infiniti**, a quelli **digitali**, che possono rappresentare solo **valori discreti**.
 
-Uno dei primi sistemi digitali che utilizzava le variabili con **10** diversi valo­ri era il Motore Analitico di **Charles Babbage**. Babbage ci lavorò dal **1834** fino al **1871**, progettando e tentando di costruire questo calcolatore meccanico.
+Uno dei primi sistemi digitali che utilizzava le variabili con **10** diversi valo­ri era il Motore Analitico di
+**Charles Babbage**. Babbage ci lavorò dal **1834** fino al **1871**, progettando e tentando di costruire questo
+calcolatore meccanico.
 
-A differenza della macchina di
-Babbage, la maggior parte dei calcolatori elettronici utilizza una rappresenta­
-zione binaria, più facile da distinguere (Due sole tensioni: 0 e 5V). **George Boole** ha sviluppato una logica che opera su variabili bina­rie, nota come **logica Booleana**.
+A differenza della macchina di Babbage, la maggior parte dei calcolatori elettronici utilizza una rappresenta­ zione
+binaria, più facile da distinguere (Due sole tensioni: 0 e 5V). **George Boole** ha sviluppato una logica che opera su
+variabili bina­rie, nota come **logica Booleana**.
 
-Un programmatore può scrivere codice senza conoscere i dettagli specifici dell'hardware, ma comprendere tali dettagli consente di ottimizzare il software per quel calcolatore.
+Un programmatore può scrivere codice senza conoscere i dettagli specifici dell'hardware, ma comprendere tali dettagli
+consente di ottimizzare il software per quel calcolatore.
 
 ---
 
@@ -35,7 +44,8 @@ Un programmatore può scrivere codice senza conoscere i dettagli specifici dell'
 Un generico **sistema numerico posizionale** è composto da:
 
 - **base (b):** Indica il numero delle **cifre** del sistema numerico;
-- **cifre (c):** Simboli del sistema numerico con valore compreso tra $[0;b-1]$. Possono essere combinate per ottenere valori maggiori, dove **$c_i$** indica la cifra in posizione i.
+- **cifre (c):** Simboli del sistema numerico con valore compreso tra $[0;b-1]$. Possono essere combinate per ottenere
+  valori maggiori, dove **$c_i$** indica la cifra in posizione i.
 - **peso (i):** il peso è il valore associato alla posizione i ed aumenta spostandosi verso sinistra.
 
 ## Il sistema decimale
@@ -52,15 +62,16 @@ $$n_{10}=\sum_{i=0}^{k-1}{c_i\cdot b^i}$$
 
 ### Conversione da decimale a base b
 
-La formula precedente consente di convertire un numero scritto in qualunque base in un numero decimale.
-Tuttavia, per fare l'opposto, non basta una formula ma serve un procedimento ricorsivo:
+La formula precedente consente di convertire un numero scritto in qualunque base in un numero decimale. Tuttavia, per
+fare l'opposto, non basta una formula ma serve un procedimento ricorsivo:
 
-Sia **i** l'i-esimo passo del procedimento che va avanti fino a che **$n_{10}$** non è uguale a **0** e la posizione della cifra **c**, allora:
+Sia **i** l'i-esimo passo del procedimento che va avanti fino a che **$n_{10}$** non è uguale a **0** e la posizione
+della cifra **c**, allora:
 
 $$
 n_{i|10}=\begin{cases}
-  n_{10} & i=0\\
-  \lfloor\frac{n_{i-1|10}}{b}\rfloor & i>0
+    n_{10} & i=0\\
+    \lfloor\frac{n_{i-1|10}}{b}\rfloor & i>0
 \end{cases}
 $$
 

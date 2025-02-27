@@ -1,21 +1,29 @@
-Una rete può essere vista come un insieme di **ingressi** e **uscite**, messe in relazione da una **specifica funzionale** e con una **specifica di temporizzazione**, che descrive il **ritardo** tra il cambio degli **ingressi** e la risposta delle **uscite**.
+Una rete può essere vista come un insieme di **ingressi** e **uscite**, messe in relazione da una **specifica
+funzionale** e con una **specifica di temporizzazione**, che descrive il **ritardo** tra il cambio degli **ingressi** e
+la risposta delle **uscite**.
 
-Esse sono formate da **nodi** ed **elementi**, gli **elementi** sono a loro volta delle **reti**, mentre, i **nodi** sono **contatti elettrici** che si suddividono in: **Ingressi**, **uscite** e **nodi interni**.
+Esse sono formate da **nodi** ed **elementi**, gli **elementi** sono a loro volta delle **reti**, mentre, i **nodi**
+sono **contatti elettrici** che si suddividono in: **Ingressi**, **uscite** e **nodi interni**.
 
 Le reti si dividono in:
 
 - **combinatorie**: le uscite dipendono solo dagli **ingressi attuali**;
-- **sequenziali**: le uscite dipendono dai valori degli **ingressi attuali e precedenti**, gli stati precedenti vengono salvati in una memoria.
+- **sequenziali**: le uscite dipendono dai valori degli **ingressi attuali e precedenti**, gli stati precedenti vengono
+  salvati in una memoria.
 
-La **specifica di temporizzazione** delle **reti combinatorie** consiste in un **limite superiore** e un **limite inferiore** sul **ritardo** tra **ingressi** e **uscite**.
+La **specifica di temporizzazione** delle **reti combinatorie** consiste in un **limite superiore** e un **limite
+inferiore** sul **ritardo** tra **ingressi** e **uscite**.
 
 Una rete è combinatoria se consiste di elementi circui­tali interconnessi che presentano le seguenti caratteristiche:
 
 - ogni elemento circuitale è di per sé combinatorio;
-- ogni nodo della rete è un ingresso per la rete oppure è connesso solamente a un terminale di uscita di un elemento della rete;
-- la rete non contiene percorsi ciclici: ogni percorso che la attraversa passa attraverso ogni nodo al massimo una volta.
+- ogni nodo della rete è un ingresso per la rete oppure è connesso solamente a un terminale di uscita di un elemento
+  della rete;
+- la rete non contiene percorsi ciclici: ogni percorso che la attraversa passa attraverso ogni nodo al massimo una
+  volta.
 
-La **specifica funzionale** di una rete combinatoria è solitamente espressa come una **tabella di verità** o come **un’espressione booleana**.
+La **specifica funzionale** di una rete combinatoria è solitamente espressa come una **tabella di verità** o come
+**un’espressione booleana**.
 
 # Espressioni booleane
 
@@ -38,11 +46,14 @@ Le espressioni booleane si basano su vaiabili che possono assumere solo i valori
 
 ## Somma di prodotti
 
-Ogni **riga** di una **tabella di verità** corrisponde ad un **mintermine**. **Sommando** tutti i **mintermini** il cui risultato è **vero** (o falso per poi negare l'espressione) si ottiene **l'espressione booleana** corrispondente alla tabella di verità. Essa è chiamata **forma canonica somma di prodotti**.
+Ogni **riga** di una **tabella di verità** corrisponde ad un **mintermine**. **Sommando** tutti i **mintermini** il cui
+risultato è **vero** (o falso per poi negare l'espressione) si ottiene **l'espressione booleana** corrispondente alla
+tabella di verità. Essa è chiamata **forma canonica somma di prodotti**.
 
 ## Prodotto di somme
 
-La **forma canonica prodotto di somme** consiste nel trattare ogni **riga** come un **maxtermine** e poi fare il **prodotto** di tutti i **maxtermini falsi**.
+La **forma canonica prodotto di somme** consiste nel trattare ogni **riga** come un **maxtermine** e poi fare il
+**prodotto** di tutti i **maxtermini falsi**.
 
 ## Postulati
 
@@ -62,12 +73,15 @@ La **forma canonica prodotto di somme** consiste nel trattare ogni **riga** come
 | $(B \cdot C) + (\overline{B} \cdot D) + (C \cdot D) = B \cdot C + \overline{B} \cdot D$               | $(B + C) \cdot (\overline{B} + D) \cdot (C + D) = (B + C) \cdot (\overline{B} + D)$                   | Consenso        |
 | $\overline{B_0 \cdot B_1 \cdot B_2 \dots} = (\overline{B_0} + \overline{B_1} + \overline{B_2} \dots)$ | $\overline{B_0 + B_1 + B_2 \dots} = (\overline{B_0} \cdot \overline{B_1} \cdot \overline{B_2} \dots)$ | De Morgan       |
 
-Si defi­nisce un’espressione in somma di prodotti come **minima** se utilizza il minor numero possibile di implicanti. Se si confrontano espressioni con lo stesso numeri di implicanti, l’espressione minima è quella che usa il minor numero
+Si defi­nisce un’espressione in somma di prodotti come **minima** se utilizza il minor numero possibile di implicanti.
+Se si confrontano espressioni con lo stesso numeri di implicanti, l’espressione minima è quella che usa il minor numero
 possibile di letterali.
 
-Un implicante è detto **implicante primo** se non può essere combinato con nessun altro elemento all’interno dell’espressione per formare un nuovo implicante con un numero minore di letterali.
+Un implicante è detto **implicante primo** se non può essere combinato con nessun altro elemento all’interno
+dell’espressione per formare un nuovo implicante con un numero minore di letterali.
 
-In un’espressione minima, gli implicanti devono essere tutti implicanti primi, altrimenti è possibile combi­narli ulteriormente per diminuire il numero di letterali.
+In un’espressione minima, gli implicanti devono essere tutti implicanti primi, altrimenti è possibile combi­narli
+ulteriormente per diminuire il numero di letterali.
 
 # Linee guida schema
 
@@ -78,23 +92,27 @@ In un’espressione minima, gli implicanti devono essere tutti implicanti primi,
 - Fili che arrivano a una giunzione a T sono collegati tra loro.
 - Un punto disegnato dove due fili si incrociano indica che quei fili sono col­legati tra loro.
 
-Una qualsiasi espressione booleana in forma **somma di prodotti** può es­sere tradotta in schema circuitale in maniera sistematica. Uno schema circuitale così disegnato è chiamato **matrice logica programmabile (PLA)**.
+Una qualsiasi espressione booleana in forma **somma di prodotti** può es­sere tradotta in schema circuitale in maniera
+sistematica. Uno schema circuitale così disegnato è chiamato **matrice logica programmabile (PLA)**.
 
-Non sempre conviene usare la logica a due livelli perchè potrebbe aumentare di molto il numero delle porte utilizzate rispetto ad un altro approccio.
+Non sempre conviene usare la logica a due livelli perchè potrebbe aumentare di molto il numero delle porte utilizzate
+rispetto ad un altro approccio.
 
 Quando si lavora con porte negate per facilitare la schematizzazione si spingono le bolle (NOT).
 
 # Le mappe di karnaugh
 
-Le **mappe di Karnaugh (K-map)** sono un metodo grafico di semplificazione di espressioni booleane, inventato nel **1953** da **Maurice Karnaugh**, ingegnere delle telecomunicazioni presso i **Bell Labs**.
-Esse funzionano su problemi con al **massimo 4 variabili**.
+Le **mappe di Karnaugh (K-map)** sono un metodo grafico di semplificazione di espressioni booleane, inventato nel
+**1953** da **Maurice Karnaugh**, ingegnere delle telecomunicazioni presso i **Bell Labs**. Esse funzionano su problemi
+con al **massimo 4 variabili**.
 
 ## Funzionamento
 
-La riga in alto nella mappa di Karnaugh mostra
-le quattro possibili combinazioni di valori delle prime due variabili, mentre la prima colonna delle altre due.
+La riga in alto nella mappa di Karnaugh mostra le quattro possibili combinazioni di valori delle prime due variabili,
+mentre la prima colonna delle altre due.
 
-L'ordine utilizzato per le combinazioni è il **codice Gray (00,01,11,10)**. Esso viene usato per far si che ogni riquadro differisca di una sola variabile da quelli adiacenti.
+L'ordine utilizzato per le combinazioni è il **codice Gray (00,01,11,10)**. Esso viene usato per far si che ogni
+riquadro differisca di una sola variabile da quelli adiacenti.
 
 Nei riquadri si inseriscono i valori delle combinazioni ottenute dall'unione di righe e colonne.
 
@@ -102,22 +120,27 @@ Successivamente bisogna cerchiare gli 1 con le seguenti regole:
 
 - Utilizzare il minor numero possibile di cerchi per includere tutti gli 1;
 - Tutti i riquadri racchiusi in ciascun cerchio devono contenere 1;
-- Ogni cerchio deve includere un numero di riquadri che sia una potenza di due (cioè 1, 2 o 4 riquadri) in qualsiasi direzione;
+- Ogni cerchio deve includere un numero di riquadri che sia una potenza di due (cioè 1, 2 o 4 riquadri) in qualsiasi
+  direzione;
 - Ogni cerchio deve essere il più largo possibile;
 - È possibile disegnare un cerchio che avvolga le estremità della mappa di Karnaugh;
-- Un 1 in una mappa di Karnaugh può essere cerchiato più di una volta, se questa operazione permette di utilizzare un numero minore di cerchi.
+- Un 1 in una mappa di Karnaugh può essere cerchiato più di una volta, se questa operazione permette di utilizzare un
+  numero minore di cerchi.
 
-Il risultato si ottiene guardando i cerchi e facendo la somma di prodotti non più sulla singola combinazione ma sui cerchi, eliminando le variabili che cambiano all'interno dello stesso cerchio.
+Il risultato si ottiene guardando i cerchi e facendo la somma di prodotti non più sulla singola combinazione ma sui
+cerchi, eliminando le variabili che cambiano all'interno dello stesso cerchio.
 
 ## Indifferenze
 
-è possibile raggruppare più righe della tabella di verità mettendo un trattino al posto delle variabili il cui valore è indifferente per il risultato.
+è possibile raggruppare più righe della tabella di verità mettendo un trattino al posto delle variabili il cui valore è
+indifferente per il risultato.
 
 # Blocchi costitutivi combinatori
 
 ## Multiplexer
 
-Il Multiplexer è un circuito che presi due ingressi, tramite un terzo ingresso, sceglie quali dei due ingressi mandare in uscita.
+Il Multiplexer è un circuito che presi due ingressi, tramite un terzo ingresso, sceglie quali dei due ingressi mandare
+in uscita.
 
 | S   | $D_1$ | $D_0$ | Y   |
 | --- | ----- | ----- | --- |
@@ -134,7 +157,8 @@ Si possono costruire anche multiplexer più grandi a partire da quello a due ing
 
 ## Decoder
 
-Un decoder ha N ingressi e $2^N$ uscite e attiva una delle sue uscite a seconda della combinazione di valori in ingresso.
+Un decoder ha N ingressi e $2^N$ uscite e attiva una delle sue uscite a seconda della combinazione di valori in
+ingresso.
 
 | A   | B   | $Y_0$ | $Y_1$ | $Y_2$ | $Y_3$ |
 | --- | --- | ----- | ----- | ----- | ----- |
@@ -147,17 +171,23 @@ Un decoder ha N ingressi e $2^N$ uscite e attiva una delle sue uscite a seconda 
 
 # Temporizzazione
 
-Uno dei problemi più importanti legato alle reti è la **temporizzazione (timing)**: in altre parole, come fare in modo che la rete funzioni velocemente.
+Uno dei problemi più importanti legato alle reti è la **temporizzazione (timing)**: in altre parole, come fare in modo
+che la rete funzioni velocemente.
 
 La logica combinatoria è caratterizzata da.
 
-- ritardo di propagazione ($t_{pd}$): è il tempo massimo che trascorre dal momento in cui avviene un cambiamento nell’ingresso al momento in cui l’uscita raggiunge il suo valore finale.
-- ritardo di contaminazione ($t_{cd}$): è il tempo minimo che trascorre dal momento in cui cambia un ingresso al momento in cui una qualsiasi uscita comincia il processo di adattamento del suo valore.
+- ritardo di propagazione ($t_{pd}$): è il tempo massimo che trascorre dal momento in cui avviene un cambiamento
+  nell’ingresso al momento in cui l’uscita raggiunge il suo valore finale.
+- ritardo di contaminazione ($t_{cd}$): è il tempo minimo che trascorre dal momento in cui cambia un ingresso al momento
+  in cui una qualsiasi uscita comincia il processo di adattamento del suo valore.
 
 ![](./img/tempo.png)
 
 ## Alee
 
-Le alee sono delle transizioni temporanee indesiderate che possono verificarsi nelle uscite del circuito in risposta a una singola variazione di ingresso. Si verificano quando il segnale di uscita cambia più volte prima di stabilizzarsi al valore corretto. Questi fenomeni sono causati da ritardi di propagazione differenti lungo i vari percorsi logici interni al circuito.
+Le alee sono delle transizioni temporanee indesiderate che possono verificarsi nelle uscite del circuito in risposta a
+una singola variazione di ingresso. Si verificano quando il segnale di uscita cambia più volte prima di stabilizzarsi al
+valore corretto. Questi fenomeni sono causati da ritardi di propagazione differenti lungo i vari percorsi logici interni
+al circuito.
 
 Per evitare le alee è possibile aggiungere una parte superflua alla rete, individuabile tramite la mappa di karnaugh.

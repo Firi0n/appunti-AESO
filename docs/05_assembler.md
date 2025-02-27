@@ -1,4 +1,5 @@
-I calcolatori comprendono istruzioni in codice binario (chiamato codice macchina) che sono tradotte 1:1 con il codice assembly.
+I calcolatori comprendono istruzioni in codice binario (chiamato codice macchina) che sono tradotte 1:1 con il codice
+assembly.
 
 Il codice macchina non dipende dalla [Microarchitettura](#astrazione-disciplina-e-le-tre-y).
 
@@ -9,8 +10,8 @@ I quattro principi definiti da **David Patterson** e **John Hennessy**:
 - Più piccolo è più veloce;
 - Un buon progetto richiede buoni compromessi.
 
-ARM è un calcolatore con architettura **RISC** (Reduced Instruction Set Computer).
-Il set di istruzioni di ARM rende veloci le cose frequenti inserendo solo istruzioni semplici usate spesso.
+ARM è un calcolatore con architettura **RISC** (Reduced Instruction Set Computer). Il set di istruzioni di ARM rende
+veloci le cose frequenti inserendo solo istruzioni semplici usate spesso.
 
 # Costanti
 
@@ -18,12 +19,12 @@ Sono semplici **numeri** ed in **Assembly** si indicano mettendo il **'#'** segu
 
 # Registri
 
-Visto che l'accesso alla memoria è un'operazione lenta le **CPU** hanno dei loro registri.
-L’architettura **ARM** usa **16 registri**, globalmente indicati come **register file**.
-Meno sono i registri, più rapidamente sono accessibili.
-Il **register file** è generalmente costituito da un piccolo **array** (vettore) di memoria **SRAM**.
+Visto che l'accesso alla memoria è un'operazione lenta le **CPU** hanno dei loro registri. L’architettura **ARM** usa
+**16 registri**, globalmente indicati come **register file**. Meno sono i registri, più rapidamente sono accessibili. Il
+**register file** è generalmente costituito da un piccolo **array** (vettore) di memoria **SRAM**.
 
-In **Assembly** i nomi dei **registri** sono composti dalla lettera **R** seguita da un **numero** e i registri hanno degli utilizzi specifici indicati nella seguente tabella:
+In **Assembly** i nomi dei **registri** sono composti dalla lettera **R** seguita da un **numero** e i registri hanno
+degli utilizzi specifici indicati nella seguente tabella:
 
 | Registri | Utilizzi                                            |
 | -------- | --------------------------------------------------- |
@@ -35,19 +36,22 @@ In **Assembly** i nomi dei **registri** sono composti dalla lettera **R** seguit
 | R14 (LR) | Link Register                                       |
 | R15 (PC) | Program Counter                                     |
 
-Per quanto riguarda le variabili temporanee, possiamo utilizzarle senza preoccuparci dei dati che c'erano prima.
-Mentre, se utilizzialo le variabili salvate dobbiamo rimettere al loro interno i dati che c'erano prima dell'esecuzione del nostro programma prima di terminarlo.
+Per quanto riguarda le variabili temporanee, possiamo utilizzarle senza preoccuparci dei dati che c'erano prima. Mentre,
+se utilizzialo le variabili salvate dobbiamo rimettere al loro interno i dati che c'erano prima dell'esecuzione del
+nostro programma prima di terminarlo.
 
 (Si può fare facilmente salvandole nello stack per poi riprenderle prima della fine del programma.)
 
 # Memoria
 
-Ma i dati possono anche essere memorizzati nella **RAM**.
-In **ARM** le **istruzioni** operano **solo sui registri**, quindi i dati presenti in memoria devono essere copiati nei registri prima di essere elaborati.
+Ma i dati possono anche essere memorizzati nella **RAM**. In **ARM** le **istruzioni** operano **solo sui registri**,
+quindi i dati presenti in memoria devono essere copiati nei registri prima di essere elaborati.
 
-L’architettura **ARM** usa **32 bit** per gli **indirizzi** di memoria e 32 bit per le **parole** di dato e fa uso di memoria indirizzabile a byte (**byte addressable**), cioè ogni **byte** di memoria ha un **indirizzo univoco**.
+L’architettura **ARM** usa **32 bit** per gli **indirizzi** di memoria e 32 bit per le **parole** di dato e fa uso di
+memoria indirizzabile a byte (**byte addressable**), cioè ogni **byte** di memoria ha un **indirizzo univoco**.
 
-Una **parola** di **32 bit** (**word**) è costituita da quattro byte da 8 bit ciascuno, quindi **ogni indirizzo di parola è un multiplo di 4**.
+Una **parola** di **32 bit** (**word**) è costituita da quattro byte da 8 bit ciascuno, quindi **ogni indirizzo di
+parola è un multiplo di 4**.
 
 L’istruzione **LDR** specifica l’indirizzo di memoria usando un **registro base** e un **offset**.
 
@@ -55,8 +59,8 @@ L’indirizzo di memoria viene formato **sommando** il contenuto del **registro 
 
 ARM usa l’istruzione **STR** (**STore Register**) per scrivere una parola di dato da un **registro** in **memoria**.
 
-Le memorie indirizzabili a byte sono organizzate in modalità **big-endian** oppure **little-endian**.
-Nel primo si iniziano a salvare i dati in memoria dal bit **più significativo**, mentre nel secondo dal **meno significativo**.
+Le memorie indirizzabili a byte sono organizzate in modalità **big-endian** oppure **little-endian**. Nel primo si
+iniziano a salvare i dati in memoria dal bit **più significativo**, mentre nel secondo dal **meno significativo**.
 **ARM** è **little-endian**.
 
 # Istruzioni
@@ -97,7 +101,10 @@ SUM R0, R1, #5
 
 # Flag
 
-Alcune operazioni possono impostare dei flag (bit a 0 o 1) che possiamo utilizzare per eseguire delle operazioni solo se il flag in questione è a 1 scrivendo il flag attaccato all'operazione da eseguire come fosse un unico comando. L'operazione più comune per impostare i flag è la compare (CMP),che confronta due valori e aggiorna i flag di conseguenza.
+Alcune operazioni possono impostare dei flag (bit a 0 o 1) che possiamo utilizzare per eseguire delle operazioni solo se
+il flag in questione è a 1 scrivendo il flag attaccato all'operazione da eseguire come fosse un unico comando.
+L'operazione più comune per impostare i flag è la compare (CMP),che confronta due valori e aggiorna i flag di
+conseguenza.
 
 Di seguito sono riportati tutti i flag:
 
@@ -141,7 +148,8 @@ Di seguito sono riportati tutti i flag:
 
 # Salti
 
-B (Branch) si usa per saltare ad una determinata etichetta del codice, mentre BL (Branch and link) si usa per chiamare funzioni esterne o per chiamate ricorsive.
+B (Branch) si usa per saltare ad una determinata etichetta del codice, mentre BL (Branch and link) si usa per chiamare
+funzioni esterne o per chiamate ricorsive.
 
 # Costrutti
 

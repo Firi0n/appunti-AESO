@@ -2,7 +2,8 @@
 
 Benvenuto negli appunti di **AESO**!
 
-Questa documentazione raccoglie gli appunti del corso di architetture e sistemi operativi dell'università di Pisa in modo organizzato e facilmente consultabile.
+Questa documentazione raccoglie gli appunti del corso di architetture e sistemi operativi dell'università di Pisa in
+modo organizzato e facilmente consultabile.
 
 ## :rocket: Navigazione
 
@@ -16,7 +17,7 @@ Puoi esplorare i contenuti tramite:
 
 - :pushpin: **Repository GitHub**: [Vai al Repo](https://github.com/firi0n/appunti-AESO)
 
-## ::gear:: Tecnologie
+## :gear: Tecnologie
 
 Questa documentazione è stata creata con:
 

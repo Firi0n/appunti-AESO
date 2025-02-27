@@ -4,9 +4,11 @@ Il processore invia un indirizzo al sistema di memoria tramite il **bus indirizz
 
 In caso di lettura, il segnale **MemWrite** vale **0** e la memoria restituisce il dato sul **bus di lettura dati**.
 
-In caso di scrittura, il segnale **MemWrite** vale **1** e il processore invia il dato alla memoria sul **bus di scrittura dati**.
+In caso di scrittura, il segnale **MemWrite** vale **1** e il processore invia il dato alla memoria sul **bus di
+scrittura dati**.
 
-Mentre un tempo, calcolo e accesso alla memoria erano bilanciati, oggi la CPU è molto più veloce della memoria, creando un divario di prestazioni significativo.
+Mentre un tempo, calcolo e accesso alla memoria erano bilanciati, oggi la CPU è molto più veloce della memoria, creando
+un divario di prestazioni significativo.
 
 Questo effetto viene chiamato **von Neumann bottleneck**.
 
@@ -30,28 +32,36 @@ graph LR
 
 # Introduzione
 
-Il sistema di memoria ideale dovrebbe essere **veloce, grande ed economico**, ma in pratica ogni tipo di memoria soddisfa solo due di questi requisiti.
+Il sistema di memoria ideale dovrebbe essere **veloce, grande ed economico**, ma in pratica ogni tipo di memoria
+soddisfa solo due di questi requisiti.
 
 Per avvicinarsi a questo ideale, si combina:
 
 - una memoria **veloce, piccola ed economica**
 - con una memoria **lenta, grande ed economica**
 
-La **memoria veloce** conserva i dati più usati, migliorando le prestazioni, mentre la **memoria grande** assicura un'elevata capacità complessiva.
+La **memoria veloce** conserva i dati più usati, migliorando le prestazioni, mentre la **memoria grande** assicura
+un'elevata capacità complessiva.
 
-Questo approccio è detto **gerarchia di memoria** ed è **più economico** rispetto a una memoria unica che sia contemporaneamente grande e veloce.
+Questo approccio è detto **gerarchia di memoria** ed è **più economico** rispetto a una memoria unica che sia
+contemporaneamente grande e veloce.
 
-La **memoria** dei calcolatori è generalmente costituita da chip **DRAM** che rappresentano la memoria **grande ma lenta**.
+La **memoria** dei calcolatori è generalmente costituita da chip **DRAM** che rappresentano la memoria **grande ma
+lenta**.
 
-Le **CPU** hanno al loro interno uno o più livelli di memoria **cache**, la memoria **veloce ma piccola**, che memorizza istruzioni e dati usati più di frequente.
+Le **CPU** hanno al loro interno uno o più livelli di memoria **cache**, la memoria **veloce ma piccola**, che memorizza
+istruzioni e dati usati più di frequente.
 
-Le **cache** sono costituite generalmente da **SRAM**, che sono intrinsecamente più veloci delle **DRAM**. Inoltre, la posizione a bordo del processore elimina i ritardi dovuti alla propagazione dei segnali elettrici tra chip diversi.
+Le **cache** sono costituite generalmente da **SRAM**, che sono intrinsecamente più veloci delle **DRAM**. Inoltre, la
+posizione a bordo del processore elimina i ritardi dovuti alla propagazione dei segnali elettrici tra chip diversi.
 
 Esiste anche un livello più basso che è costituito dalla **memoria virtuale**, costituita dal **disco rigido**.
 
 La **memoria principale**, detta anche **memoria fisica**, contiene un sottoinsieme della **memoria virtuale**.
 
-Il processore per prima cosa cerca il dato in una memoria piccola ma veloce generalmente presente a bordo del suo stesso chip. Se non trova il dato, il processore guarda nella memoria principale. Se non lo trova neanche lì, lo preleva dalla memoria virtuale sul disco rigido, capiente ma lento.
+Il processore per prima cosa cerca il dato in una memoria piccola ma veloce generalmente presente a bordo del suo stesso
+chip. Se non trova il dato, il processore guarda nella memoria principale. Se non lo trova neanche lì, lo preleva dalla
+memoria virtuale sul disco rigido, capiente ma lento.
 
 ![alt text](./img/hierarchy_graph.png)
 
@@ -75,7 +85,8 @@ $$
 
 ## Miss penalty
 
-La miss penalty è il tempo necessario per sostituire un blocco al livello n con il corrispondente blocco dal livello n-1.
+La miss penalty è il tempo necessario per sostituire un blocco al livello n con il corrispondente blocco dal livello
+n-1.
 
 ## Miss time
 
@@ -85,7 +96,8 @@ $$\text{miss time}=\text{miss penalty}+\text{hit time}$$
 
 ## Il tempo medio di accesso a memoria
 
-Il tempo medio di accesso a memoria (AMAT, Average Memory Access Time) è il tempo medio di attesa da parte del processore per completare un’istruzione di lettura o scrittura in memoria.
+Il tempo medio di accesso a memoria (AMAT, Average Memory Access Time) è il tempo medio di attesa da parte del
+processore per completare un’istruzione di lettura o scrittura in memoria.
 
 Il processore guarda prima nella cache.
 
@@ -102,16 +114,19 @@ $$AMAT=t_{1}+MR_{1}(t_{2}+MR_{2}(t_{3}+...))$$
 
 # cache
 
-La memoria **cache** conserva i dati usati più frequentemente. Il numero di parole che può contenere è la sua **capacità C**.
+La memoria **cache** conserva i dati usati più frequentemente. Il numero di parole che può contenere è la sua **capacità
+C**.
 
 Poiché **C è molto inferiore alla memoria principale**, è necessario selezionare quali dati mantenere in cache.
 
 Quando il processore accede a un dato:
 
 - Se è in cache (**hit**), è **immediatamente disponibile**.
-- Se non è in cache (**miss**), viene **prelevato dalla memoria principale** e **salvato in cache** per utilizzi futuri, sostituendo un dato meno recente.
+- Se non è in cache (**miss**), viene **prelevato dalla memoria principale** e **salvato in cache** per utilizzi futuri,
+  sostituendo un dato meno recente.
 
-Una **cache ideale** avrebbe **zero miss**, ma poiché ciò è impossibile, la cache predice i dati necessari basandosi sugli accessi passati. In particolare, sfrutta la **località spaziale** e **temporale** per ridurre i miss.
+Una **cache ideale** avrebbe **zero miss**, ma poiché ciò è impossibile, la cache predice i dati necessari basandosi
+sugli accessi passati. In particolare, sfrutta la **località spaziale** e **temporale** per ridurre i miss.
 
 ## Località spaziale
 
@@ -121,22 +136,28 @@ Una **cache ideale** avrebbe **zero miss**, ma poiché ciò è impossibile, la c
 
 Se un dato è stato utilizzato, è probabile che venga riutilizzato a breve (es. cicli).
 
-Per sfruttare la località spaziale, la cache non preleva solo un dato alla volta, ma un **blocco di cache** contenente più parole. Il numero **b** di parole per blocco è la **dimensione del blocco**.
+Per sfruttare la località spaziale, la cache non preleva solo un dato alla volta, ma un **blocco di cache** contenente
+più parole. Il numero **b** di parole per blocco è la **dimensione del blocco**.
 
 Una cache con capacità **C** ha quindi **B = C / b** blocchi, organizzati in **S set**.
 
-La relazione tra un indirizzo di memoria e la sua posizione in cache è definita **mappatura** (mapping). Alcuni bit dell’indirizzo determinano in quale set si trova il dato.
+La relazione tra un indirizzo di memoria e la sua posizione in cache è definita **mappatura** (mapping). Alcuni bit
+dell’indirizzo determinano in quale set si trova il dato.
 
-Se un set contiene più blocchi, il dato può essere memorizzato in uno qualsiasi di essi. Le cache sono classificate in base al numero di blocchi per set.
+Se un set contiene più blocchi, il dato può essere memorizzato in uno qualsiasi di essi. Le cache sono classificate in
+base al numero di blocchi per set.
 
 ## Cache a mappatura diretta
 
-Una **cache a mappatura diretta** suddivide la memoria in blocchi di **b parole**, organizzati in **S = B set** nella cache.
+Una **cache a mappatura diretta** suddivide la memoria in blocchi di **b parole**, organizzati in **S = B set** nella
+cache.
 
 - Ogni blocco di memoria è assegnato a un set specifico della cache.
-- La mappatura è **circolare**: quando si superano i set disponibili, i blocchi successivi sovrascrivono i precedenti nel medesimo set.
+- La mappatura è **circolare**: quando si superano i set disponibili, i blocchi successivi sovrascrivono i precedenti
+  nel medesimo set.
 
-Poiché più indirizzi possono essere mappati nello stesso set, la cache deve memorizzare l’indirizzo esatto del dato presente in ogni set.
+Poiché più indirizzi possono essere mappati nello stesso set, la cache deve memorizzare l’indirizzo esatto del dato
+presente in ogni set.
 
 - I **bit meno significativi** dell’indirizzo identificano il **set** in cui il dato è memorizzato.
 - I **bit più significativi**, chiamati **tag**, indicano quale indirizzo specifico è effettivamente presente nel set.
@@ -151,19 +172,23 @@ Esempio con lunghezza di parola di 8 bit e S=8
 
 ![example direct cache](./img/example_direct_cache.png)
 
-Occasionalmente, i set della cache non contengono dati, perciò la cache usa un **bit di validità** per ogni set che indica se il set contiene dati significativi.
+Occasionalmente, i set della cache non contengono dati, perciò la cache usa un **bit di validità** per ogni set che
+indica se il set contiene dati significativi.
 
 ![circuit direct cache](./img/circuit_direct_cache.png)
 
-Quando due indirizzi recenti si mappano nello stesso blocco di cache, si verifica un **conflitto**: il dato più recente sostituisce il precedente.
+Quando due indirizzi recenti si mappano nello stesso blocco di cache, si verifica un **conflitto**: il dato più recente
+sostituisce il precedente.
 
-Nelle **cache a mappatura diretta**, ogni set contiene un solo blocco, quindi due indirizzi che si mappano nello stesso set causano sempre un conflitto.
+Nelle **cache a mappatura diretta**, ogni set contiene un solo blocco, quindi due indirizzi che si mappano nello stesso
+set causano sempre un conflitto.
 
 ## Cache parzialmente associativa
 
 Una **cache parzialmente associativa a N vie** riduce i conflitti poichè ha **N blocchi per set**.
 
-- Ogni indirizzo di memoria viene mappato in un **set specifico**, ma può essere memorizzato in **uno qualsiasi degli N blocchi** del set.
+- Ogni indirizzo di memoria viene mappato in un **set specifico**, ma può essere memorizzato in **uno qualsiasi degli N
+  blocchi** del set.
 - Una **cache a mappatura diretta** è un caso particolare di cache parzialmente associativa con **N = 1**.
 - **N** è chiamato **grado di associatività** della cache.
 
@@ -215,7 +240,8 @@ Una **cache completamente associativa** ha un **unico set** con **B vie**, dove 
 
 ## Politiche di Sostituzione: LRU e Pseudo-LRU
 
-Il **principio di località temporale** suggerisce di **sostituire il blocco meno utilizzato di recente** (Least Recently Used, **LRU**) poiché ha **minor probabilità di essere riutilizzato a breve**.
+Il **principio di località temporale** suggerisce di **sostituire il blocco meno utilizzato di recente** (Least Recently
+Used, **LRU**) poiché ha **minor probabilità di essere riutilizzato a breve**.
 
 ### LRU nelle Cache Parzialmente Associative
 
@@ -232,15 +258,19 @@ Il **principio di località temporale** suggerisce di **sostituire il blocco men
 
 ## Cache multi-livello
 
-I moderni calcolatori adottano spesso almeno due livelli di cache per cercare di ridurre i tempi dell'[AMAT](#il-tempo-medio-di-accesso-a-memoria)
+I moderni calcolatori adottano spesso almeno due livelli di cache per cercare di ridurre i tempi
+dell'[AMAT](#il-tempo-medio-di-accesso-a-memoria)
 
 ## Classificazione dei Miss nella Cache
 
 I miss nella cache si possono classificare in tre categorie:
 
-1. **Miss inevitabili**: Si verificano alla prima richiesta di un blocco di cache, poiché il dato deve essere letto dalla memoria principale.
-2. **Miss di capacità**: Avvengono quando la cache è troppo piccola per contenere tutti i dati utilizzati contemporaneamente.
-3. **Miss di conflitto**: Si manifestano quando più indirizzi vengono mappati nello stesso set, causando l'espulsione di blocchi ancora necessari.
+1. **Miss inevitabili**: Si verificano alla prima richiesta di un blocco di cache, poiché il dato deve essere letto
+   dalla memoria principale.
+2. **Miss di capacità**: Avvengono quando la cache è troppo piccola per contenere tutti i dati utilizzati
+   contemporaneamente.
+3. **Miss di conflitto**: Si manifestano quando più indirizzi vengono mappati nello stesso set, causando l'espulsione di
+   blocchi ancora necessari.
 
 ## Ottimizzazione delle Prestazioni della Cache
 
@@ -288,16 +318,15 @@ Le cache si classificano in due categorie principali:
 - Il dato viene scritto nella memoria principale **solo quando il blocco viene espulso** dalla cache.
 - **Riduce il numero di accessi alla memoria principale**, migliorando le prestazioni.
 
-Le cache moderne sono prevalentemente **write-back**, poiché la memoria principale è troppo lenta per gestire continui accessi.
+Le cache moderne sono prevalentemente **write-back**, poiché la memoria principale è troppo lenta per gestire continui
+accessi.
 
 ## Evoluzione delle Cache: Cause e Tendenze
 
 Le tendenze nello sviluppo delle cache sono influenzate da due fattori principali:
 
 1. **Disparità crescente tra la frequenza della CPU e la velocità della memoria principale**
-
    - È necessario ridurre il tasso di miss per evitare colli di bottiglia nella memoria principale.
-
 2. **Diminuzione del costo dei transistor**
    - Permette la realizzazione di cache sempre più grandi, migliorando le prestazioni complessive del sistema.
 
@@ -305,14 +334,16 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 
 ## Disco Rigido nella Gerarchia di Memoria
 
-- I moderni calcolatori utilizzano dischi rigidi **magnetici** o **a stato solido** come livello più basso della gerarchia di memoria.
+- I moderni calcolatori utilizzano dischi rigidi **magnetici** o **a stato solido** come livello più basso della
+  gerarchia di memoria.
 - I dischi rigidi sono **grandi ed economici**, ma **molto lenti** rispetto alla memoria RAM.
 
 ## Indirizzi Virtuali e Page Fault
 
 - I programmi utilizzano **indirizzi virtuali** per accedere ai dati nella memoria virtuale.
 - La memoria fisica contiene solo un sottoinsieme della memoria virtuale più recente.
-- Se un indirizzo virtuale non è presente in memoria fisica, si verifica un **page fault**, e il sistema operativo carica la pagina mancante dal disco.
+- Se un indirizzo virtuale non è presente in memoria fisica, si verifica un **page fault**, e il sistema operativo
+  carica la pagina mancante dal disco.
 
 ## Tabella delle Pagine e Traduzione degli Indirizzi
 
@@ -333,7 +364,8 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 
 - Sia la **memoria virtuale** che la **memoria fisica** sono divise in **pagine**.
 - Un indirizzo è composto da:
-  - **Bit meno significativi** $\rightarrow$ Indicano lo **spiazzamento di pagina** (offset) e non richiedono traduzione.
+  - **Bit meno significativi** $\rightarrow$ Indicano lo **spiazzamento di pagina** (offset) e non richiedono
+    traduzione.
   - **Bit più significativi** $\rightarrow$ Specificano il **numero di pagina** e devono essere tradotti.
 
 ### Processo di Traduzione
@@ -358,13 +390,15 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 ### Memorizzazione e Accesso
 
 - La tabella delle pagine è **molto grande**, quindi è **memorizzata in memoria fisica**.
-- Il processore utilizza un **registro di tabella delle pagine** per memorizzare l’indirizzo base della tabella in memoria fisica.
+- Il processore utilizza un **registro di tabella delle pagine** per memorizzare l’indirizzo base della tabella in
+  memoria fisica.
 
 ### Processo di Traduzione
 
 1. Il processore estrae il **numero di pagina virtuale (NPV)** dall’indirizzo virtuale.
 2. Usa il **registro di tabella delle pagine** per trovare l’elemento corrispondente.
-3. Se la pagina è valida, combina il **numero di pagina fisica (NPF)** con lo **spiazzamento di pagina** per ottenere l’indirizzo fisico.
+3. Se la pagina è valida, combina il **numero di pagina fisica (NPF)** con lo **spiazzamento di pagina** per ottenere
+   l’indirizzo fisico.
 4. Effettua la **lettura o scrittura** sulla memoria fisica.
 
 ### Impatto sulle Prestazioni
@@ -378,8 +412,10 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 ### Località e Efficienza
 
 - Gli accessi alla **tabella delle pagine** presentano un’**elevata località temporale e spaziale**.
-- Poiché molte operazioni fanno riferimento alla stessa pagina, il processore può **riutilizzare** l’ultima traduzione senza doverla rileggere.
-- Per migliorare l’efficienza, il processore utilizza il **Translation Lookaside Buffer (TLB)**, che memorizza un insieme di traduzioni recenti.
+- Poiché molte operazioni fanno riferimento alla stessa pagina, il processore può **riutilizzare** l’ultima traduzione
+  senza doverla rileggere.
+- Per migliorare l’efficienza, il processore utilizza il **Translation Lookaside Buffer (TLB)**, che memorizza un
+  insieme di traduzioni recenti.
 
 ### Funzionamento del TLB
 
@@ -395,25 +431,29 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 ### Benefici del TLB
 
 - Il TLB è **molto veloce**, con tempi di accesso inferiori a **un ciclo di clock**.
-- Ha un **tasso di hit superiore al 99%**, riducendo il numero di accessi alla memoria da **due a uno** per ogni operazione di lettura o scrittura.
+- Ha un **tasso di hit superiore al 99%**, riducendo il numero di accessi alla memoria da **due a uno** per ogni
+  operazione di lettura o scrittura.
 
 ## Protezione della Memoria e Memoria Virtuale
 
 ### Necessità della Protezione
 
 - I moderni calcolatori eseguono **più programmi contemporaneamente**.
-- È essenziale garantire che **un programma non possa interferire con un altro**, evitando accessi non autorizzati alla memoria.
+- È essenziale garantire che **un programma non possa interferire con un altro**, evitando accessi non autorizzati alla
+  memoria.
 - Questa garanzia si chiama **protezione della memoria**.
 
 ### Ruolo della Memoria Virtuale
 
 - Ogni programma ha il proprio **spazio di indirizzamento virtuale**.
 - Un programma può utilizzare la sua memoria virtuale senza preoccuparsi della posizione fisica degli altri programmi.
-- Un programma può accedere **solo alle pagine fisiche mappate nella propria tabella delle pagine**, impedendo l’accesso a quelle di altri programmi.
+- Un programma può accedere **solo alle pagine fisiche mappate nella propria tabella delle pagine**, impedendo l’accesso
+  a quelle di altri programmi.
 
 ### Condivisione Controllata
 
-- Se più programmi devono accedere a dati comuni, il **sistema operativo** può gestire l’accesso con **bit di controllo** nelle tabelle delle pagine.
+- Se più programmi devono accedere a dati comuni, il **sistema operativo** può gestire l’accesso con **bit di
+  controllo** nelle tabelle delle pagine.
 - Questi bit determinano **quali programmi** hanno il diritto di leggere o scrivere in pagine condivise.
 
 ## Politiche di Scrittura e Sostituzione nella Memoria Virtuale
@@ -426,14 +466,16 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 
 ### Paging e Swap Area
 
-- Quando si verifica una **mancanza di pagina (page fault)**, il sistema rimuove una pagina fisica **poco utilizzata** e la sostituisce con quella mancante.
+- Quando si verifica una **mancanza di pagina (page fault)**, il sistema rimuove una pagina fisica **poco utilizzata** e
+  la sostituisce con quella mancante.
 - Il disco rigido utilizzato per la memoria virtuale è chiamato **swap area**.
 
 ### Politica di Sostituzione: LRU Approssimata
 
 - Il sistema operativo adotta una politica **approssimativa di tipo LRU (Least Recently Used)**.
 - Per supportare questa politica, ogni elemento della **tabella delle pagine** ha due bit di stato:
-  - **Bit di Modifica (M)**: indica se la pagina è stata modificata dopo il caricamento. Se vale **1**, la pagina deve essere riscritta su disco prima della rimozione.
+  - **Bit di Modifica (M)**: indica se la pagina è stata modificata dopo il caricamento. Se vale **1**, la pagina deve
+    essere riscritta su disco prima della rimozione.
   - **Bit di Utilizzo (U)**: indica se la pagina è stata usata di recente.
 
 ### Gestione della Sostituzione
@@ -449,7 +491,8 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 
 - Per **risparmiare memoria**, le tabelle delle pagine possono essere suddivise in **due livelli**.
 - La **tabella di primo livello** è sempre in memoria fisica e contiene riferimenti alle **tabelle di secondo livello**.
-- Le **tabelle di secondo livello** contengono la traduzione degli indirizzi virtuali e possono essere **mantenute su disco** se non utilizzate.
+- Le **tabelle di secondo livello** contengono la traduzione degli indirizzi virtuali e possono essere **mantenute su
+  disco** se non utilizzate.
 
 ### Suddivisione degli Indirizzi
 
@@ -461,4 +504,5 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 
 :white_check_mark: **Vantaggio**: Riduce il consumo di memoria, evitando di mantenere in RAM tabelle non necessarie.
 
-:x: **Svantaggio**: Se il TLB non ha la traduzione memorizzata, è necessario **un accesso in più alla memoria**, rallentando il processo.
+:x: **Svantaggio**: Se il TLB non ha la traduzione memorizzata, è necessario **un accesso in più alla memoria**,
+rallentando il processo.
