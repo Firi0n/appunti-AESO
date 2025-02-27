@@ -37,8 +37,8 @@ soddisfa solo due di questi requisiti.
 
 Per avvicinarsi a questo ideale, si combina:
 
-- una memoria **veloce, piccola ed economica**
-- con una memoria **lenta, grande ed economica**
+-   una memoria **veloce, piccola ed economica**
+-   con una memoria **lenta, grande ed economica**
 
 La **memoria veloce** conserva i dati più usati, migliorando le prestazioni, mentre la **memoria grande** assicura
 un'elevata capacità complessiva.
@@ -105,8 +105,8 @@ Se si verifica un miss, guarda nella memoria principale.
 
 Se si verifica un secondo miss, il processore accede alla memoria virtuale su disco rigido.
 
-- $t_{x}$ = tempo di accesso al livello x.
-- $TM_{x}$ = Miss rate del livello x.
+-   $t_{x}$ = tempo di accesso al livello x.
+-   $TM_{x}$ = Miss rate del livello x.
 
 $$AMAT=\text{hit-time}+\text{miss-rate}*\text{miss-penalty}$$
 
@@ -121,9 +121,9 @@ Poiché **C è molto inferiore alla memoria principale**, è necessario selezion
 
 Quando il processore accede a un dato:
 
-- Se è in cache (**hit**), è **immediatamente disponibile**.
-- Se non è in cache (**miss**), viene **prelevato dalla memoria principale** e **salvato in cache** per utilizzi futuri,
-  sostituendo un dato meno recente.
+-   Se è in cache (**hit**), è **immediatamente disponibile**.
+-   Se non è in cache (**miss**), viene **prelevato dalla memoria principale** e **salvato in cache** per utilizzi
+    futuri, sostituendo un dato meno recente.
 
 Una **cache ideale** avrebbe **zero miss**, ma poiché ciò è impossibile, la cache predice i dati necessari basandosi
 sugli accessi passati. In particolare, sfrutta la **località spaziale** e **temporale** per ridurre i miss.
@@ -152,21 +152,21 @@ base al numero di blocchi per set.
 Una **cache a mappatura diretta** suddivide la memoria in blocchi di **b parole**, organizzati in **S = B set** nella
 cache.
 
-- Ogni blocco di memoria è assegnato a un set specifico della cache.
-- La mappatura è **circolare**: quando si superano i set disponibili, i blocchi successivi sovrascrivono i precedenti
-  nel medesimo set.
+-   Ogni blocco di memoria è assegnato a un set specifico della cache.
+-   La mappatura è **circolare**: quando si superano i set disponibili, i blocchi successivi sovrascrivono i precedenti
+    nel medesimo set.
 
 Poiché più indirizzi possono essere mappati nello stesso set, la cache deve memorizzare l’indirizzo esatto del dato
 presente in ogni set.
 
-- I **bit meno significativi** dell’indirizzo identificano il **set** in cui il dato è memorizzato.
-- I **bit più significativi**, chiamati **tag**, indicano quale indirizzo specifico è effettivamente presente nel set.
+-   I **bit meno significativi** dell’indirizzo identificano il **set** in cui il dato è memorizzato.
+-   I **bit più significativi**, chiamati **tag**, indicano quale indirizzo specifico è effettivamente presente nel set.
 
 ### Struttura dell’Indirizzo
 
-- **Spiazzamento**: ci sono $log_2b$ bit di spiazzamento(offset) con $b$ in byte.
-- **Bit di set**: i successivi $log_2S$ bit indicano il set in cui il dato è mappato.
-- **Tag**: i restanti bit identificano l’indirizzo effettivo del dato nel set.
+-   **Spiazzamento**: ci sono $log_2b$ bit di spiazzamento(offset) con $b$ in byte.
+-   **Bit di set**: i successivi $log_2S$ bit indicano il set in cui il dato è mappato.
+-   **Tag**: i restanti bit identificano l’indirizzo effettivo del dato nel set.
 
 Esempio con lunghezza di parola di 8 bit e S=8
 
@@ -187,10 +187,10 @@ set causano sempre un conflitto.
 
 Una **cache parzialmente associativa a N vie** riduce i conflitti poichè ha **N blocchi per set**.
 
-- Ogni indirizzo di memoria viene mappato in un **set specifico**, ma può essere memorizzato in **uno qualsiasi degli N
-  blocchi** del set.
-- Una **cache a mappatura diretta** è un caso particolare di cache parzialmente associativa con **N = 1**.
-- **N** è chiamato **grado di associatività** della cache.
+-   Ogni indirizzo di memoria viene mappato in un **set specifico**, ma può essere memorizzato in **uno qualsiasi degli
+    N blocchi** del set.
+-   Una **cache a mappatura diretta** è un caso particolare di cache parzialmente associativa con **N = 1**.
+-   **N** è chiamato **grado di associatività** della cache.
 
 Struttura circuitale di una cache parzialmente associativa a $N = 2$ vie di capacità $C = 8$ parole.
 
@@ -198,9 +198,9 @@ Struttura circuitale di una cache parzialmente associativa a $N = 2$ vie di capa
 
 Ogni **set** contiene **N vie** (gradi di associatività), dove:
 
-- Ogni **via** è composta da un **blocco di dati**, un **tag** e un **bit di validità**.
-- La cache legge i blocchi di tutte le vie nel set e confronta i **tag** e i **bit di validità**.
-- Se si verifica un **hit**, un **multiplexer** seleziona il dato dalla via corrispondente.
+-   Ogni **via** è composta da un **blocco di dati**, un **tag** e un **bit di validità**.
+-   La cache legge i blocchi di tutte le vie nel set e confronta i **tag** e i **bit di validità**.
+-   Se si verifica un **hit**, un **multiplexer** seleziona il dato dalla via corrispondente.
 
 ### Vantaggi e Svantaggi
 
@@ -212,15 +212,15 @@ Ogni **set** contiene **N vie** (gradi di associatività), dove:
 
 Una **cache completamente associativa** ha un **unico set** con **B vie**, dove **B è il numero totale di blocchi**.
 
-- Un indirizzo di memoria può essere memorizzato in **qualsiasi blocco** della cache.
-- È un caso particolare di **cache parzialmente associativa** con **grado di associatività B**.
+-   Un indirizzo di memoria può essere memorizzato in **qualsiasi blocco** della cache.
+-   È un caso particolare di **cache parzialmente associativa** con **grado di associatività B**.
 
 ![circuit total associative cache](./img/circuit_total_associative_cache.png)
 
-- Ogni **set** contiene **un solo blocco**.
-- Con **2 set**, sono necessari **log₂2 = 1 bit** per selezionare il set.
-- Un **multiplexer** sceglie la parola all’interno del blocco.
-- Serve **un solo tag** per l’intero blocco, poiché le parole hanno **indirizzi consecutivi**.
+-   Ogni **set** contiene **un solo blocco**.
+-   Con **2 set**, sono necessari **log₂2 = 1 bit** per selezionare il set.
+-   Un **multiplexer** sceglie la parola all’interno del blocco.
+-   Serve **un solo tag** per l’intero blocco, poiché le parole hanno **indirizzi consecutivi**.
 
 ### Vantaggi e Svantaggi
 
@@ -245,16 +245,16 @@ Used, **LRU**) poiché ha **minor probabilità di essere riutilizzato a breve**.
 
 ### LRU nelle Cache Parzialmente Associative
 
-- **Cache a 2 vie**: un **bit di utilizzo (U)** indica quale via è stata usata meno di recente.
-  - Ogni accesso aggiorna **U** per indicare l’altra via.
-- **Cache con più di 2 vie**: gestire LRU diventa complesso.
+-   **Cache a 2 vie**: un **bit di utilizzo (U)** indica quale via è stata usata meno di recente.
+    -   Ogni accesso aggiorna **U** per indicare l’altra via.
+-   **Cache con più di 2 vie**: gestire LRU diventa complesso.
 
 ### Pseudo-LRU
 
-- Le vie vengono divise in **due gruppi**.
-- **U indica il gruppo meno utilizzato** di recente.
-- Alla sostituzione, si rimpiazza **un blocco a caso** all’interno del gruppo.
-- È una **soluzione semplificata** ma efficace in pratica.
+-   Le vie vengono divise in **due gruppi**.
+-   **U indica il gruppo meno utilizzato** di recente.
+-   Alla sostituzione, si rimpiazza **un blocco a caso** all’interno del gruppo.
+-   È una **soluzione semplificata** ma efficace in pratica.
 
 ## Cache multi-livello
 
@@ -278,27 +278,27 @@ Le prestazioni della cache possono essere valutate eseguendo benchmark e variand
 
 ### Impatto della Dimensione della Cache e dell'Associatività
 
-- **Benchmark SPEC2000** mostra che:
-  - I miss inevitabili sono pochi e concentrati vicino all'asse x del grafico.
-  - **Aumentare la capacità della cache** riduce i miss di capacità.
-  - **Aumentare il grado di associatività**, specialmente per cache piccole, riduce i miss di conflitto.
-  - Associatività superiori a 4-8 vie danno solo minime riduzioni del tasso di miss.
+-   **Benchmark SPEC2000** mostra che:
+    -   I miss inevitabili sono pochi e concentrati vicino all'asse x del grafico.
+    -   **Aumentare la capacità della cache** riduce i miss di capacità.
+    -   **Aumentare il grado di associatività**, specialmente per cache piccole, riduce i miss di conflitto.
+    -   Associatività superiori a 4-8 vie danno solo minime riduzioni del tasso di miss.
 
 ![Benchmark SPEC2000](./img/Benchmark_SPEC2000.png)
 
 ### Impatto della Dimensione del Blocco
 
-- **Aumentare la dimensione del blocco** sfrutta la località spaziale.
-- Per cache **piccole (es. 4 KB)**, blocchi superiori a 64 byte aumentano i miss per conflitti.
-- Per cache **grandi**, blocchi oltre 64 byte non modificano il tasso di miss.
-- Blocchi più grandi possono **aumentare il tempo di esecuzione** a causa di una maggiore penalizzazione di miss.
+-   **Aumentare la dimensione del blocco** sfrutta la località spaziale.
+-   Per cache **piccole (es. 4 KB)**, blocchi superiori a 64 byte aumentano i miss per conflitti.
+-   Per cache **grandi**, blocchi oltre 64 byte non modificano il tasso di miss.
+-   Blocchi più grandi possono **aumentare il tempo di esecuzione** a causa di una maggiore penalizzazione di miss.
 
 ## Politiche di Scrittura nella Cache
 
 Le operazioni di scrittura in memoria seguono un processo simile a quelle di lettura:
 
-- **Hit**: Il dato viene scritto direttamente nella cache.
-- **Miss**: Il blocco mancante viene prelevato dalla memoria principale, copiato nella cache e poi scritto.
+-   **Hit**: Il dato viene scritto direttamente nella cache.
+-   **Miss**: Il blocco mancante viene prelevato dalla memoria principale, copiato nella cache e poi scritto.
 
 ### Tipologie di Cache per la Scrittura
 
@@ -306,17 +306,17 @@ Le cache si classificano in due categorie principali:
 
 #### Cache Write-Through
 
-- Il dato viene scritto **simultaneamente** sia nella cache che nella memoria principale.
-- **Non necessita di un bit di modifica (dirty bit).**
-- Richiede **più accessi** alla memoria principale, aumentando la latenza.
+-   Il dato viene scritto **simultaneamente** sia nella cache che nella memoria principale.
+-   **Non necessita di un bit di modifica (dirty bit).**
+-   Richiede **più accessi** alla memoria principale, aumentando la latenza.
 
 #### Cache Write-Back
 
-- Utilizza un **bit di modifica (dirty bit) M** per ogni blocco:
-  - **M = 1** $\rightarrow$ Il blocco è stato modificato almeno una volta.
-  - **M = 0** $\rightarrow$ Il blocco non è stato modificato.
-- Il dato viene scritto nella memoria principale **solo quando il blocco viene espulso** dalla cache.
-- **Riduce il numero di accessi alla memoria principale**, migliorando le prestazioni.
+-   Utilizza un **bit di modifica (dirty bit) M** per ogni blocco:
+    -   **M = 1** $\rightarrow$ Il blocco è stato modificato almeno una volta.
+    -   **M = 0** $\rightarrow$ Il blocco non è stato modificato.
+-   Il dato viene scritto nella memoria principale **solo quando il blocco viene espulso** dalla cache.
+-   **Riduce il numero di accessi alla memoria principale**, migliorando le prestazioni.
 
 Le cache moderne sono prevalentemente **write-back**, poiché la memoria principale è troppo lenta per gestire continui
 accessi.
@@ -326,72 +326,72 @@ accessi.
 Le tendenze nello sviluppo delle cache sono influenzate da due fattori principali:
 
 1. **Disparità crescente tra la frequenza della CPU e la velocità della memoria principale**
-   - È necessario ridurre il tasso di miss per evitare colli di bottiglia nella memoria principale.
+    - È necessario ridurre il tasso di miss per evitare colli di bottiglia nella memoria principale.
 2. **Diminuzione del costo dei transistor**
-   - Permette la realizzazione di cache sempre più grandi, migliorando le prestazioni complessive del sistema.
+    - Permette la realizzazione di cache sempre più grandi, migliorando le prestazioni complessive del sistema.
 
 # Memoria virtuale
 
 ## Disco Rigido nella Gerarchia di Memoria
 
-- I moderni calcolatori utilizzano dischi rigidi **magnetici** o **a stato solido** come livello più basso della
-  gerarchia di memoria.
-- I dischi rigidi sono **grandi ed economici**, ma **molto lenti** rispetto alla memoria RAM.
+-   I moderni calcolatori utilizzano dischi rigidi **magnetici** o **a stato solido** come livello più basso della
+    gerarchia di memoria.
+-   I dischi rigidi sono **grandi ed economici**, ma **molto lenti** rispetto alla memoria RAM.
 
 ## Indirizzi Virtuali e Page Fault
 
-- I programmi utilizzano **indirizzi virtuali** per accedere ai dati nella memoria virtuale.
-- La memoria fisica contiene solo un sottoinsieme della memoria virtuale più recente.
-- Se un indirizzo virtuale non è presente in memoria fisica, si verifica un **page fault**, e il sistema operativo
-  carica la pagina mancante dal disco.
+-   I programmi utilizzano **indirizzi virtuali** per accedere ai dati nella memoria virtuale.
+-   La memoria fisica contiene solo un sottoinsieme della memoria virtuale più recente.
+-   Se un indirizzo virtuale non è presente in memoria fisica, si verifica un **page fault**, e il sistema operativo
+    carica la pagina mancante dal disco.
 
 ## Tabella delle Pagine e Traduzione degli Indirizzi
 
-- Una **tabella delle pagine** viene utilizzata per tradurre gli indirizzi virtuali in indirizzi fisici.
-- Ogni voce della tabella indica se la pagina è in memoria fisica o solo su disco.
-- Ogni accesso alla memoria richiede:
-  1. Un accesso alla tabella delle pagine.
-  2. Un accesso alla memoria fisica.
+-   Una **tabella delle pagine** viene utilizzata per tradurre gli indirizzi virtuali in indirizzi fisici.
+-   Ogni voce della tabella indica se la pagina è in memoria fisica o solo su disco.
+-   Ogni accesso alla memoria richiede:
+    1. Un accesso alla tabella delle pagine.
+    2. Un accesso alla memoria fisica.
 
 ## Translation Lookaside Buffer (TLB)
 
-- La tabella delle pagine è generalmente **troppo grande** per essere letta rapidamente.
-- Il **TLB** è una cache che memorizza le traduzioni più frequenti per velocizzare l’accesso alla memoria.
+-   La tabella delle pagine è generalmente **troppo grande** per essere letta rapidamente.
+-   Il **TLB** è una cache che memorizza le traduzioni più frequenti per velocizzare l’accesso alla memoria.
 
 ## Traduzione degli Indirizzi Virtuali in Indirizzi Fisici
 
 ### Struttura degli Indirizzi
 
-- Sia la **memoria virtuale** che la **memoria fisica** sono divise in **pagine**.
-- Un indirizzo è composto da:
-  - **Bit meno significativi** $\rightarrow$ Indicano lo **spiazzamento di pagina** (offset) e non richiedono
-    traduzione.
-  - **Bit più significativi** $\rightarrow$ Specificano il **numero di pagina** e devono essere tradotti.
+-   Sia la **memoria virtuale** che la **memoria fisica** sono divise in **pagine**.
+-   Un indirizzo è composto da:
+    -   **Bit meno significativi** $\rightarrow$ Indicano lo **spiazzamento di pagina** (offset) e non richiedono
+        traduzione.
+    -   **Bit più significativi** $\rightarrow$ Specificano il **numero di pagina** e devono essere tradotti.
 
 ### Processo di Traduzione
 
-- Solo il **numero di pagina virtuale (NPV)** deve essere tradotto per ottenere l'**indirizzo fisico**.
-- Esempio di suddivisione dell'indirizzo:
-  - **12 bit meno significativi** $\rightarrow$ Spiazzamento di pagina.
-  - **19 bit successivi** $\rightarrow$ Numero di **pagina virtuale (NPV)**.
-  - **15 bit risultanti** $\rightarrow$ Numero di **pagina fisica (NPF)** dopo la traduzione.
+-   Solo il **numero di pagina virtuale (NPV)** deve essere tradotto per ottenere l'**indirizzo fisico**.
+-   Esempio di suddivisione dell'indirizzo:
+    -   **12 bit meno significativi** $\rightarrow$ Spiazzamento di pagina.
+    -   **19 bit successivi** $\rightarrow$ Numero di **pagina virtuale (NPV)**.
+    -   **15 bit risultanti** $\rightarrow$ Numero di **pagina fisica (NPF)** dopo la traduzione.
 
 ## Uso della Tabella delle Pagine
 
 ### Struttura e Funzionamento
 
-- Il processore utilizza la **tabella delle pagine** per tradurre gli indirizzi virtuali in indirizzi fisici.
-- Ogni elemento della tabella contiene:
-  - **Numero di pagina fisica (NPF)** corrispondente.
-  - **Bit di validità (V)**:
-    - **V = 1** $\rightarrow$ La pagina è in memoria fisica.
-    - **V = 0** $\rightarrow$ La pagina deve essere caricata da disco.
+-   Il processore utilizza la **tabella delle pagine** per tradurre gli indirizzi virtuali in indirizzi fisici.
+-   Ogni elemento della tabella contiene:
+    -   **Numero di pagina fisica (NPF)** corrispondente.
+    -   **Bit di validità (V)**:
+        -   **V = 1** $\rightarrow$ La pagina è in memoria fisica.
+        -   **V = 0** $\rightarrow$ La pagina deve essere caricata da disco.
 
 ### Memorizzazione e Accesso
 
-- La tabella delle pagine è **molto grande**, quindi è **memorizzata in memoria fisica**.
-- Il processore utilizza un **registro di tabella delle pagine** per memorizzare l’indirizzo base della tabella in
-  memoria fisica.
+-   La tabella delle pagine è **molto grande**, quindi è **memorizzata in memoria fisica**.
+-   Il processore utilizza un **registro di tabella delle pagine** per memorizzare l’indirizzo base della tabella in
+    memoria fisica.
 
 ### Processo di Traduzione
 
@@ -403,102 +403,103 @@ Le tendenze nello sviluppo delle cache sono influenzate da due fattori principal
 
 ### Impatto sulle Prestazioni
 
-- Poiché la tabella delle pagine è in **memoria fisica**, ogni accesso alla memoria richiede **due accessi**:
-  1. Uno per la tabella delle pagine.
-  2. Uno per il dato richiesto.
+-   Poiché la tabella delle pagine è in **memoria fisica**, ogni accesso alla memoria richiede **due accessi**:
+    1. Uno per la tabella delle pagine.
+    2. Uno per il dato richiesto.
 
 ## Il Translation Lookaside Buffer (TLB)
 
 ### Località e Efficienza
 
-- Gli accessi alla **tabella delle pagine** presentano un’**elevata località temporale e spaziale**.
-- Poiché molte operazioni fanno riferimento alla stessa pagina, il processore può **riutilizzare** l’ultima traduzione
-  senza doverla rileggere.
-- Per migliorare l’efficienza, il processore utilizza il **Translation Lookaside Buffer (TLB)**, che memorizza un
-  insieme di traduzioni recenti.
+-   Gli accessi alla **tabella delle pagine** presentano un’**elevata località temporale e spaziale**.
+-   Poiché molte operazioni fanno riferimento alla stessa pagina, il processore può **riutilizzare** l’ultima traduzione
+    senza doverla rileggere.
+-   Per migliorare l’efficienza, il processore utilizza il **Translation Lookaside Buffer (TLB)**, che memorizza un
+    insieme di traduzioni recenti.
 
 ### Funzionamento del TLB
 
-- Il TLB è una **cache completamente associativa** che memorizza tipicamente **da 16 a 512 elementi**.
-- Ogni elemento contiene:
-  - **Numero di pagina virtuale (NPV)**.
-  - **Numero di pagina fisica (NPF)** corrispondente.
-- Quando il processore accede a un indirizzo virtuale:
-  1. **Cerca nel TLB** il numero di pagina virtuale.
-  2. Se trova un **hit**, restituisce il numero di pagina fisica direttamente.
-  3. Se si verifica un **miss**, deve accedere alla **tabella delle pagine in memoria fisica**.
+-   Il TLB è una **cache completamente associativa** che memorizza tipicamente **da 16 a 512 elementi**.
+-   Ogni elemento contiene:
+    -   **Numero di pagina virtuale (NPV)**.
+    -   **Numero di pagina fisica (NPF)** corrispondente.
+-   Quando il processore accede a un indirizzo virtuale:
+    1. **Cerca nel TLB** il numero di pagina virtuale.
+    2. Se trova un **hit**, restituisce il numero di pagina fisica direttamente.
+    3. Se si verifica un **miss**, deve accedere alla **tabella delle pagine in memoria fisica**.
 
 ### Benefici del TLB
 
-- Il TLB è **molto veloce**, con tempi di accesso inferiori a **un ciclo di clock**.
-- Ha un **tasso di hit superiore al 99%**, riducendo il numero di accessi alla memoria da **due a uno** per ogni
-  operazione di lettura o scrittura.
+-   Il TLB è **molto veloce**, con tempi di accesso inferiori a **un ciclo di clock**.
+-   Ha un **tasso di hit superiore al 99%**, riducendo il numero di accessi alla memoria da **due a uno** per ogni
+    operazione di lettura o scrittura.
 
 ## Protezione della Memoria e Memoria Virtuale
 
 ### Necessità della Protezione
 
-- I moderni calcolatori eseguono **più programmi contemporaneamente**.
-- È essenziale garantire che **un programma non possa interferire con un altro**, evitando accessi non autorizzati alla
-  memoria.
-- Questa garanzia si chiama **protezione della memoria**.
+-   I moderni calcolatori eseguono **più programmi contemporaneamente**.
+-   È essenziale garantire che **un programma non possa interferire con un altro**, evitando accessi non autorizzati
+    alla memoria.
+-   Questa garanzia si chiama **protezione della memoria**.
 
 ### Ruolo della Memoria Virtuale
 
-- Ogni programma ha il proprio **spazio di indirizzamento virtuale**.
-- Un programma può utilizzare la sua memoria virtuale senza preoccuparsi della posizione fisica degli altri programmi.
-- Un programma può accedere **solo alle pagine fisiche mappate nella propria tabella delle pagine**, impedendo l’accesso
-  a quelle di altri programmi.
+-   Ogni programma ha il proprio **spazio di indirizzamento virtuale**.
+-   Un programma può utilizzare la sua memoria virtuale senza preoccuparsi della posizione fisica degli altri programmi.
+-   Un programma può accedere **solo alle pagine fisiche mappate nella propria tabella delle pagine**, impedendo
+    l’accesso a quelle di altri programmi.
 
 ### Condivisione Controllata
 
-- Se più programmi devono accedere a dati comuni, il **sistema operativo** può gestire l’accesso con **bit di
-  controllo** nelle tabelle delle pagine.
-- Questi bit determinano **quali programmi** hanno il diritto di leggere o scrivere in pagine condivise.
+-   Se più programmi devono accedere a dati comuni, il **sistema operativo** può gestire l’accesso con **bit di
+    controllo** nelle tabelle delle pagine.
+-   Questi bit determinano **quali programmi** hanno il diritto di leggere o scrivere in pagine condivise.
 
 ## Politiche di Scrittura e Sostituzione nella Memoria Virtuale
 
 ### Politica di Scrittura: Write-Back
 
-- La memoria virtuale utilizza una **politica di scrittura write-back**.
-- Una pagina viene scritta su disco **solo quando deve essere espulsa** dalla memoria fisica.
-- La politica **write-through** sarebbe troppo lenta, poiché ogni scrittura implicherebbe un accesso al disco.
+-   La memoria virtuale utilizza una **politica di scrittura write-back**.
+-   Una pagina viene scritta su disco **solo quando deve essere espulsa** dalla memoria fisica.
+-   La politica **write-through** sarebbe troppo lenta, poiché ogni scrittura implicherebbe un accesso al disco.
 
 ### Paging e Swap Area
 
-- Quando si verifica una **mancanza di pagina (page fault)**, il sistema rimuove una pagina fisica **poco utilizzata** e
-  la sostituisce con quella mancante.
-- Il disco rigido utilizzato per la memoria virtuale è chiamato **swap area**.
+-   Quando si verifica una **mancanza di pagina (page fault)**, il sistema rimuove una pagina fisica **poco utilizzata**
+    e la sostituisce con quella mancante.
+-   Il disco rigido utilizzato per la memoria virtuale è chiamato **swap area**.
 
 ### Politica di Sostituzione: LRU Approssimata
 
-- Il sistema operativo adotta una politica **approssimativa di tipo LRU (Least Recently Used)**.
-- Per supportare questa politica, ogni elemento della **tabella delle pagine** ha due bit di stato:
-  - **Bit di Modifica (M)**: indica se la pagina è stata modificata dopo il caricamento. Se vale **1**, la pagina deve
-    essere riscritta su disco prima della rimozione.
-  - **Bit di Utilizzo (U)**: indica se la pagina è stata usata di recente.
+-   Il sistema operativo adotta una politica **approssimativa di tipo LRU (Least Recently Used)**.
+-   Per supportare questa politica, ogni elemento della **tabella delle pagine** ha due bit di stato:
+    -   **Bit di Modifica (M)**: indica se la pagina è stata modificata dopo il caricamento. Se vale **1**, la pagina
+        deve essere riscritta su disco prima della rimozione.
+    -   **Bit di Utilizzo (U)**: indica se la pagina è stata usata di recente.
 
 ### Gestione della Sostituzione
 
-- Il sistema operativo **resetta periodicamente** tutti i bit di Utilizzo.
-- Quando una pagina viene acceduta, il suo bit **U viene impostato a 1**.
-- In caso di **mancanza di pagina**, il sistema cerca una pagina con **U = 0** da sostituire.
-- Questa tecnica **non garantisce una LRU perfetta**, ma è un’**approssimazione efficiente**.
+-   Il sistema operativo **resetta periodicamente** tutti i bit di Utilizzo.
+-   Quando una pagina viene acceduta, il suo bit **U viene impostato a 1**.
+-   In caso di **mancanza di pagina**, il sistema cerca una pagina con **U = 0** da sostituire.
+-   Questa tecnica **non garantisce una LRU perfetta**, ma è un’**approssimazione efficiente**.
 
 ## Tabelle delle Pagine a Più Livelli
 
 ### Struttura a Due Livelli
 
-- Per **risparmiare memoria**, le tabelle delle pagine possono essere suddivise in **due livelli**.
-- La **tabella di primo livello** è sempre in memoria fisica e contiene riferimenti alle **tabelle di secondo livello**.
-- Le **tabelle di secondo livello** contengono la traduzione degli indirizzi virtuali e possono essere **mantenute su
-  disco** se non utilizzate.
+-   Per **risparmiare memoria**, le tabelle delle pagine possono essere suddivise in **due livelli**.
+-   La **tabella di primo livello** è sempre in memoria fisica e contiene riferimenti alle **tabelle di secondo
+    livello**.
+-   Le **tabelle di secondo livello** contengono la traduzione degli indirizzi virtuali e possono essere **mantenute su
+    disco** se non utilizzate.
 
 ### Suddivisione degli Indirizzi
 
-- Il **numero di pagina virtuale** è diviso in:
-  - **Numero di tabella delle pagine** $\rightarrow$ Indice nella tabella di primo livello.
-  - **Spiazzamento di tabella delle pagine** $\rightarrow$ Indice nella tabella di secondo livello.
+-   Il **numero di pagina virtuale** è diviso in:
+    -   **Numero di tabella delle pagine** $\rightarrow$ Indice nella tabella di primo livello.
+    -   **Spiazzamento di tabella delle pagine** $\rightarrow$ Indice nella tabella di secondo livello.
 
 ### Vantaggi e Svantaggi
 

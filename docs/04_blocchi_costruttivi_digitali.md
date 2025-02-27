@@ -152,22 +152,22 @@ $\text{ControlloALU}_0$ è attivato.
 Alcune ALU producono uscite ulteriori, chiamate **flag** (bandiere), che danno informazioni aggiuntive sul risultato
 dell’ALU. l’uscita FlagALU è composta dalle flag:
 
-- $N$: il risultato dell’ALU è **negativo** ed è connessa al bit più significativo del risultato dell'ALU;
-- $Z$: il risultato dell’ALU è **uguale a 0**;
-- $C$: il sommatore ha generato un **carry**;
-- $V$ il sommatore ha generato un **overflow**.
+-   $N$: il risultato dell’ALU è **negativo** ed è connessa al bit più significativo del risultato dell'ALU;
+-   $Z$: il risultato dell’ALU è **uguale a 0**;
+-   $C$: il sommatore ha generato un **carry**;
+-   $V$ il sommatore ha generato un **overflow**.
 
 ![](./img/ALU.png)
 
 ## Translatori e rotatori
 
-- **Traslatore logico**: trasla un numero verso sinistra (LSL, Logical Shift Left) o verso destra (LSR, Logical Shift
-  Right) e riempie gli spazi lasciati vuoti con 0.
-- **Traslatore aritmetico**: esegue la stessa funzione di un traslatore logico, ma quando trasla un numero verso destra
-  (ARS, Arithmetic Shift Right), riempie i bit più significativi con una copia del precedente bit più significativo
-  (msb, most significant bit). Utile per i numeri con segno.
-- **Rotatore**: trasla un numero verso sinistra (ROL, Rotate Left) o verso destra (ROR, Rotate Right) circolarmente, in
-  modo che gli spazi lasciati vuoti vengano riempiti dai bit all’estremità opposta del numero.
+-   **Traslatore logico**: trasla un numero verso sinistra (LSL, Logical Shift Left) o verso destra (LSR, Logical Shift
+    Right) e riempie gli spazi lasciati vuoti con 0.
+-   **Traslatore aritmetico**: esegue la stessa funzione di un traslatore logico, ma quando trasla un numero verso
+    destra (ARS, Arithmetic Shift Right), riempie i bit più significativi con una copia del precedente bit più
+    significativo (msb, most significant bit). Utile per i numeri con segno.
+-   **Rotatore**: trasla un numero verso sinistra (ROL, Rotate Left) o verso destra (ROR, Rotate Right) circolarmente,
+    in modo che gli spazi lasciati vuoti vengano riempiti dai bit all’estremità opposta del numero.
 
 Un traslatore a $N$ bit può essere costruito con un numero $N$ di multiplexer $N:1$.
 
@@ -177,9 +177,9 @@ Un traslatore a $N$ bit può essere costruito con un numero $N$ di multiplexer $
 
 Ci sono tre tipi di memoria principale:
 
-- la memoria ad accesso casuale dinamica (DRAM, Dynamic Random Access Memory);
-- la memoria ad accesso casuale statica (SRAM, Static Random Access Memory);
-- la memoria a sola lettura (ROM, Read Only Memory).
+-   la memoria ad accesso casuale dinamica (DRAM, Dynamic Random Access Memory);
+-   la memoria ad accesso casuale statica (SRAM, Static Random Access Memory);
+-   la memoria a sola lettura (ROM, Read Only Memory).
 
 Un componente è formato da: un numero $N$ di bit di indirizzo e un numero $M$ di bit di dato. Esso possiede $2^N$ righe
 e $M$ colonne.
@@ -210,13 +210,13 @@ indirizzo di memoria. Le memorie **multi-porta** possono accedere a più indiriz
 Le memorie sono classificate in base a come immagazzinano i bit nelle celle di memoria. Si distinguono principalmente
 in:
 
-- **Memorie ad accesso casuale (RAM)**: memorie **volatili** che perdono i dati quando l'alimentazione viene spenta.
-- **Memorie a sola lettura (ROM)**: memorie **non volatili** che mantengono i dati anche senza alimentazione.
+-   **Memorie ad accesso casuale (RAM)**: memorie **volatili** che perdono i dati quando l'alimentazione viene spenta.
+-   **Memorie a sola lettura (ROM)**: memorie **non volatili** che mantengono i dati anche senza alimentazione.
 
 I due principali tipi di RAM sono la **RAM dinamica (DRAM)** e la **RAM statica (SRAM)**:
 
-- **DRAM** immagazzina i dati come carica su un condensatore.
-- **SRAM** utilizza una coppia di negatori incrociati per memorizzare i dati.
+-   **DRAM** immagazzina i dati come carica su un condensatore.
+-   **SRAM** utilizza una coppia di negatori incrociati per memorizzare i dati.
 
 Esistono diversi tipi di **memorie ROM**, che si distinguono per il modo in cui vengono scritte e cancellate.
 
@@ -255,11 +255,11 @@ di parola viene attivata, il transistor forza la linea di bit a un valore basso 
 rimane alta (1). Essendo una memoria combinatoria, la ROM non perde il contenuto quando l'alimentazione viene
 interrotta. Esistono diversi tipi di ROM:
 
-- **PROM (Programmable ROM)**: programmabile una sola volta. Utilizza fusibili che vengono bruciati per disconnettere i
-  transistor.
-- **EPROM (Erasable PROM)**: utilizza un transistor a gate sommerso. Può essere cancellata esponendo la memoria a luce
-  UV, permettendo la rimozione degli elettroni dal gate.
-- **EEPROM (Electrically Erasable PROM)**: simile all'EPROM, ma la cancellazione avviene elettricamente senza l'uso di
-  luce UV, e consente la cancellazione di bit individuali.
-- **Memorie flash**: un tipo di EEPROM, che cancella blocchi più grandi di bit anziché singoli, risultando più economica
-  e ampiamente utilizzata per immagazzinare grandi quantità di dati in dispositivi portatili.
+-   **PROM (Programmable ROM)**: programmabile una sola volta. Utilizza fusibili che vengono bruciati per disconnettere
+    i transistor.
+-   **EPROM (Erasable PROM)**: utilizza un transistor a gate sommerso. Può essere cancellata esponendo la memoria a luce
+    UV, permettendo la rimozione degli elettroni dal gate.
+-   **EEPROM (Electrically Erasable PROM)**: simile all'EPROM, ma la cancellazione avviene elettricamente senza l'uso di
+    luce UV, e consente la cancellazione di bit individuali.
+-   **Memorie flash**: un tipo di EEPROM, che cancella blocchi più grandi di bit anziché singoli, risultando più
+    economica e ampiamente utilizzata per immagazzinare grandi quantità di dati in dispositivi portatili.

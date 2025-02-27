@@ -7,20 +7,20 @@ sono **contatti elettrici** che si suddividono in: **Ingressi**, **uscite** e **
 
 Le reti si dividono in:
 
-- **combinatorie**: le uscite dipendono solo dagli **ingressi attuali**;
-- **sequenziali**: le uscite dipendono dai valori degli **ingressi attuali e precedenti**, gli stati precedenti vengono
-  salvati in una memoria.
+-   **combinatorie**: le uscite dipendono solo dagli **ingressi attuali**;
+-   **sequenziali**: le uscite dipendono dai valori degli **ingressi attuali e precedenti**, gli stati precedenti
+    vengono salvati in una memoria.
 
 La **specifica di temporizzazione** delle **reti combinatorie** consiste in un **limite superiore** e un **limite
 inferiore** sul **ritardo** tra **ingressi** e **uscite**.
 
 Una rete è combinatoria se consiste di elementi circui­tali interconnessi che presentano le seguenti caratteristiche:
 
-- ogni elemento circuitale è di per sé combinatorio;
-- ogni nodo della rete è un ingresso per la rete oppure è connesso solamente a un terminale di uscita di un elemento
-  della rete;
-- la rete non contiene percorsi ciclici: ogni percorso che la attraversa passa attraverso ogni nodo al massimo una
-  volta.
+-   ogni elemento circuitale è di per sé combinatorio;
+-   ogni nodo della rete è un ingresso per la rete oppure è connesso solamente a un terminale di uscita di un elemento
+    della rete;
+-   la rete non contiene percorsi ciclici: ogni percorso che la attraversa passa attraverso ogni nodo al massimo una
+    volta.
 
 La **specifica funzionale** di una rete combinatoria è solitamente espressa come una **tabella di verità** o come
 **un’espressione booleana**.
@@ -31,18 +31,18 @@ Le espressioni booleane si basano su vaiabili che possono assumere solo i valori
 
 ## Teminologia
 
-- complemento = NOT;
-- letterale = variabile;
-- prodotto logico = AND;
-- mintermine = prodotto di tutti gli ingressi di una funzione;
-- somma logica = OR;
-- maxtermine = somma di tutti gli ingressi di una funzione.
+-   complemento = NOT;
+-   letterale = variabile;
+-   prodotto logico = AND;
+-   mintermine = prodotto di tutti gli ingressi di una funzione;
+-   somma logica = OR;
+-   maxtermine = somma di tutti gli ingressi di una funzione.
 
 ## Precedenza operatori
 
-- NOT;
-- AND;
-- OR.
+-   NOT;
+-   AND;
+-   OR.
 
 ## Somma di prodotti
 
@@ -85,12 +85,12 @@ ulteriormente per diminuire il numero di letterali.
 
 # Linee guida schema
 
-- Gli ingressi vengono indicati a sinistra (o in alto) dello schema.
-- Le uscite vengono indicate a destra (o in basso) dello schema.
-- Le porte logiche, quando possibile, sono disegnate in modo che i segnali vadano da sinistra a destra.
-- I fili dritti sono preferibili ai fili con troppi angoli.
-- Fili che arrivano a una giunzione a T sono collegati tra loro.
-- Un punto disegnato dove due fili si incrociano indica che quei fili sono col­legati tra loro.
+-   Gli ingressi vengono indicati a sinistra (o in alto) dello schema.
+-   Le uscite vengono indicate a destra (o in basso) dello schema.
+-   Le porte logiche, quando possibile, sono disegnate in modo che i segnali vadano da sinistra a destra.
+-   I fili dritti sono preferibili ai fili con troppi angoli.
+-   Fili che arrivano a una giunzione a T sono collegati tra loro.
+-   Un punto disegnato dove due fili si incrociano indica che quei fili sono col­legati tra loro.
 
 Una qualsiasi espressione booleana in forma **somma di prodotti** può es­sere tradotta in schema circuitale in maniera
 sistematica. Uno schema circuitale così disegnato è chiamato **matrice logica programmabile (PLA)**.
@@ -118,14 +118,14 @@ Nei riquadri si inseriscono i valori delle combinazioni ottenute dall'unione di 
 
 Successivamente bisogna cerchiare gli 1 con le seguenti regole:
 
-- Utilizzare il minor numero possibile di cerchi per includere tutti gli 1;
-- Tutti i riquadri racchiusi in ciascun cerchio devono contenere 1;
-- Ogni cerchio deve includere un numero di riquadri che sia una potenza di due (cioè 1, 2 o 4 riquadri) in qualsiasi
-  direzione;
-- Ogni cerchio deve essere il più largo possibile;
-- È possibile disegnare un cerchio che avvolga le estremità della mappa di Karnaugh;
-- Un 1 in una mappa di Karnaugh può essere cerchiato più di una volta, se questa operazione permette di utilizzare un
-  numero minore di cerchi.
+-   Utilizzare il minor numero possibile di cerchi per includere tutti gli 1;
+-   Tutti i riquadri racchiusi in ciascun cerchio devono contenere 1;
+-   Ogni cerchio deve includere un numero di riquadri che sia una potenza di due (cioè 1, 2 o 4 riquadri) in qualsiasi
+    direzione;
+-   Ogni cerchio deve essere il più largo possibile;
+-   È possibile disegnare un cerchio che avvolga le estremità della mappa di Karnaugh;
+-   Un 1 in una mappa di Karnaugh può essere cerchiato più di una volta, se questa operazione permette di utilizzare un
+    numero minore di cerchi.
 
 Il risultato si ottiene guardando i cerchi e facendo la somma di prodotti non più sulla singola combinazione ma sui
 cerchi, eliminando le variabili che cambiano all'interno dello stesso cerchio.
@@ -176,10 +176,10 @@ che la rete funzioni velocemente.
 
 La logica combinatoria è caratterizzata da.
 
-- ritardo di propagazione ($t_{pd}$): è il tempo massimo che trascorre dal momento in cui avviene un cambiamento
-  nell’ingresso al momento in cui l’uscita raggiunge il suo valore finale.
-- ritardo di contaminazione ($t_{cd}$): è il tempo minimo che trascorre dal momento in cui cambia un ingresso al momento
-  in cui una qualsiasi uscita comincia il processo di adattamento del suo valore.
+-   ritardo di propagazione ($t_{pd}$): è il tempo massimo che trascorre dal momento in cui avviene un cambiamento
+    nell’ingresso al momento in cui l’uscita raggiunge il suo valore finale.
+-   ritardo di contaminazione ($t_{cd}$): è il tempo minimo che trascorre dal momento in cui cambia un ingresso al
+    momento in cui una qualsiasi uscita comincia il processo di adattamento del suo valore.
 
 ![](./img/tempo.png)
 

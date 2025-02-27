@@ -5,10 +5,10 @@ Il codice macchina non dipende dalla [Microarchitettura](#astrazione-disciplina-
 
 I quattro principi definiti da **David Patterson** e **John Hennessy**:
 
-- **Regolarità**: favorisce la semplicità;
-- Rendere veloci le cose frequenti;
-- Più piccolo è più veloce;
-- Un buon progetto richiede buoni compromessi.
+-   **Regolarità**: favorisce la semplicità;
+-   Rendere veloci le cose frequenti;
+-   Più piccolo è più veloce;
+-   Un buon progetto richiede buoni compromessi.
 
 ARM è un calcolatore con architettura **RISC** (Reduced Instruction Set Computer). Il set di istruzioni di ARM rende
 veloci le cose frequenti inserendo solo istruzioni semplici usate spesso.

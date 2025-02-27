@@ -86,9 +86,9 @@ di dati per produrre un nuovo stato architetturale.
 
 Consideriamo un sottoinsieme del set di istruzioni di ARM:
 
-- le istruzioni di elaborazione dati **ADD**, **SUB**, **AND** e **ORR**;
-- le istruzioni di accesso alla memoria **LDR** e **STR**;
-- l’istruzione di salto **B**.
+-   le istruzioni di elaborazione dati **ADD**, **SUB**, **AND** e **ORR**;
+-   le istruzioni di accesso alla memoria **LDR** e **STR**;
+-   l’istruzione di salto **B**.
 
 È opportuno dividere le microarchitetture in due parti tra loro interagenti: Il **datapath**, che si occupa
 dell'esecuzione vera e propria, e la **control unit**, che si occupa di impostare le componenti del datapath per
@@ -106,11 +106,11 @@ Esso viene realizzarlo come registro autonomo a 32 bit.
 
 Ingressi:
 
-- PC' = indirizzo prossima istruzione da eseguire.
+-   PC' = indirizzo prossima istruzione da eseguire.
 
 Uscite:
 
-- PC = indirizzo istruzione corrente.
+-   PC = indirizzo istruzione corrente.
 
 ## Memoria istruzioni
 
@@ -118,11 +118,11 @@ Uscite:
 
 Ingressi:
 
-- A = Indirizzo istruzione (Uscita PC).
+-   A = Indirizzo istruzione (Uscita PC).
 
 Uscite:
 
-- RD = Istruzione da eseguire.
+-   RD = Istruzione da eseguire.
 
 ## Banco dei registri di lavoro
 
@@ -133,16 +133,16 @@ dal PC.
 
 Ingressi:
 
-- A1 = A2 = Porte indirizzi lettura;
-- A3 = Porta indirizzo scrittura;
-- WD3 = Porta dati scrittura;
-- WE3 = Segnale abilitazione scrittura;
-- R15 = Contenuto PC.
+-   A1 = A2 = Porte indirizzi lettura;
+-   A3 = Porta indirizzo scrittura;
+-   WD3 = Porta dati scrittura;
+-   WE3 = Segnale abilitazione scrittura;
+-   R15 = Contenuto PC.
 
 Uscite:
 
-- RD1 = Uscita dei dati letti da A1;
-- RD2 = Uscita dei dati letti da A2.
+-   RD1 = Uscita dei dati letti da A1;
+-   RD2 = Uscita dei dati letti da A2.
 
 ## Memoria dati
 
@@ -150,13 +150,13 @@ Uscite:
 
 Ingressi:
 
-- A = Porta indirizzo lettura/scrittura;
-- WD = Porta dati scrittura;
-- WE = Segnale stato scrittura/lettura;
+-   A = Porta indirizzo lettura/scrittura;
+-   WD = Porta dati scrittura;
+-   WE = Segnale stato scrittura/lettura;
 
 Uscite:
 
-- RD = (WE = 0) $\Rightarrow$ Uscita A
+-   RD = (WE = 0) $\Rightarrow$ Uscita A
 
 La memoria istruzioni, il banco di registri e la memoria dati sono tutti letti in modo combinatorio, mentre, le
 scritture avvengono solo in corrispondenza dei fronti di salita del clock.
@@ -190,8 +190,8 @@ $$T_{c1}=t_{pcq\_PC}+2t_{mem}+t_{dec}+t_{RFread}+t_{ALU}+2t_{mux}+t_{RFsetup}$$
 
 Il processore a ciclo singolo ha due elementi di debolezza:
 
-- Duplicazione di circuiti (memorie e sommatori);
-- Ciclo di clock lungo;
+-   Duplicazione di circuiti (memorie e sommatori);
+-   Ciclo di clock lungo;
 
 Il processore multi ciclo si propone di eliminare queste tre debolezze dividendo l’istruzione in una sequenza di passi
 più brevi tramite l'ausilio di elementi di stato non architetturali: in ciascun passo, il processore legge o scrive in
@@ -281,8 +281,8 @@ Ma ciò degrada le prestazioni ed è a cura del programmatore o del compilatore 
 
 Le dipendenze sono classificate in:
 
-- **Dipendenze di dati**: un'istruzione dipende dai risultati di un'istruzione precedente.
-- **Dipendenze di controllo**: il PC dipende da un'istruzione precedente.
+-   **Dipendenze di dati**: un'istruzione dipende dai risultati di un'istruzione precedente.
+-   **Dipendenze di controllo**: il PC dipende da un'istruzione precedente.
 
 Alcune dipendenze di dato possono essere risolte mediante forwarding, cioè inviando i dati direttamente dagli stadi di
 memory e write back a quello di execute.

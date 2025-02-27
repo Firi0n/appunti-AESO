@@ -17,9 +17,10 @@ inferiore per comprendere meglio il contesto e l'interazione tra i diversi strat
 
 Oltre all'astrazione ci sono altre tre tecniche fondamentali (dette le tre y):
 
-- **Gerarchia:** Divisione di un sistema in moduli in maniera ricorsiva, fino a raggiungere pezzi facili da comprendere.
-- **Modularità:** Implementazione dei moduli in maniera tale che abbiano funzioni e interfacce ben de­finite.
-- **Regolarità:** Uniformità tra i moduli.
+-   **Gerarchia:** Divisione di un sistema in moduli in maniera ricorsiva, fino a raggiungere pezzi facili da
+    comprendere.
+-   **Modularità:** Implementazione dei moduli in maniera tale che abbiano funzioni e interfacce ben de­finite.
+-   **Regolarità:** Uniformità tra i moduli.
 
 ## Astrazione digitale
 
@@ -43,10 +44,10 @@ consente di ottimizzare il software per quel calcolatore.
 
 Un generico **sistema numerico posizionale** è composto da:
 
-- **base (b):** Indica il numero delle **cifre** del sistema numerico;
-- **cifre (c):** Simboli del sistema numerico con valore compreso tra $[0;b-1]$. Possono essere combinate per ottenere
-  valori maggiori, dove **$c_i$** indica la cifra in posizione i.
-- **peso (i):** il peso è il valore associato alla posizione i ed aumenta spostandosi verso sinistra.
+-   **base (b):** Indica il numero delle **cifre** del sistema numerico;
+-   **cifre (c):** Simboli del sistema numerico con valore compreso tra $[0;b-1]$. Possono essere combinate per ottenere
+    valori maggiori, dove **$c_i$** indica la cifra in posizione i.
+-   **peso (i):** il peso è il valore associato alla posizione i ed aumenta spostandosi verso sinistra.
 
 ## Il sistema decimale
 
@@ -99,8 +100,8 @@ $$n_b=\sum_{i\in I} c_i\cdot 10^i$$
 
 ## Altre basi utili
 
-- **Ottale** $[0:7]$;
-- **Esadecimale** $[0;9]\cup[A;F]$: Usato principalmente per la gestione dei colori RGB.
+-   **Ottale** $[0:7]$;
+-   **Esadecimale** $[0;9]\cup[A;F]$: Usato principalmente per la gestione dei colori RGB.
 
 # Porte logiche
 

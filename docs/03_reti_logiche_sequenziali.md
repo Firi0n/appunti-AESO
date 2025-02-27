@@ -73,27 +73,27 @@ contengono lo stato del sistema, che cambia solo al fronte di clock.
 
 Una **rete sequenziale sincrona** ha:
 
-- Un ingresso di clock.
-- Stati discreti $\{S_0, S_1, \ldots, S_{k-1}\}$.
-- Specifica funzionale per definire lo stato prossimo $S'$ e le uscite in base a $S$ e ingressi.
-- Specifica temporale con limiti $t_{pcq}$ e $t_{ccq}$, e tempi di **setup** $t_{setup}$ e **hold** $t_{hold}$.
+-   Un ingresso di clock.
+-   Stati discreti $\{S_0, S_1, \ldots, S_{k-1}\}$.
+-   Specifica funzionale per definire lo stato prossimo $S'$ e le uscite in base a $S$ e ingressi.
+-   Specifica temporale con limiti $t_{pcq}$ e $t_{ccq}$, e tempi di **setup** $t_{setup}$ e **hold** $t_{hold}$.
 
 Regole di composizione:
 
-- Ogni elemento è un registro o una rete combinatoria.
-- Deve esserci almeno un registro.
-- Tutti i registri ricevono lo stesso segnale di clock.
-- Ogni percorso ciclico contiene almeno un registro.
+-   Ogni elemento è un registro o una rete combinatoria.
+-   Deve esserci almeno un registro.
+-   Tutti i registri ricevono lo stesso segnale di clock.
+-   Ogni percorso ciclico contiene almeno un registro.
 
 # Macchine a stati finiti
 
 Le **reti sequenziali sincrone** possono essere rappresentate come **macchine a stati finiti** (FSM, finite state
 machine). Una rete con $k$ registri può trovarsi in uno dei $2^k$ stati diversi. Una FSM ha:
 
-- $M$ ingressi,
-- $N$ uscite,
-- $k$ bit di stato,
-- un segnale di clock e, talvolta, un segnale di reset.
+-   $M$ ingressi,
+-   $N$ uscite,
+-   $k$ bit di stato,
+-   un segnale di clock e, talvolta, un segnale di reset.
 
 Una FSM è composta da due blocchi di logica combinatoria:
 
@@ -105,19 +105,19 @@ determinato dagli ingressi e dallo stato presente.
 
 Esistono due classi di macchine a stati finiti:
 
-- **Macchine di Moore**: le uscite dipendono solo dallo stato presente.
-- **Macchine di Mealy**: le uscite dipendono sia dallo stato presente sia dagli ingressi attuali.
+-   **Macchine di Moore**: le uscite dipendono solo dallo stato presente.
+-   **Macchine di Mealy**: le uscite dipendono sia dallo stato presente sia dagli ingressi attuali.
 
 Le macchine a stati finiti forniscono un metodo sistematico per progettare reti sequenziali sincrone, partendo dalla
 specifica funzionale.
 
 Per rappresentare una macchina a stati finiti si usano i seguenti simboli:
 
-- **Cerchi:** rappresentano gli stati;
-- **Archi:** rappresentano le transizioni, avvenendo al fronte di salita del clock;
-- L'arco **Reset:** indica che il sistema passa allo stato $S_0$ in caso di reset, indipendentemente dallo stato
-  precedente;
-- Transizioni con più archi sono etichettate per mostrare quale ingresso causa la transizione.
+-   **Cerchi:** rappresentano gli stati;
+-   **Archi:** rappresentano le transizioni, avvenendo al fronte di salita del clock;
+-   L'arco **Reset:** indica che il sistema passa allo stato $S_0$ in caso di reset, indipendentemente dallo stato
+    precedente;
+-   Transizioni con più archi sono etichettate per mostrare quale ingresso causa la transizione.
 
 Nel diagramma degli stati per le macchine di Moore i valori delle uscite vengono indicati nei cerchi, mentre, nelle
 macchine di Mealy le uscite sono indicate negli archi.

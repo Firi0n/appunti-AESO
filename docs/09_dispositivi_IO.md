@@ -47,10 +47,10 @@ Le performance sono molto importanti, ma contano anche aspetti come:
 
 L'affidabilità di un sistema si misura attraverso metriche come:
 
-* **MTTF (Mean Time To Failure)** $\rightarrow$ Tempo medio di vita di un componente;
-* **MTBF (Mean Time Between Failure)** $\rightarrow$ Tempo medio che intercorre tra i guasti non irreparabili.
-* **Fault avoidance** $\rightarrow$ Evitare i guasti per es. scegliendo componenti migliori.
-* **Fault tolerance** $\rightarrow$ tolleranza ai guasti per es. introducendo livelli di ridondanza.
+-   **MTTF (Mean Time To Failure)** $\rightarrow$ Tempo medio di vita di un componente;
+-   **MTBF (Mean Time Between Failure)** $\rightarrow$ Tempo medio che intercorre tra i guasti non irreparabili.
+-   **Fault avoidance** $\rightarrow$ Evitare i guasti per es. scegliendo componenti migliori.
+-   **Fault tolerance** $\rightarrow$ tolleranza ai guasti per es. introducendo livelli di ridondanza.
 
 Un esempio comune di tolleranza ai guasti è il **RAID** (**Redundant Array of Independent Disks**), utilizzato nei
 sistemi di archiviazione critici per proteggere i dati da guasti hardware.
@@ -80,10 +80,10 @@ Ogni dispositivo esterno si collega al computer tramite un **modulo di I/O**, qu
 
 Essi si interfacciano con il modulo di I/O tamite tre tipi di segnali:
 
-* **Controllo** $\rightarrow$ Definiscono le operazioni del dispositivo (es. lettura, scrittura, segnalazione dello
-  stato).
-* **Dati** $\rightarrow$ Insieme di bit trasferiti tra il dispositivo e il modulo di I/O.
-* **Stato** $\rightarrow$ Indicano se il dispositivo è pronto per il trasferimento dati (es. READY/NOT-READY).
+-   **Controllo** $\rightarrow$ Definiscono le operazioni del dispositivo (es. lettura, scrittura, segnalazione dello
+    stato).
+-   **Dati** $\rightarrow$ Insieme di bit trasferiti tra il dispositivo e il modulo di I/O.
+-   **Stato** $\rightarrow$ Indicano se il dispositivo è pronto per il trasferimento dati (es. READY/NOT-READY).
 
 ![](./img/generic_io_device.drawio.png)
 
@@ -105,11 +105,11 @@ Per risolvere questi problemi, i **moduli di I/O** svolgono due funzioni princip
 
 Le principali funzioni o requisiti di un modulo I/O rientrano nelle seguenti categorie:
 
-* Controllo e temporizzazione
-* Comunicazione con il processore
-* Comunicazione con il dispositivo
-* Bufferizzazione dei dati
-* Rilevamento degli errori
+-   Controllo e temporizzazione
+-   Comunicazione con il processore
+-   Comunicazione con il dispositivo
+-   Bufferizzazione dei dati
+-   Rilevamento degli errori
 
 Visto che le risorse interne, come la memoria principale e il bus di sistema, devono essere condivise tra diverse
 attività, incluso l'I/O dei dati, la funzione di I/O include un requisito di controllo e temporizzazione per coordinare
@@ -121,26 +121,26 @@ del bus.
 Il modulo I/O deve comunicare sia con il processore che con il dispositivo esterno. La comunicazione con il processore
 coinvolge:
 
-* **Decodifica dei comandi** $\rightarrow$ Il modulo I/O accetta comandi dal processore, solitamente inviati come
-  segnali sul bus di controllo.
-* **Dati** $\rightarrow$ I dati vengono scambiati tra il processore e il modulo I/O attraverso il bus dati.
-* **Segnalazione di stato** $\rightarrow$ Poiché le periferiche sono molto lente rispetto al processore, è importante
-  conoscere lo stato del modulo I/O.
-* **Riconoscimento dell'indirizzo** $\rightarrow$ Il modulo I/O deve riconoscere un indirizzo di memoria univoco per
-  ogni periferica che controlla.
+-   **Decodifica dei comandi** $\rightarrow$ Il modulo I/O accetta comandi dal processore, solitamente inviati come
+    segnali sul bus di controllo.
+-   **Dati** $\rightarrow$ I dati vengono scambiati tra il processore e il modulo I/O attraverso il bus dati.
+-   **Segnalazione di stato** $\rightarrow$ Poiché le periferiche sono molto lente rispetto al processore, è importante
+    conoscere lo stato del modulo I/O.
+-   **Riconoscimento dell'indirizzo** $\rightarrow$ Il modulo I/O deve riconoscere un indirizzo di memoria univoco per
+    ogni periferica che controlla.
 
 Mentre la comunicazione con il dispositivo coinvolge:
 
-* comandi;
-* informazioni di stato;
-* dati.
+-   comandi;
+-   informazioni di stato;
+-   dati.
 
 Una funzione essenziale di un modulo I/O è la **bufferizzazione dei dati**. La necessità di questa funzione è evidente
 dalle differenze di velocità tra i dispositivi.
 
-* I dati provenienti dalla memoria principale vengono inviati rapidamente al modulo I/O, che li memorizza
-  temporaneamente per poi inviarli al dispositivo alla velocità appropriata.
-* Viceversa, i dati in ingresso vengono bufferizzati per evitare di impegnare la memoria con trasferimenti lenti.
+-   I dati provenienti dalla memoria principale vengono inviati rapidamente al modulo I/O, che li memorizza
+    temporaneamente per poi inviarli al dispositivo alla velocità appropriata.
+-   Viceversa, i dati in ingresso vengono bufferizzati per evitare di impegnare la memoria con trasferimenti lenti.
 
 Se il dispositivo opera a una velocità superiore a quella di accesso alla memoria, il modulo I/O deve comunque gestire
 la bufferizzazione per sincronizzare i tassi di trasferimento.
@@ -169,10 +169,10 @@ Il modulo si collega al resto del computer attraverso un insieme di linee di seg
 
 Poi ci sono vari registri:
 
-* **registri dati** in cui si memorizzano temporaneamente i dati da e verso il modulo.
-* **Registri di stato** che forniscono informazioni sullo stato attuale.
-* **Registro di controllo**, accetta informazioni di controllo dettagliate dal processore, può coincidere con il
-  **registro di stato**.
+-   **registri dati** in cui si memorizzano temporaneamente i dati da e verso il modulo.
+-   **Registri di stato** che forniscono informazioni sullo stato attuale.
+-   **Registro di controllo**, accetta informazioni di controllo dettagliate dal processore, può coincidere con il
+    **registro di stato**.
 
 La logica interna del modulo interagisce con il processore tramite un insieme di linee di controllo.
 
@@ -215,8 +215,8 @@ I **taps** sono i dispositivi che possono inviare o ricevere dati attraverso il 
 
 Le **prestazioni** del bus dipendono da diversi fattori, tra cui:
 
-* **Lunghezza fisica** del bus.
-* **Numero di dispositivi** collegati, poiché un numero elevato di taps può influenzare la velocità di trasmissione.
+-   **Lunghezza fisica** del bus.
+-   **Numero di dispositivi** collegati, poiché un numero elevato di taps può influenzare la velocità di trasmissione.
 
 ## Gestione dell'accesso al bus
 
@@ -232,8 +232,8 @@ Collega il **processore** e la **memoria**, mentre il bus di I/O è connesso tra
 
 **Caratteristiche**:
 
-* **Corto**, con pochi dispositivi collegati $\rightarrow$ **veloce e ad alta larghezza di banda**.
-* **Non standard**, varia in base al sistema.
+-   **Corto**, con pochi dispositivi collegati $\rightarrow$ **veloce e ad alta larghezza di banda**.
+-   **Non standard**, varia in base al sistema.
 
 **Esempi**: Front-Side Bus (FSB), QPI.
 
@@ -243,8 +243,8 @@ Collega i **dispositivi di I/O**, senza connessione diretta a processore e memor
 
 **Caratteristiche**:
 
-* **Più lungo**, con più dispositivi $\rightarrow$ **più lento e con minore larghezza di banda**.
-* **Standard industriale**.
+-   **Più lungo**, con più dispositivi $\rightarrow$ **più lento e con minore larghezza di banda**.
+-   **Standard industriale**.
 
 **Esempi**: PCI, PCIe, USB, SATA.
 
@@ -256,9 +256,9 @@ Collega **CPU, memoria e dispositivi di I/O** in un'unica infrastruttura.
 
 **Caratteristiche**:
 
-* **Molto lungo**, con molti dispositivi collegati $\rightarrow$ **velocità media o bassa**.
-* Supporta dispositivi con **diverse larghezze di banda**.
-* **Standard industriale**.
+-   **Molto lungo**, con molti dispositivi collegati $\rightarrow$ **velocità media o bassa**.
+-   Supporta dispositivi con **diverse larghezze di banda**.
+-   **Standard industriale**.
 
 **Esempi**: VMEbus, Multibus.
 
@@ -270,8 +270,8 @@ La progettazione di un bus deve bilanciare **prestazioni, standardizzazione e co
 
 I diversi tipi di bus hanno obiettivi differenti:
 
-* Il **System Bus** privilegia le **prestazioni**;
-* i **bus di I/O e Backplane** puntano sulla **standardizzazione e sulla riduzione dei costi**.
+-   Il **System Bus** privilegia le **prestazioni**;
+-   i **bus di I/O e Backplane** puntano sulla **standardizzazione e sulla riduzione dei costi**.
 
 Nella progettazione di un Bus un primo aspetto da considerare è se i suoi **fili siano condivisi o separati**.
 
@@ -304,9 +304,10 @@ sincronizzazione precisa tra i dispositivi.
 
 Un possibile protocollo di comunicazione tra due unità, **A** e **B**, potrebbe funzionare nel seguente modo:
 
-* Al ciclo di clock $X$, l'unità **A** scrive una richiesta di **LETTURA** sul bus.
-* Dopo un intervallo di tempo massimo pari a $\Delta$, ovvero al ciclo $X + \Delta$, l'unità **A** legge i dati dal bus.
-* Il valore di $\Delta$ rappresenta il tempo massimo richiesto dall'unità **B** per scrivere i dati sul bus.
+-   Al ciclo di clock $X$, l'unità **A** scrive una richiesta di **LETTURA** sul bus.
+-   Dopo un intervallo di tempo massimo pari a $\Delta$, ovvero al ciclo $X + \Delta$, l'unità **A** legge i dati dal
+    bus.
+-   Il valore di $\Delta$ rappresenta il tempo massimo richiesto dall'unità **B** per scrivere i dati sul bus.
 
 Uno dei problemi principali che può emergere in un bus sincrono è lo **skew del clock**, ovvero un disallineamento del
 segnale di clock tra i vari dispositivi connessi.
@@ -331,7 +332,7 @@ generalmente in una velocità di trasferimento inferiore.
 Un possibile protocollo di comunicazione asincrono, basato su **tre linee di controllo** e **una linea dati** (su cui
 vengono multiplexati indirizzi e dati), può funzionare nel seguente modo:
 
-1. L'unità **UIO1** scrive una richiesta di **LETTURA (o SCRITTURA)** sulla linea di controllo (*ReadReq* o *WriteReq*),
+1. L'unità **UIO1** scrive una richiesta di **LETTURA (o SCRITTURA)** sulla linea di controllo (_ReadReq_ o _WriteReq_),
    mentre l'indirizzo della memoria o del dispositivo da cui leggere i dati viene scritto sulla linea dati.
 2. L'unità **UIO2**, dopo aver ricevuto l'indirizzo, invia un segnale di **ACK** (acknowledge) sulla linea di controllo
    a **UIO1**, indicando di aver ricevuto correttamente la richiesta.
@@ -356,8 +357,8 @@ starvation).
 
 L'unità che ha la capacità di iniziare una richiesta sul bus è detta **bus master**.
 
-* La configurazione più semplice prevede un solo master.
-* Alcuni bus possono supportare **più master**, consentendo a diverse unità di richiedere l'accesso al bus.
+-   La configurazione più semplice prevede un solo master.
+-   Alcuni bus possono supportare **più master**, consentendo a diverse unità di richiedere l'accesso al bus.
 
 L'**arbiter** è il componente responsabile della gestione delle richieste e dell'assegnazione del bus, garantendo un
 equilibrio tra **priorità** ed **equità**.
@@ -372,8 +373,9 @@ Questo modello è semplice, ma può diventare un **collo di bottiglia**.
 
 Ci sono due implementazioni principali per questo approccio:
 
-* **Daisy-chain**: semplice da implementare, ma poco equo.
-* **Con linee di richiesta/risposta indipendenti**: metodo ampiamente utilizzato, migliora l'equità e riduce i ritardi.
+-   **Daisy-chain**: semplice da implementare, ma poco equo.
+-   **Con linee di richiesta/risposta indipendenti**: metodo ampiamente utilizzato, migliora l'equità e riduce i
+    ritardi.
 
 ### Arbitraggio Distribuito
 
@@ -388,24 +390,24 @@ problema del collo di bottiglia dell'approccio centralizzato.
 Il metodo **Daisy-Chain** è un tipo di arbitraggio centralizzato in cui i dispositivi sono connessi al bus in ordine di
 priorità.
 
-* I dispositivi con **priorità più alta** sono posizionati più vicini all'**arbiter**.
-* I dispositivi con **priorità più alta** possono **intercettare o negare** le richieste provenienti da dispositivi con
-  priorità inferiore.
+-   I dispositivi con **priorità più alta** sono posizionati più vicini all'**arbiter**.
+-   I dispositivi con **priorità più alta** possono **intercettare o negare** le richieste provenienti da dispositivi
+    con priorità inferiore.
 
 ### Vantaggi e Svantaggi
 
-* :white\_check\_mark: **Semplice da implementare**
-* :x: **Lento**
-* :x: **Non garantisce equità**, poiché i dispositivi con priorità inferiore possono rimanere senza accesso al bus
-  (**starvation**).
+-   :white_check_mark: **Semplice da implementare**
+-   :x: **Lento**
+-   :x: **Non garantisce equità**, poiché i dispositivi con priorità inferiore possono rimanere senza accesso al bus
+    (**starvation**).
 
 ![Daisy-Chain Arbiter](./img/daisy_chain_arbiter.png)
 
 ### Funzionamento
 
-* **Linea di richiesta (Request Line)**: è una **wired-OR line**, ovvero una linea condivisa in cui più dispositivi
-  possono effettuare richieste.
-* **Linea di concessione (Grant Line)**: il segnale di concessione viene propagato attraverso tutti i dispositivi.
+-   **Linea di richiesta (Request Line)**: è una **wired-OR line**, ovvero una linea condivisa in cui più dispositivi
+    possono effettuare richieste.
+-   **Linea di concessione (Grant Line)**: il segnale di concessione viene propagato attraverso tutti i dispositivi.
 
 Se un dispositivo ha effettuato una richiesta, prenderà il controllo del bus non appena riceve il segnale di
 concessione.
@@ -420,23 +422,23 @@ indipendenti** di richiesta (**req**) e concessione (**grant**) per ciascun disp
 
 ### Caratteristiche
 
-* **Controllo centralizzato**: i dispositivi comunicano direttamente con l'arbiter.
-* L'arbiter assegna l'accesso al bus in base a:
-  * **Priorità**: alcuni dispositivi hanno una priorità più alta (**fissa o dinamica**).
-  * **Round-robin**: i dispositivi vengono serviti in ordine ciclico per garantire equità.
+-   **Controllo centralizzato**: i dispositivi comunicano direttamente con l'arbiter.
+-   L'arbiter assegna l'accesso al bus in base a:
+    -   **Priorità**: alcuni dispositivi hanno una priorità più alta (**fissa o dinamica**).
+    -   **Round-robin**: i dispositivi vengono serviti in ordine ciclico per garantire equità.
 
 ### Vantaggi e Svantaggi
 
-* :white\_check\_mark: **Gestione efficiente delle richieste**
-* :x: **Single Point of Failure (SPOF)**: se l’arbiter si guasta, l’intero sistema si blocca.
+-   :white_check_mark: **Gestione efficiente delle richieste**
+-   :x: **Single Point of Failure (SPOF)**: se l’arbiter si guasta, l’intero sistema si blocca.
 
 ![Centralized arbiter](./img/centralized_arbiter.png)
 
 ### Funzionamento
 
-* **Linea di richiesta (Request Line)**: ogni dispositivo invia una richiesta all'arbiter tramite una linea dedicata.
-* **Linea di concessione (Grant Line)**: l'arbiter concede l'accesso al bus al dispositivo selezionato attivando la
-  relativa linea di grant.
+-   **Linea di richiesta (Request Line)**: ogni dispositivo invia una richiesta all'arbiter tramite una linea dedicata.
+-   **Linea di concessione (Grant Line)**: l'arbiter concede l'accesso al bus al dispositivo selezionato attivando la
+    relativa linea di grant.
 
 Se più dispositivi fanno richiesta contemporaneamente, l'arbiter decide in base alla **priorità** o al **round-robin**.
 
@@ -484,11 +486,11 @@ dispositivo esterno, e un comando di I/O.
 
 Esistono quattro tipi di comandi di I/O che un modulo di I/O può ricevere quando viene indirizzato da un processore:
 
-* **Control**: Utilizzato per attivare una periferica e dirle cosa fare, questi comandi sono specifici per il tipo di
-  periferica.
-* **Test**: Utilizzato per verificare varie condizioni di stato associate a un modulo di I/O e alle sue periferiche.
-* **Read**: Fa sì che il modulo di I/O ottenga un dato dalla periferica e lo collochi in un buffer interno.
-* **Write**: Fa sì che il modulo di I/O prenda un dato dal bus dati e lo trasmetta successivamente alla periferica.
+-   **Control**: Utilizzato per attivare una periferica e dirle cosa fare, questi comandi sono specifici per il tipo di
+    periferica.
+-   **Test**: Utilizzato per verificare varie condizioni di stato associate a un modulo di I/O e alle sue periferiche.
+-   **Read**: Fa sì che il modulo di I/O ottenga un dato dalla periferica e lo collochi in un buffer interno.
+-   **Write**: Fa sì che il modulo di I/O prenda un dato dal bus dati e lo trasmetta successivamente alla periferica.
 
 I dati vengono letti una parola alla volta. Per ogni parola letta, il processore deve rimanere in un ciclo di controllo
 dello stato fino a quando non determina che la parola è disponibile nel registro dati del modulo di I/O.
@@ -506,12 +508,12 @@ riconoscere i comandi a lui destinati.
 
 Esistono due modalità di indirizzamento dell'I/O:
 
-* **Memory-mapped I/O**: utilizza un unico spazio di indirizzamento per memoria e I/O, trattando i registri di stato e
-  dati dei moduli di I/O come posizioni di memoria. Ciò permette l'uso delle normali istruzioni di memoria per l'I/O, ma
-  riduce lo spazio disponibile per la memoria.
-* **Isolated I/O**: separa lo spazio di indirizzamento della memoria da quello dell'I/O, rendendo le porte di I/O
-  accessibili solo tramite istruzioni specifiche. Questo preserva lo spazio di memoria ma limita il set di istruzioni
-  disponibili per l'I/O.
+-   **Memory-mapped I/O**: utilizza un unico spazio di indirizzamento per memoria e I/O, trattando i registri di stato e
+    dati dei moduli di I/O come posizioni di memoria. Ciò permette l'uso delle normali istruzioni di memoria per l'I/O,
+    ma riduce lo spazio disponibile per la memoria.
+-   **Isolated I/O**: separa lo spazio di indirizzamento della memoria da quello dell'I/O, rendendo le porte di I/O
+    accessibili solo tramite istruzioni specifiche. Questo preserva lo spazio di memoria ma limita il set di istruzioni
+    disponibili per l'I/O.
 
 Il memory-mapped I/O consente una programmazione più efficiente grazie alla varietà di istruzioni utilizzabili, mentre
 l’isolated I/O evita il consumo di spazio di memoria per l'I/O. Entrambi i metodi sono comunemente impiegati nei sistemi
@@ -540,9 +542,9 @@ sequenza di eventi:
    che può così rimuovere il segnale di interruzione.
 4. Il processore prepara il trasferimento del controllo alla routine di gestione dell'interruzione, salvando lo stato
    attuale:
-    * Lo stato del processore (contenuto nel **Program Status Word - PSW**)
-    * L'indirizzo della prossima istruzione (contenuto nel **Program Counter**)
-    * Queste informazioni vengono salvate nello **stack di controllo**.
+    - Lo stato del processore (contenuto nel **Program Status Word - PSW**)
+    - L'indirizzo della prossima istruzione (contenuto nel **Program Counter**)
+    - Queste informazioni vengono salvate nello **stack di controllo**.
 5. Il processore carica il program counter con l'indirizzo della routine di gestione dell’interruzione. Se esistono più
    routine, il processore determina quale eseguire in base alle informazioni ricevute con l'interruzione.
 6. La routine di gestione salva il contenuto dei registri del processore nello stack, poiché questi potrebbero essere
@@ -564,21 +566,21 @@ Due problemi principali sorgono nell'implementazione dell'I/O basato su interrup
 
 Il processore deve determinare quale modulo di I/O ha generato l'interrupt. Le tecniche principali includono:
 
-* **Linee di interrupt multiple**: Limitate dal numero di linee disponibili.
-* **Software poll**: Il processore interroga i moduli I/O in sequenza, ma è inefficiente.
-* **Daisy chain (polling hardware, interrupt vettoriali)**: Un segnale di riconoscimento viene propagato in cascata fino
-  al modulo richiedente.
-* **Arbitraggio del bus (interrupt vettoriali)**: Il modulo di I/O richiedente ottiene il controllo del bus prima di
-  inviare l'interrupt.
+-   **Linee di interrupt multiple**: Limitate dal numero di linee disponibili.
+-   **Software poll**: Il processore interroga i moduli I/O in sequenza, ma è inefficiente.
+-   **Daisy chain (polling hardware, interrupt vettoriali)**: Un segnale di riconoscimento viene propagato in cascata
+    fino al modulo richiedente.
+-   **Arbitraggio del bus (interrupt vettoriali)**: Il modulo di I/O richiedente ottiene il controllo del bus prima di
+    inviare l'interrupt.
 
 #### 2. Gestione di Interrupt Multipli
 
 Se più moduli generano un interrupt contemporaneamente, il processore deve stabilire le priorità. Le strategie
 includono:
 
-* **Priorità fissa**: Alcuni moduli hanno precedenza su altri.
-* **Polling software o daisy chain**: L'ordine dei moduli determina la priorità.
-* **Arbitraggio del bus**: Il modulo con priorità più alta ottiene accesso al bus prima.
+-   **Priorità fissa**: Alcuni moduli hanno precedenza su altri.
+-   **Polling software o daisy chain**: L'ordine dei moduli determina la priorità.
+-   **Arbitraggio del bus**: Il modulo con priorità più alta ottiene accesso al bus prima.
 
 Queste tecniche garantiscono un'efficiente gestione degli interrupt nel sistema.
 
@@ -597,10 +599,10 @@ per trasferire dati direttamente tra memoria e dispositivi I/O senza coinvolgere
 
 Quando il processore desidera trasferire un blocco di dati, invia al modulo DMA le seguenti informazioni:
 
-* Tipo di operazione (lettura o scrittura).
-* Indirizzo del dispositivo I/O coinvolto.
-* Indirizzo di memoria da cui leggere o scrivere.
-* Numero di parole da trasferire.
+-   Tipo di operazione (lettura o scrittura).
+-   Indirizzo del dispositivo I/O coinvolto.
+-   Indirizzo di memoria da cui leggere o scrivere.
+-   Numero di parole da trasferire.
 
 Una volta ricevuto il comando, il modulo DMA gestisce il trasferimento autonomamente, senza passare per il processore.
 
@@ -614,12 +616,12 @@ Ciò rallenta leggermente l’esecuzione del processore, ma è molto più effici
 
 Esistono diverse configurazioni per l’integrazione del DMA nel sistema:
 
-* **Bus condiviso**: il modulo DMA utilizza il bus di sistema per trasferire dati tra memoria e dispositivi I/O,
-  consumando due cicli bus per ogni trasferimento.
-* **DMA con connessione diretta ai dispositivi I/O**: il modulo DMA scambia dati con i dispositivi senza passare per il
-  bus di sistema, riducendo il numero di cicli bus necessari.
-* **DMA con bus I/O separato**: i dispositivi I/O comunicano con il modulo DMA tramite un bus dedicato, migliorando
-  l’efficienza e l’espandibilità del sistema.
+-   **Bus condiviso**: il modulo DMA utilizza il bus di sistema per trasferire dati tra memoria e dispositivi I/O,
+    consumando due cicli bus per ogni trasferimento.
+-   **DMA con connessione diretta ai dispositivi I/O**: il modulo DMA scambia dati con i dispositivi senza passare per
+    il bus di sistema, riducendo il numero di cicli bus necessari.
+-   **DMA con bus I/O separato**: i dispositivi I/O comunicano con il modulo DMA tramite un bus dedicato, migliorando
+    l’efficienza e l’espandibilità del sistema.
 
 ### Virtual vs physical DMA
 
