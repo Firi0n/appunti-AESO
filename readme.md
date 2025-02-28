@@ -75,7 +75,7 @@ For advanced customization, refer to the
 
 To deploy your site using GitHub Pages:
 
-1. **Create a new repository using this template**
+1. **Create a new repository using this template**:
 
     - Click the **"Use this template"** button at the top of this repository.
     - Name your new repository.
