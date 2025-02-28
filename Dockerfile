@@ -15,5 +15,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Default command to serve the site
->>>>>>> template/main
 CMD ["mkdocs", "serve", "-a", "0.0.0.0:8000"]
