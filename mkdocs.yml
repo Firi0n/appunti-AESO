@@ -1,4 +1,4 @@
-site_name: # Site name
+site_name: Site name
 theme:
   name: material
   custom_dir: docs/overrides
