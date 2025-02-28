@@ -1,18 +1,10 @@
-<<<<<<< HEAD
 site_name: Appunti AESO
-=======
-site_name: Site name
->>>>>>> template/main
 theme:
   name: material
   custom_dir: docs/overrides
   features:
     - navigation.sections
-<<<<<<< HEAD
-    - toc.integrate # Abilita il TOC (indice automatico)
-=======
     - toc.integrate # Enable TOC (auto index)
->>>>>>> template/main
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -25,16 +17,6 @@ theme:
         icon: material/weather-sunny
         name: Switch to light mode
 
-<<<<<<< HEAD
-# Estensioni Markdown
-markdown_extensions:
-  - toc:
-      baselevel: 2
-      permalink: "#" # Aggiunge link accanto ai titoli per navigazione più veloce
-  - pymdownx.highlight
-  - pymdownx.emoji
-  - pymdownx.superfences: # Supporto mermaid
-=======
 # Markdown extensions
 markdown_extensions:
   - toc:
@@ -43,29 +25,21 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.emoji
   - pymdownx.superfences: # Mermaid support
->>>>>>> template/main
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.arithmatex:
-<<<<<<< HEAD
-      generic: true # Supporto per formule LaTeX
-
-# Supporto per LaTeX (MathJax)
-=======
       generic: true # LaTeX support
 
 # LaTeX support (MathJax)
->>>>>>> template/main
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js
 
 extra_css:
   - overrides/main.css
 
-<<<<<<< HEAD
-# Navigazione del sito
+# Site navigation
 nav:
   - Introduzione: 01_introduzione.md
   - Reti logiche combinatorie: 02_reti_logiche_combinatorie.md
@@ -76,9 +50,3 @@ nav:
   - Parallelismo: 07_parallelismo.md
   - Gerarchie di memoria: 08_gerarchie_di_memoria.md
   - Dispositivi di IO: 09_dispositivi_IO.md
-=======
-# Site navigation
-nav:
-  - Home: index.md
-  # Add your pages
->>>>>>> template/main
