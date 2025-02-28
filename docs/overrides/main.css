@@ -1,3 +1,7 @@
 .md-footer {
 	display: none !important;
 }
+
+p {
+	text-align: justify !important;
+}
