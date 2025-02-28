@@ -86,17 +86,30 @@ The GitHub Action will automatically deploy the `main` branch, and your site wil
 
 ## :inbox_tray: Installation
 
-### :desktop_computer: Local setup
+In all cases first steps are:
 
 ```sh
-# Install MkDocs and the Material theme
-pip install mkdocs-material
-
 # Clone the repository
 git clone https://github.com/Firi0n/MKDocs-setup.git
 
 # Enter it
 cd MKDocs-setup
+```
+
+### :desktop_computer: Local setup
+
+Before proceeding, ensure you have Python and pip installed on your system. You can check by running:
+
+```sh
+python --version
+pip --version
+```
+
+If not installed, refer to the official [Python installation guide](https://www.python.org/downloads/) to set them up.
+
+```sh
+# Install dependencies
+pip install -r requirements.txt
 
 # Start the local server
 mkdocs serve
@@ -104,13 +117,30 @@ mkdocs serve
 
 ### :whale: Docker setup
 
+The repository supports two usage modes with Docker:
+
+1. **Using the local directory** (recommended for development)
+2. **Copying the directory into the container** (useful for more isolated environments)
+
+#### :rocket: Running MkDocs with the local directory
+
+This option mounts the working directory into the container, allowing live modifications without needing to rebuild the
+image:
+
 ```sh
-# Clone the repository
-git clone https://github.com/Firi0n/MKDocs-setup.git
+# Build the Docker image
+docker build -t mkdocs-site .
 
-# Enter it
-cd MKDocs-setup
+# Run the container
+docker run --rm -p 8000:8000 -v $(pwd):/app mkdocs-site
+```
 
+#### :package: Running MkDocs by copying files into the container
+
+If you prefer a more isolated environment, you can copy the files into the container. To do this, locate the
+corresponding `COPY` instruction in the Dockerfile, remove the comment symbol (`#`), and then:
+
+```sh
 # Build the Docker image
 docker build -t mkdocs-site .
 
