@@ -75,14 +75,19 @@ For advanced customization, refer to the
 
 To deploy your site using GitHub Pages:
 
-1. :fork_and_knife: **Fork this repository** to your own GitHub account.
-2. :gear: **Enable GitHub Pages** in the repository settings by selecting `GitHub Actions` as the source.
+1. **Create a new repository using this template**
+
+    - Click the **"Use this template"** button at the top of this repository.
+    - Name your new repository.
+
+2. **Enable GitHub Pages** in the repository settings by selecting `GitHub Actions` as the source:
     - Go to **Settings > Pages**
     - Under **Build and deployment**, select **GitHub Actions**
     - Save the settings
 
-The GitHub Action will automatically deploy the `main` branch, and your site will be available at:
-`https://<your-username>.github.io/<repository-name>/`.
+Once set up, GitHub Actions will automatically deploy your site from the `main` branch.  
+Your site will be available at:  
+:point_right: `https://<your-username>.github.io/<repository-name>/`
 
 ## :inbox_tray: Installation
 
