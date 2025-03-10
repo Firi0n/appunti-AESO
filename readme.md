@@ -137,8 +137,10 @@ image:
 docker build -t mkdocs-site .
 
 # Run the container
-docker run --rm -p 8000:8000 -v $(pwd):/app mkdocs-site
+docker run -p 8000:8000 -v $(pwd):/app mkdocs-site
 ```
+
+If on Windows, use `{}` instead of `()` for `pwd`.
 
 #### :package: Running MkDocs by copying files into the container
 
@@ -150,7 +152,7 @@ corresponding `COPY` instruction in the Dockerfile, remove the comment symbol (`
 docker build -t mkdocs-site .
 
 # Run the container
-docker run --rm -p 8000:8000 mkdocs-site
+docker run -p 8000:8000 mkdocs-site
 ```
 
 ### :globe_with_meridians: Access the Site
