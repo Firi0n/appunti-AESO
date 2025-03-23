@@ -11,7 +11,7 @@ Puoi esplorare i contenuti tramite:
 
 -   Il **menu laterale**
 -   I tasti di **navigazione** alla fine di ogni pagina  
-    [:arrow_left: Precedente](index.md) | [Successivo :arrow_right:](01_introduzione.md)
+    [:arrow_left: Precedente](index.md) | [Successivo :arrow_right:](architetture/01_introduzione.md)
 
 ## :link: Link Utili
 
