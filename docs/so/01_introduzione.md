@@ -110,3 +110,47 @@ con cui il sistema completà un gruppo di attività.
 Una considerazione correlata è la prevedibilità delle prestazioni, ossia se il tempo di risposta è coerente nel tempo.
 
 ## Adozione
+
+Il successo di un sistema operativo dipende anche dal supporto che riceve da hardware e software. Gli utenti tendono a
+scegliere una piattaforma in base alla convenienza dell'hardware e alla disponibilità del software, mentre i progettisti
+si concentrano sulle piattaforme con la base installata più ampia. Questo crea un circolo virtuoso: più utenti
+significano maggiore supporto.
+
+Quindi nel progettare un sistema operativo bisogna tener conto di facilitare l'implementazione di nuovo hardware e
+software (per esempio adottando standard per le API).
+
+# Passato, presente e futuro
+
+Nonostante l'aumento esponenziale della potenza di calcolo, come descritto dalla legge di **Moore**, i sistemi operativi
+continuano ad affrontare le stesse sfide concettuali e con ogni probabilità le affronteranno anche in futuro.
+
+## I primi sistemi operativi
+
+Nonostante la bassa complessità dei primi sistemi informatici, era necessario un sistema operativo per ridurre gli
+errori dei programmatori, poiché questi comportavano costi elevati. Di conseguenza, i primi sistemi operativi erano
+concepiti come un insieme standard di servizi comuni.
+
+## Sistemi operativi multiutente
+
+Il passo successivo fu l'introduzione della condivisione per evitare lo spreco di tempo e risorse.
+
+Un **sistema operativo batch** esegue un insieme di task seguendo un semplice ciclo: caricare, eseguire e scaricare ogni
+task. In ogni fase può essere elaborato un task diverso grazie a un processo chiamato **accesso diretto alla memoria
+(DMA)**.
+
+Con questo sistema, il dispositivo di I/O trasferisce i dati direttamente in memoria; una volta completato il
+trasferimento, l'hardware genera un **interrupt**, trasferendo il controllo al gestore degli interrupt del sistema
+operativo.
+
+Quest'ultimo avvia il successivo DMA e riprende l'esecuzione, mentre il processo non si accorge di nulla se non per un
+breve ritardo.
+
+Il passo successivo fu l'introduzione del **multitasking**, ovvero l'esecuzione di più applicazioni in contemporanea.
+Questo ha reso necessaria l'isolazione dei programmi, ottenuta mediante la protezione della memoria a livello hardware.
+
+Una delle sfide del batch computing è il debugging del sistema operativo stesso. In questo contesto, le macchine
+virtuali si rivelano particolarmente utili.
+
+## time-sharing
+
+I **sistemi operativi time-sharing** sono
