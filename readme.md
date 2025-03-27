@@ -25,13 +25,14 @@ This setup includes two key improvements:
 
 -   :page_facing_up: Add new documentation pages by creating `.md` files inside the `docs/` folder.
 
--   :wrench: Modify the `nav.yml` configuration file with your site name and define your pages in the `nav` section:
+-   :wrench: Modify the `mkdocs.yml` configuration file with your site name and define your pages in the `nav` section:
 
-```yaml
-- Page Name: path/to/page.md
-```
+    ```yaml
+    nav:
+        - Page Name: path/to/page.md
+    ```
 
-The path should be relative to the `docs/` directory.
+    The path should be relative to the `docs/` directory.
 
 ### :open_file_folder: Folder Structure
 
