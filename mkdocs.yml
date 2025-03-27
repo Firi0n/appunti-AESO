@@ -41,5 +41,16 @@ extra_css:
 
 # Site navigation
 nav:
-  - Home: index.md
-  # Add your pages
+  - Architetture:
+      - Introduzione: architetture/01_introduzione.md
+      - Reti logiche combinatorie: architetture/02_reti_logiche_combinatorie.md
+      - Reti logiche sequenziali: architetture/03_reti_logiche_sequenziali.md
+      - Blocchi costruttivi digitali: architetture/04_blocchi_costruttivi_digitali.md
+      - Assembler: architetture/05_assembler.md
+      - Microarchitettura: architetture/06_microarchitettura.md
+      - Parallelismo: architetture/07_parallelismo.md
+      - Gerarchie di memoria: architetture/08_gerarchie_di_memoria.md
+      - Dispositivi di IO: architetture/09_dispositivi_IO.md
+  - Sistemi operativi:
+      - Introduzione: so/01_introduzione.md
+      - Kernel: so/02_kernel.md
