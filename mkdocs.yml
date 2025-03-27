@@ -40,6 +40,4 @@ extra_css:
   - overrides/main.css
 
 # Site navigation
-nav:
-  - Home: index.md
-  # Add your pages
+nav: !include nav.yml
