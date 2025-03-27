@@ -60,8 +60,8 @@ operativo affidabile avrà un'alta disponibilità.
 
 Essa è influenzata da 2 fattori:
 
--   Tempo medio al guasto (MTTF);
--   Tempo medio alla riparazione (MTTR).
+-   **Tempo medio al guasto (MTTF)**;
+-   **Tempo medio alla riparazione (MTTR)**.
 
 ## Sicurezza
 
@@ -77,8 +77,36 @@ sicurezza e la privacy.
 Il sistema operativo garantisce la sicurezza tramite delle politiche di sicurezza che gestiscono i permessi che ha un
 utente o un'applicazione.
 
+## Portabilità
+
+La portabilità di un software è la sua capicità di essere eseguito al variare dell'hardware senza bisogno di modificare
+il codice.
+
+Tramite la **macchina virtuale astratta (AVM)** i sistemi operativi sono ingrado di rendere indipendente l'evoluzione
+dell'hardware da quella del software.
+
+l'AVM fornisce:
+
+-   L'interfaccia di programmazione delle applicazioni (**API**);
+-   L'elenco delle chiamate alle funzioni di sistema (le funzioni il sistema operativo fornisce alle applicazioni);
+-   Il modello di accesso alla memoria;
+-   Le istruzioni che possono essere eseguite legalmente.
+
+Questi concetti sono talmente importanti da essere utilizzati all'interno dei sistemi operativi stessi tramite
+un'**interfaccia** chiamata **strato di astrazione hardware (HAL)**.
+
 ## Prestazioni
 
-19
+Le prestazioni di un'applicazione dipendono anche dalla velocità del sistema operativo su cui vengono eseguite.
+
+Una metrica delle prestazioni è l'**overhead**, il costo di risorse aggiuntive per implementare un'astrazione presentata
+alle applicazioni. Un concetto correlato è l'**efficienza** che non è altro che la mancanza di overhead. L'overhead può
+essere misurato è determinare quanto l'astrazione ostacola le prestazioni dell'applicazione.
+
+Un problema è garantire l'equità tra utenti e applicazioni, due concetti correlati sono il **ritardo** e il
+**throughput**. Il ritardo è il tempo impiegato per l'esecuzione di un singolo **task**, il **throughput** è la velocità
+con cui il sistema completà un gruppo di attività.
+
+Una considerazione correlata è la prevedibilità delle prestazioni, ossia se il tempo di risposta è coerente nel tempo.
 
 ## Adozione
