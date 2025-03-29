@@ -153,4 +153,67 @@ virtuali si rivelano particolarmente utili.
 
 ## time-sharing
 
-I **sistemi operativi time-sharing** sono
+I **sistemi operativi time-sharing** sono progettati per supportare l'uso interattivo del computer anzichè
+l'elaborazione in modalità batch dei sistemi precedenti.
+
+Con questo sistema, ogni input dell'utente genera un interrupt che viene messo in coda all'interno del sistema operativo
+dal gestore degli interrupt. Successivamente, l'interrupt viene elaborato dall'applicazione attiva.
+
+I primi sistemi di questo tipo supportavano molti utenti simultaneamente, ma con il calo dei costi dell'hardware, sempre
+più persone hanno potuto permettersi un dispositivo personale. Di conseguenza, l'attenzione si è spostata sulla
+condivisione dei dati, consolidando il modello di **client-server computing**.
+
+# Sistemi Operativi Moderni
+
+I sistemi operativi moderni sono progettati per soddisfare esigenze diverse in base ai dispositivi su cui vengono
+utilizzati. Ecco alcune categorie principali:
+
+## Sistemi per desktop, laptop e netbook
+
+Esempi includono **Windows**, **MacOS X** e **Linux**. Questi sistemi sono pensati per utenti singoli e supportano molte
+applicazioni. Inizialmente progettati con una separazione minima tra le parti del sistema, hanno evoluto la loro
+sicurezza per proteggere meglio gli utenti da virus informatici.
+
+## Sistemi per smartphone
+
+Con l'avvento di smartphone, tablet ed e-book reader, i sistemi operativi hanno integrato nuove modalità di interazione
+come input vocali, gestuali e persino segnali cerebrali. Esempi includono **iOS**, **Android** e Windows Phone.
+
+## Sistemi server
+
+Utilizzati per motori di ricerca, siti web ed e-commerce, questi sistemi devono gestire un gran numero di richieste
+simultanee. La capacità di tollerare guasti hardware o software è cruciale per garantire la continuità del servizio.
+
+## Macchine virtuali
+
+Consentono l'esecuzione di più sistemi operativi su un'unica macchina fisica. Questo approccio migliora l'efficienza e
+l'isolamento delle risorse. Esempi includono **VMWare**, Xen e Windows Virtual PC.
+
+## Sistemi embedded
+
+Integrati in dispositivi come microonde, automobili e dispositivi medici, questi sistemi sono progettati per compiti
+specifici con basso overhead. Un esempio noto è il Therac-25, un dispositivo radiologico che ha evidenziato i rischi
+legati a errori nel software embedded.
+
+# Sistemi Operativi Futuri
+
+I sistemi operativi del futuro dovranno affrontare nuove sfide legate alla sicurezza, affidabilità e gestione delle
+infrastrutture critiche. Le principali aree di sviluppo includono:
+
+## Data center su larga scala
+
+I sistemi operativi dovranno coordinare centinaia di migliaia o milioni di computer in data center per supportare
+servizi online essenziali. Questo richiederà un'interfaccia astratta che isoli le applicazioni dai guasti hardware.
+
+## Sistemi multicore su larga scala
+
+Con processori che contengono centinaia o migliaia di core, i sistemi operativi dovranno gestire risorse in modo
+efficiente per garantire prestazioni elevate.
+
+## Archiviazione su larga scala
+
+Il futuro dei sistemi operativi include la capacità di gestire enormi quantità di dati in modo affidabile, garantendo il
+recupero anche dopo decenni.
+
+Questa evoluzione mira a rendere i sistemi operativi più robusti e adatti a gestire infrastrutture critiche come reti
+elettriche, ospedali e automobili autonome.
